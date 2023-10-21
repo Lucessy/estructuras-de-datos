@@ -9,7 +9,7 @@ Mesa::Mesa()
     //Create new random table
 }
 
-Mesa::Mesa(int numero,int capacidad,string situacion_Mesa)
+Mesa::Mesa(int numero,int capacidad,string situacionMesa)
 {
     //Create new random table
 }
@@ -19,17 +19,17 @@ Mesa::~Mesa()
     //dtor
 }
 
-int get_num_mesa()
+int getNummesa()
 {
-    return num_mesa;
+    return numMesa;
 }
 
-int get_capacidad()
+int getCapacidad()
 {
     return capacidad;
 }
 
-string get_situacion_Mesa()
+string getSituacionMesa()
 {
-    return situacion_Mesa;
+    return situacionMesa;
 }

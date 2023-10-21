@@ -6,18 +6,18 @@ class Mesa
 {
     public:
         Mesa();
-        Mesa(int num_mesa,int capacidad,string situacion_Mesa);
+        Mesa(int numMesa,int capacidad,string situacionMesa);
         virtual ~Mesa();
-        int get_num_mesa();
-        int get_capacidad();
-        string get_situacion_Mesa();
+        int getNumMesa();
+        int getCapacidad();
+        string getSituacionMesa();
 
     protected:
 
     private:
-        int num_mesa;
+        int numMesa;
         int capacidad;
-        string situacion_Mesa;
+        string situacionMesa;
 };
 
 #endif // MESA_H

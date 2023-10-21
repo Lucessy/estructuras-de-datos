@@ -7,9 +7,9 @@ class Pedido
     public:
         Pedido();
         virtual ~Pedido();
-        int get_num_Mesa();
-        string get_preferencia_Menu();
-        bool get_finalizado();
+        int getNumMesa();
+        string getPreferenciaMenu();
+        bool getFinalizado();
 
     protected:
 
@@ -18,9 +18,9 @@ class Pedido
         //porque los comparte con Reserva y Mesa :(
 
         //string nombreCliente;
-        int num_Mesa[2];
+        int numMesa[2];
         //int numero_Personas;
-        string preferencia_Menu;
+        string preferenciaMenu;
         //string situacion_Mesa;
         bool finalizado;
 };

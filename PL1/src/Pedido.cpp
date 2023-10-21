@@ -10,18 +10,18 @@ Pedido::~Pedido()
     //dtor
 }
 
-int get_num_Mesa()
+int getNumMesa()
 {
     //No se si retorna el vector?
-    return num_mesa;
+    return numMesa;
 }
 
-string get_preferencia_Menu()
+string getPreferenciaMenu()
 {
-    return preferencia_Menu;
+    return preferenciaMenu;
 }
 
-bool get_finalizado()
+bool getFinalizado()
 {
     return finalizado;
 }

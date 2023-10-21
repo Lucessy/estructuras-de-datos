@@ -16,7 +16,7 @@ Cola::~Cola()
 Cola::encolar(char elemento)
 {
     NodoCola *nuevo_nodo = new NodoCola(elemento);
-    if(es_vacia()){
+    if(esVacia()){
         primero=nuevo_nodo;
         ultimo=nuevo_nodo;
     }else{
@@ -28,7 +28,7 @@ Cola::encolar(char elemento)
 
 Cola::desencolar()
 {
-    if(!es_vacia){
+    if(!esVacia){
         char elemento = primero->elemento;
         NodoCola *aux = primero;
 
@@ -49,7 +49,7 @@ Cola::desencolar()
 
 Cola::inicio()
 {
-        if(!es_vacia())
+        if(!esVacia())
         {
             return primero->elemento;
         }
@@ -57,13 +57,13 @@ Cola::inicio()
 
 Cola::fin()
 {
-    if(!es_vacia())
+    if(!esVacia())
     {
             return ultimo->elemento;
     }
 }
 
-Cola::es_vacia()
+Cola::esVacia()
 {
     return((primero=NULL)&&(ultimo=NULL));
 }
@@ -71,7 +71,7 @@ Cola::es_vacia()
 Cola::mostrarCola()
 {
         NodoCola *aux = primero;
-        if(es_vacia()){
+        if(esVacia()){
             cout << "Cola vacia" << endl;
         }
         else{
@@ -83,7 +83,7 @@ Cola::mostrarCola()
         }
 }
 
-Cola::get_longitud()
+Cola::getLongitud()
 {
     return longitud;
 }

@@ -12,9 +12,9 @@ class Cola
         char desencolar();
         char inicio();
         char fin();
-        bool es_vacia();
+        bool esVacia();
         void mostrarCola();
-        int get_longitud();
+        int getLongitud();
 
     protected:
 

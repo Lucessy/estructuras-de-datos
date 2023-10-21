@@ -4,13 +4,11 @@
 Reserva::Reserva(string nombreCliente,string horaReserva)
 {
     //Create new random reservation
-
-
 }
+
 Reserva::Reserva()
 {
     //Create new random reservation
-
 }
 
 Reserva::~Reserva()
@@ -18,8 +16,9 @@ Reserva::~Reserva()
     //dtor
 }
 
-//Getters
 
+
+//Getters
 string Reserva::getNombreCliente()
 {
     return nombreCliente;
