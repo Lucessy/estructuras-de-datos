@@ -17,6 +17,9 @@ Reserva::~Reserva()
 {
     //dtor
 }
+
+//Getters
+
 string Reserva::getNombreCliente()
 {
     return nombreCliente;
