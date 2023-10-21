@@ -35,12 +35,16 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Cola.h" />
+		<Unit filename="include/Gestor.h" />
+		<Unit filename="include/Lista.h" />
 		<Unit filename="include/Mesa.h" />
 		<Unit filename="include/NodoCola.h" />
 		<Unit filename="include/Pedido.h" />
 		<Unit filename="include/Reserva.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Cola.cpp" />
+		<Unit filename="src/Gestor.cpp" />
+		<Unit filename="src/Lista.cpp" />
 		<Unit filename="src/Mesa.cpp" />
 		<Unit filename="src/NodoCola.cpp" />
 		<Unit filename="src/Pedido.cpp" />
