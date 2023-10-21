@@ -7,15 +7,15 @@ class NodoCola
     public:
         NodoCola();
         //Otro constructor
-        NodoCoLa(char e, NodoCola*sig=NULL);
+        NodoCola(char e, NodoCola*sig=NULL);
         virtual ~NodoCola();
+        NodoCola *siguiente;
+        char elemento;
 
     protected:
 
     private:
         //Los atributos
-        NodoCola *siguiente;
-        char elemento;
 };
 
 #endif // NODOCOLA_H

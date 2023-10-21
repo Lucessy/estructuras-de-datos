@@ -1,6 +1,7 @@
 #ifndef MESA_H
 #define MESA_H
-
+#include <string>
+using namespace std;
 
 class Mesa
 {

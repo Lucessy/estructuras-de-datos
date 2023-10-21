@@ -1,5 +1,8 @@
 #ifndef GESTOR_H
 #define GESTOR_H
+#include "Cola.h"
+#include "Pila.h"
+#include "Lista.h"
 
 
 class Gestor

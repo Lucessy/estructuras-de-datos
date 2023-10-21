@@ -1,6 +1,8 @@
 #ifndef RESERVA_H
 #define RESERVA_H
-
+#include <iostream>
+#include <string>
+using namespace std;
 
 class Reserva
 {

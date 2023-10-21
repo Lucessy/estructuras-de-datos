@@ -19,17 +19,17 @@ Mesa::~Mesa()
     //dtor
 }
 
-int getNummesa()
+int Mesa::getNumMesa()
 {
     return numMesa;
 }
 
-int getCapacidad()
+int Mesa::getCapacidad()
 {
     return capacidad;
 }
 
-string getSituacionMesa()
+string Mesa::getSituacionMesa()
 {
     return situacionMesa;
 }

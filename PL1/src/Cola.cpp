@@ -1,4 +1,7 @@
 #include "Cola.h"
+#include "NodoCola.h"
+#include <iostream>
+using namespace std;
 
 Cola::Cola()
 {
@@ -13,7 +16,7 @@ Cola::~Cola()
     //dtor
 }
 
-Cola::encolar(char elemento)
+void Cola::encolar(char elemento)
 {
     NodoCola *nuevo_nodo = new NodoCola(elemento);
     if(esVacia()){
@@ -26,9 +29,9 @@ Cola::encolar(char elemento)
     longitud++;
 }
 
-Cola::desencolar()
+char Cola::desencolar()
 {
-    if(!esVacia){
+    if(!esVacia()){
         char elemento = primero->elemento;
         NodoCola *aux = primero;
 
@@ -47,7 +50,7 @@ Cola::desencolar()
     }
 }
 
-Cola::inicio()
+char Cola::inicio()
 {
         if(!esVacia())
         {
@@ -55,7 +58,7 @@ Cola::inicio()
         }
 }
 
-Cola::fin()
+char Cola::fin()
 {
     if(!esVacia())
     {
@@ -63,12 +66,12 @@ Cola::fin()
     }
 }
 
-Cola::esVacia()
+bool Cola::esVacia()
 {
     return((primero=NULL)&&(ultimo=NULL));
 }
 
-Cola::mostrarCola()
+void Cola::mostrarCola()
 {
         NodoCola *aux = primero;
         if(esVacia()){
@@ -83,7 +86,7 @@ Cola::mostrarCola()
         }
 }
 
-Cola::getLongitud()
+int Cola::getLongitud()
 {
     return longitud;
 }
