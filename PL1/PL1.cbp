@@ -34,8 +34,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Cola.h" />
+		<Unit filename="include/Mesa.h" />
+		<Unit filename="include/NodoCola.h" />
+		<Unit filename="include/Pedido.h" />
 		<Unit filename="include/Reserva.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Cola.cpp" />
+		<Unit filename="src/Mesa.cpp" />
+		<Unit filename="src/NodoCola.cpp" />
+		<Unit filename="src/Pedido.cpp" />
 		<Unit filename="src/Reserva.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

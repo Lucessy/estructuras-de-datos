@@ -14,6 +14,7 @@ class Cola
         char fin();
         bool es_vacia();
         void mostrarCola();
+        int get_longitud();
 
     protected:
 
