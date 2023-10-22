@@ -11,14 +11,14 @@ class NodoCola
 
         NodoCola(const Reserva& reserva, NodoCola*sig=NULL);
         virtual ~NodoCola();
-        NodoCola *siguiente;
-
-        Reserva reserva;
 
     protected:
 
     private:
         //Los atributos
+        NodoCola *siguiente;
+        Reserva reserva;
+        friend class Cola;
 };
 
 #endif // NODOCOLA_H

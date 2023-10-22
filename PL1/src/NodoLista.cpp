@@ -1,10 +1,11 @@
 #include "NodoLista.h"
 #include <iostream>
+#include <Pedido.h>
 
 NodoLista::NodoLista()
 {
     //ctor
-    valor = 0;
+    valor = Pedido();
     siguiente = NULL;
     anterior = NULL;
 }
@@ -14,7 +15,7 @@ NodoLista::~NodoLista()
     //dtor
 }
 
-NodoLista::NodoLista(int elem, NodoLista* sig, NodoLista* ant)
+NodoLista::NodoLista(const Pedido& elem, NodoLista* sig, NodoLista* ant)
 {
     //ctor
     valor = elem;

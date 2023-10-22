@@ -10,9 +10,11 @@ class Pedido
         Pedido();
         virtual ~Pedido();
 
+
     protected:
 
     private:
+
 };
 
 #endif // PEDIDO_H

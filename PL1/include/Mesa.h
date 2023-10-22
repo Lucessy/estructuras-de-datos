@@ -17,9 +17,9 @@ class Mesa
 
     private:
         int numMesa;
-        friend class Pila;
         int capacidad;
         string situacionMesa;
+        friend class Pila;
 };
 
 #endif // MESA_H

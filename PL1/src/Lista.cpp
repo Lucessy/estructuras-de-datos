@@ -21,7 +21,7 @@ Lista::~Lista()
 
 
 
-void Lista::extenderListaPorDerecha(int elem)
+void Lista::extenderListaPorDerecha(const Pedido& elem)
 {
     NodoLista* nuevoNodo = new NodoLista(elem,NULL,ultimo);
     if(esVacia())
@@ -37,7 +37,7 @@ void Lista::extenderListaPorDerecha(int elem)
     longitud++;
 }
 
-void Lista::extenderListaPorIzquierda(int elem)
+void Lista::extenderListaPorIzquierda(const Pedido& elem)
 {
     NodoLista* nuevoNodo = new NodoLista(elem,primero,NULL);
     if(esVacia())
@@ -53,12 +53,12 @@ void Lista::extenderListaPorIzquierda(int elem)
     longitud++;
 }
 
-int Lista::elemInicial()
+const Pedido& Lista::elemInicial()
 {
     return primero->valor;
 }
 
-int Lista::elemFinal()
+const Pedido& Lista::elemFinal()
 {
     return ultimo->valor;
 }
@@ -68,7 +68,7 @@ bool Lista::esVacia()
     return longitud == 0;
 }
 
-int Lista::elemEnPosicion(int indice)
+const Pedido& Lista::elemEnPosicion(int indice)
 {
     NodoLista* aux = primero;
     for(int i = 0; i<indice; i++)
@@ -88,7 +88,7 @@ void Lista::mostrarDatosLista()
     NodoLista* aux = primero;
     for(int i = 0; i<longitud; i++)
     {
-        cout << aux->valor << endl;
+        //cout << aux->valor.nombrePedido << endl;
         aux = aux->siguiente;
     }
 }

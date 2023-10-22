@@ -22,7 +22,7 @@ bool Pila::esVacia()
     return cima == NULL;
 }
 
-void Pila::apilar(Mesa mesa)
+void Pila::apilar(const Mesa& mesa)
 {
     NodoPila* nuevo = new NodoPila(mesa,cima);
     cima = nuevo;

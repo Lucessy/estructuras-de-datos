@@ -7,7 +7,7 @@ class NodoPila
 {
     public:
         NodoPila();
-        NodoPila(Mesa elemento,NodoPila *sig = NULL);
+        NodoPila(const Mesa& elemento,NodoPila *sig = NULL);
         virtual ~NodoPila();
 
     protected:
