@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1697932154 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
+1697933188 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
 	<iostream>
+	<locale.h>
 
 1697926818 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
 	"Lista.h"
@@ -24,7 +25,8 @@
 1697928476 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
 	"Pila.h"
 
-1697928476 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pila.h
+1697975991 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pila.h
+	<NodoPila.h>
 
 1697929505 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodocola.cpp
 	"NodoCola.h"
@@ -54,4 +56,10 @@
 1697929950 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pedido.h
 	<iostream>
 	<string>
+
+1697975887 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodopila.h
+	<Mesa.h>
+
+1697975654 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodopila.cpp
+	"NodoPila.h"
 
