@@ -66,7 +66,7 @@ int main()
             cout << "Generando aleatoriamente la cola de reservas...\n";
             //cReservas = gestor.generarColaReservas();
             //cReservas.mostrarCola();
-            gestor.generarColaReservas();
+            colaReservas = gestor.generarColaReservas();
             break;
         case 2:
             cout << "Mostrando la cola de reservas creada...\n";
