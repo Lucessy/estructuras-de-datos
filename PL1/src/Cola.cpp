@@ -1,6 +1,8 @@
 #include "Cola.h"
 #include "NodoCola.h"
 #include <iostream>
+#include "Reserva.h"
+
 using namespace std;
 
 Cola::Cola()
@@ -16,9 +18,9 @@ Cola::~Cola()
     //dtor
 }
 
-void Cola::encolar(char elemento)
+void Cola::encolar(const Reserva& reserva)
 {
-    NodoCola *nuevo_nodo = new NodoCola(elemento);
+    NodoCola *nuevo_nodo = new NodoCola(reserva);
     if(esVacia()){
         primero=nuevo_nodo;
         ultimo=nuevo_nodo;
@@ -29,10 +31,10 @@ void Cola::encolar(char elemento)
     longitud++;
 }
 
-char Cola::desencolar()
+Reserva Cola::desencolar()
 {
     if(!esVacia()){
-        char elemento = primero->elemento;
+        Reserva reserva = primero->reserva;
         NodoCola *aux = primero;
 
         if((primero==ultimo)&&(primero->siguiente == NULL)){
@@ -46,29 +48,29 @@ char Cola::desencolar()
             delete(aux);
         }
         longitud--;
-        return elemento;
+        return reserva;
     }
 }
 
-char Cola::inicio()
+Reserva Cola::inicio()
 {
         if(!esVacia())
         {
-            return primero->elemento;
+            return primero->reserva;
         }
 }
 
-char Cola::fin()
+Reserva Cola::fin()
 {
     if(!esVacia())
     {
-            return ultimo->elemento;
+            return ultimo->reserva;
     }
 }
 
 bool Cola::esVacia()
 {
-    return((primero=NULL)&&(ultimo=NULL));
+    return((primero==NULL)&&(ultimo==NULL));
 }
 
 void Cola::mostrarCola()
@@ -80,9 +82,10 @@ void Cola::mostrarCola()
         else{
             cout << "Datos de la cola:" << endl;
             while(aux){
-                cout << aux->elemento << endl;
-                aux=aux->siguiente;
-            }
+            cout << "Nombre cliente: " << aux->reserva.getNombreCliente() << endl;
+            cout << "Hora de la reserva: " << aux->reserva.getHoraReserva() << "\n" << endl; // Print reservation time
+            aux = aux->siguiente;
+        }
         }
 }
 
@@ -90,3 +93,12 @@ int Cola::getLongitud()
 {
     return longitud;
 }
+
+NodoCola& Cola::getNodo(int i) {
+    NodoCola* current = primero;
+    for (int j = 0; j < i; j++) {
+        current = current->siguiente;
+    }
+    return *current;
+}
+

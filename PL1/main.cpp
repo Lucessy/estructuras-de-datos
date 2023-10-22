@@ -1,8 +1,14 @@
 #include <iostream>
 #include <locale.h>
+#include "Cola.h"
+#include "NodoCola.h"
+#include "Reserva.h"
+#include "Gestor.h"
+#include <cstdlib> // for rand() and srand()
+#include <ctime> // for time()
 using namespace std;
 
-
+Cola colaReservasAleatoria();
 
 int main()
 {
@@ -48,10 +54,15 @@ int main()
         return 0;
     }
 
+    Gestor gestor;
+    Cola cReservas;
+
     switch(eleccion)
     {
         case 1:
-            cout << "Opcion 1";
+            cout << "Generando aleatoriamente la cola de reservas...\n";
+            cReservas = gestor.generarColaReservas();
+            cReservas.mostrarCola();
             break;
         case 2:
             cout << "Salir";
@@ -87,3 +98,6 @@ int main()
 
 
 }
+
+
+

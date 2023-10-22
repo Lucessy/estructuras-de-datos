@@ -10,19 +10,19 @@ class Gestor
     public:
         Gestor();
         virtual ~Gestor();
-        Cola generarColaReservas(); //Opción 1
-        void mostrarColaReservas(Cola colaReservas); //Opción 2
-        Cola vaciarColaReservas(); //Opción 3
+        static Cola generarColaReservas(); //Opción 1
+        static void mostrarColaReservas(Cola colaReservas); //Opción 2
+        static Cola vaciarColaReservas(); //Opción 3
 
-        Pila generarPisaMesas(); //Opción 4
-        void mostrarPilaMesas(); //Opción 5
-        Pila vaciarPilaReservas(); //Opción 6
+        static Pila generarPisaMesas(); //Opción 4
+        static void mostrarPilaMesas(); //Opción 5
+        static Pila vaciarPilaReservas(); //Opción 6
 
-        void simularGestionPrimeraReserva(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos); //Opción 7
-        void simularGestionReservasProximaHora(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos); //Opción 8
-        void simularGestionReservasTotal(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos); //Opción 9
+        static void simularGestionPrimeraReserva(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos); //Opción 7
+        static void simularGestionReservasProximaHora(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos); //Opción 8
+        static void simularGestionReservasTotal(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos); //Opción 9
 
-        void Salir(); //Opción 0
+        static void Salir(); //Opción 0
 
     protected:
 

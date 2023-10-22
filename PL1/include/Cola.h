@@ -1,6 +1,7 @@
 #ifndef COLA_H
 #define COLA_H
 #include "NodoCola.h"
+#include "Reserva.h"
 
 class Cola
 {
@@ -8,13 +9,14 @@ class Cola
         Cola();
         virtual ~Cola();
         //Metodos de la clase
-        void encolar(char);
-        char desencolar();
-        char inicio();
-        char fin();
+        void encolar(const Reserva& reserva);
+        Reserva desencolar();
+        Reserva inicio();
+        Reserva fin();
         bool esVacia();
         void mostrarCola();
         int getLongitud();
+        NodoCola& getNodo(int i);
 
     protected:
 

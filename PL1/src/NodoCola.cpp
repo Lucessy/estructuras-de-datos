@@ -2,14 +2,15 @@
 
 NodoCola::NodoCola()
 {
-    elemento='o';
+    reserva=Reserva();
     siguiente=NULL;
     //ctor
 }
 
-NodoCola::NodoCola(char e,NodoCola*sig)
+
+NodoCola::NodoCola(const Reserva& reservaCliente, NodoCola*sig)
 {
-    elemento = e;
+    reserva = reservaCliente;
     siguiente = sig;
 }
 
