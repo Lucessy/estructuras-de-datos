@@ -17,39 +17,35 @@ Gestor::~Gestor()
 Cola Gestor::generarColaReservas()
 {
     Cola cola;
-    string times[3] = {"13:30", "14:30", "15:30"};
+    string horas[3] = {"13:30", "14:30", "15:30"};
+    string menus[3] = {"vegano", "sinGluten", "completo"};
+    string situaciones[2] = {"Terraza","Interior"};
 
-    // Seed the random number generator
+    int limite = 12;
+
     srand(time(0));
 
-    // Generate at least 12 reservations
-    for(int i = 0; i < 12; i++)
+
+    for(int i = 0; i < 20; i++)
     {
-        // Generate a random client name (in this case, "Client" followed by a number)
-        string clientName = "Client" + to_string(i+1);
+        string nombreCliente = "Client" + to_string(i+1);
+        string menu = menus[rand() % 3];
+        string situacion = situaciones [rand() % 2];
+        int numeroPersonas = rand() % 8 + 1;
 
-        // Choose a time from the array in order
-        string time = times[i / 4];
-
-        // Create the reservation and add it to the queue
-        Reserva reserva(clientName, time);
-        cola.encolar(reserva);
+        if(i<limite)
+        {
+            string hora = horas[i / 4];
+            Reserva reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
+            cola.encolar(reserva);
+        }
+        else
+        {
+            string hora = horas[rand() % 3];
+            Reserva reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
+            cola.encolar(reserva);
+        }
     }
-
-    // You can add more reservations with completely random data here if you want
-    for(int j = 12; j < 20; j++)
-    {
-        // Generate a random client name (in this case, "Client" followed by a number)
-        string clientName = "Client" + to_string(j+1);
-
-        // Choose a random time from the array
-        string time = times[rand() % 3]; // Use rand() to choose a random time
-
-        // Create the reservation and add it to the queue
-        Reserva reserva(clientName, time);
-        cola.encolar(reserva);
-    }
-
     return cola;
 }
 
@@ -90,7 +86,7 @@ void Gestor::simularGestionReservasProximaHora(Cola colaReservas, Cola colaReser
 {
 
 }
- //Opción 8
+//Opción 8
 
 void Gestor::simularGestionReservasTotal(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos)
 {

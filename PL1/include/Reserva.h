@@ -7,7 +7,7 @@ using namespace std;
 class Reserva
 {
     public:
-        Reserva(string nombreCliente,string horaReserva);
+        Reserva(string nombreCliente,string horaReserva,string situacionMesa,int numeroPersonas,string preferenciaMenu);
         Reserva();
         virtual ~Reserva();
         string getNombreCliente();
