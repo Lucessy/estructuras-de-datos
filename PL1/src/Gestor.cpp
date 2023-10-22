@@ -35,31 +35,34 @@ Cola Gestor::generarColaReservas()
         string situacion = situaciones [rand() % 2];
         int numeroPersonas = rand() % 8 + 1;
 
+        string hora;
         if(i<limite)
         {
-            string hora = horas[i / 4];
-            Reserva reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
-            cola.encolar(reserva);
+            hora = horas[i / 4];
         }
         else
         {
-            string hora = horas[rand() % 3];
-            Reserva reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
-            cola.encolar(reserva);
+            hora = horas[rand() % 3];
         }
+        Reserva reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
+        cola.encolar(reserva);
     }
+    cout << "Cola de reservas generada." << endl;
     return cola;
 }
 
 void Gestor::mostrarColaReservas(Cola colaReservas)
 {
+    if(colaReservas == NULL){
+        cout << No hay ninguna cola de reservas todavía. << endl;
+        return;
+    }
     colaReservas.mostrarCola(); //Se puede implementar de esta manera(?
 } //Opción 2
 
-Cola Gestor::vaciarColaReservas()
+void Gestor::vaciarColaReservas(Cola& colaReservas)
 {
-    Cola cola;
-    return cola;
+    colaReservas.vaciarCola();
 } //Opción 3
 
 Pila Gestor::generarPilaMesas()

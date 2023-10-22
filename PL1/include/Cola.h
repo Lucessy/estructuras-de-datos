@@ -17,6 +17,7 @@ class Cola
         void mostrarCola();
         int getLongitud();
         NodoCola& getNodo(int i);
+        void vaciarCola();
 
     protected:
 

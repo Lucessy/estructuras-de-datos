@@ -52,6 +52,12 @@ Reserva Cola::desencolar()
     }
 }
 
+void Cola::vaciarCola(){
+    while(primero != NULL){
+        desencolar();
+    }
+}
+
 Reserva Cola::inicio()
 {
         if(!esVacia())
@@ -80,15 +86,17 @@ void Cola::mostrarCola()
             cout << "Cola vacia" << endl;
         }
         else{
-            cout << "Datos de la cola:" << endl;
+            cout << "Datos de la cola:" << endl << endl;
             while(aux){
                 cout << "Nombre cliente: " << aux->reserva.getNombreCliente() << endl;
-                cout << "  -Hora de la reserva: " << aux->reserva.getHoraReserva() << "\n" << endl;
-                cout << "  -Número de personas: " << aux->reserva.getNumPersonas() << "\n" << endl;
-                cout << "  -Situación de preferencia: " << aux->reserva.getSituacionMesa() << "\n" << endl;
-                cout << "  -Menú de preferencia: " << aux->reserva.getPreferenciaMenu() << "\n" << endl;
+                cout << "  -Hora de la reserva: " << aux->reserva.getHoraReserva() << endl;
+                cout << "  -Número de personas: " << aux->reserva.getNumPersonas() << endl;
+                cout << "  -Situación de preferencia: " << aux->reserva.getSituacionMesa() <<  endl;
+                cout << "  -Menú de preferencia: " << aux->reserva.getPreferenciaMenu() << endl << endl;
+
                 aux = aux->siguiente;
             }
+            cout << "Fin de los datos de la cola de reservas." << endl;
         }
 }
 
