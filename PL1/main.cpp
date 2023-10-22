@@ -20,18 +20,18 @@ int main()
 
     //Comienzo de programa
     //Mostrar por pantalla las opciones disponibles:
-    cout << "Bienvenido al simulador de gestión de mesas y reservas UltraReserva3000.\n";
-    cout << "Escribe el número de una las siguientes opciones para realizarla:\n";
-    cout << "1. Generar una cola de reservas aleatoria\n";
-    cout << "2. Mostrar los datos de la cola de reservas\n";
-    cout << "3. Borrar los datos de la cola de reservas\n";
-    cout << "4. Gerarar una pila de 20 mesas aleatoria\n";
-    cout << "5. Mostrar los datos de la pila de mesas\n";
-    cout << "6. Borrar los datos de la pila de mesas\n";
-    cout << "7. Simular la gestión de la próxima reserva de la cola\n";
-    cout << "8. Simular la gestión de toda la ronda de reservas de la próxima hora\n";
-    cout << "9. Simular la gestión de todas las reservas de la cola\n";
-    cout << "0. Salir\n\n";
+    cout << "Bienvenido al simulador de gestión de mesas y reservas UltraReserva3000." << endl;
+    cout << "Escribe el número de una las siguientes opciones para realizarla:" << endl;
+    cout << "1. Generar una cola de reservas aleatoria" << endl;
+    cout << "2. Mostrar los datos de la cola de reservas" << endl;
+    cout << "3. Borrar los datos de la cola de reservas" << endl;
+    cout << "4. Gerarar una pila de 20 mesas aleatoria" << endl;
+    cout << "5. Mostrar los datos de la pila de mesas" << endl;
+    cout << "6. Borrar los datos de la pila de mesas" << endl;
+    cout << "7. Simular la gestión de la próxima reserva de la cola" << endl;
+    cout << "8. Simular la gestión de toda la ronda de reservas de la próxima hora" << endl;
+    cout << "9. Simular la gestión de todas las reservas de la cola" << endl;
+    cout << "0. Salir\n" << endl;
 
     int eleccion;
     bool eleccionValida = false;
@@ -45,13 +45,13 @@ int main()
         }
         else
         {
-            cout << "La elección escogida no es correcta. Escoge una válida.\n\n";
+            cout << "La elección escogida no es correcta. Escoge una válida.\n" << endl;
         }
         maxIntentos--;
     }
     if(maxIntentos == 0)
     {
-        cout << "Superaste el número de intentos de elección. Finalizando programa.";
+        cout << "Superaste el número de intentos de elección. Finalizando programa." << endl;
         return 0;
     }
 
@@ -103,6 +103,7 @@ int main()
 
         case 0:
             cout << "Saliendo del programa...";
+            gestor.Salir();
             break;
     }
 
