@@ -65,10 +65,18 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
     colaReservas.vaciarCola();
 } //Opción 3
 
-Pila Gestor::generarPilaMesas()
+Pila Gestor::generarPilaMesas(Pila pilaMesas)
 {
-    Pila pila;
-    return pila;
+    string situaciones[2] = {"Terraza","Interior"};
+    int capacidades[2] = {2,4};
+    for(int numeroMesa=1; numeroMesa<=20; numeroMesa++){
+        //Genera aleatoriamente la capacidad
+        int capacidad = capacidades [rand() % 2];
+        string situacion = situaciones [rand() % 2];
+        Mesa mesa = mesa(numeroMesa,capacidad,situacion);
+        pila.apilar(mesa);
+    }
+    return pilaMesas;
 } //Opción 4
 
 void Gestor::mostrarPilaMesas()

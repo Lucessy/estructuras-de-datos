@@ -85,7 +85,7 @@
 
 1697975654 h"
 
-1698007118 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\main.cpp
+1698010650 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\main.cpp
 	<iostream>
 	<locale.h>
 	"Cola.h"
@@ -117,7 +117,7 @@
 	<cstdlib>
 	<ctime>
 
-1697986461 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\gestor.h
+1698012777 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\gestor.h
 	"Cola.h"
 	"Pila.h"
 	"Lista.h"

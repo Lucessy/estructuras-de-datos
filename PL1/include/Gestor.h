@@ -14,7 +14,7 @@ class Gestor
         static void mostrarColaReservas(Cola colaReservas); //Opción 2
         static void vaciarColaReservas(Cola& colaReservas); //Opción 3
 
-        static Pila generarPilaMesas(); //Opción 4
+        static Pila generarPilaMesas(Pila pilaMesas); //Opción 4
         static void mostrarPilaMesas(); //Opción 5
         static void vaciarPilaReservas(Pila&); //Opción 6
 
