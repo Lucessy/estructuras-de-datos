@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1698004035 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
+1698010042 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
 	<iostream>
 	<locale.h>
 	"Cola.h"
@@ -10,18 +10,18 @@
 	<cstdlib>
 	<ctime>
 
-1698003321 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
+1698010170 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
 	"Lista.h"
 	<iostream>
 
-1698003244 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
+1698010172 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
 	<NodoLista.h>
 
-1697979375 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\reserva.cpp
+1698010172 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\reserva.cpp
 	"Reserva.h"
 	<cstring>
 
-1697928286 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\reserva.h
+1698010172 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\reserva.h
 	<iostream>
 	<string>
 
@@ -45,7 +45,7 @@
 	<iostream>
 	"Reserva.h"
 
-1697979375 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\cola.cpp
+1698010172 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\cola.cpp
 	"Cola.h"
 	"NodoCola.h"
 	<iostream>
@@ -55,7 +55,7 @@
 	"NodoCola.h"
 	"Reserva.h"
 
-1697987666 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
+1698010172 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
@@ -169,7 +169,7 @@
 	"NodoPila.h"
 	<Mesa.h>
 
-1698003074 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodolista.h
+1698010172 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodolista.h
 	<iostream>
 	<Pedido.h>
 
