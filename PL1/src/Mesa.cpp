@@ -11,7 +11,9 @@ Mesa::Mesa()
 
 Mesa::Mesa(int numero,int capacidad,string situacionMesa)
 {
-    //Create new random table
+    this->numMesa=numero;
+    this->capacidad=capacidad;
+    this->situacionMesa=situacionMesa;
 }
 
 Mesa::~Mesa()

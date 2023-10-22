@@ -14,6 +14,7 @@ class Pila
         void desapilar();
         void mostrarCima();
         void mostrarPilaMesas();
+        void vaciarPila();
 
     protected:
 

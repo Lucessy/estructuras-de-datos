@@ -14,6 +14,7 @@ Gestor gestor;
 Cola colaReservas;
 Cola colaReservasPdtes;
 Lista listaPedidos;
+Pila pilaMesas;
 
 int main()
 {
@@ -33,7 +34,7 @@ int main()
         cout << "1. Generar una cola de reservas aleatoria" << endl;
         cout << "2. Mostrar los datos de la cola de reservas" << endl;
         cout << "3. Borrar los datos de la cola de reservas" << endl;
-        cout << "4. Gerarar una pila de 20 mesas aleatoria" << endl;
+        cout << "4. Generar una pila de 20 mesas aleatoria" << endl;
         cout << "5. Mostrar los datos de la pila de mesas" << endl;
         cout << "6. Borrar los datos de la pila de mesas" << endl;
         cout << "7. Simular la gestión de la próxima reserva de la cola" << endl;
@@ -67,10 +68,7 @@ int main()
         {
             case 1:
                 cout << "Generando aleatoriamente la cola de reservas..." << endl;
-                if(colaReservas.esVacia() == false){
-                    gestor.vaciarColaReservas(colaReservas);
-                }
-                colaReservas = gestor.generarColaReservas();
+                gestor.generarColaReservas(colaReservas);
                 break;
             case 2:
                 cout << "Mostrando la cola de reservas creada..." << endl;
@@ -78,19 +76,19 @@ int main()
                 break;
             case 3:
                 cout << "Vaciando la cola de reservas..." << endl;
-                gestor.vaciarColaReservas();
+                gestor.vaciarColaReservas(colaReservas);
                 break;
             case 4:
                 cout << "Generando aleatoriamente la pila de mesas..." << endl;
-                gestor.generarPilaMesas();
+                gestor.generarPilaMesas(pilaMesas);
                 break;
             case 5:
                 cout << "Mostrando la pila de mesas creada..." << endl;
-                gestor.mostrarPilaMesas();
+                gestor.mostrarPilaMesas(pilaMesas);
                 break;
             case 6:
                 cout << "Vaciando la pila de mesas..." << endl;
-                gestor.vaciarPilaReservas();
+                gestor.vaciarPilaReservas(pilaMesas);
                 break;
             case 7:
                 cout << "Simulando la gestión de la primera reserva de la cola de reservas..." << endl;

@@ -1,6 +1,8 @@
 #include "Gestor.h"
 #include "Cola.h"
 #include "Reserva.h"
+#include "Mesa.h"
+#include "Pila.h"
 #include <cstdlib> // for rand() and srand()
 #include <ctime> // for time()
 
@@ -16,9 +18,12 @@ Gestor::~Gestor()
     //dtor
 }
 
-Cola Gestor::generarColaReservas()
+Cola Gestor::generarColaReservas(Cola& colaReservas)
 {
-    Cola cola;
+    if(colaReservas.esVacia() == false)
+    {
+        vaciarColaReservas(colaReservas);
+    }
     string horas[3] = {"13:30", "14:30", "15:30"};
     string menus[3] = {"vegano", "sinGluten", "completo"};
     string situaciones[2] = {"Terraza","Interior"};
@@ -45,18 +50,14 @@ Cola Gestor::generarColaReservas()
             hora = horas[rand() % 3];
         }
         Reserva reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
-        cola.encolar(reserva);
+        colaReservas.encolar(reserva);
     }
     cout << "Cola de reservas generada." << endl;
-    return cola;
+    return colaReservas;
 }
 
-void Gestor::mostrarColaReservas(Cola colaReservas)
+void Gestor::mostrarColaReservas(Cola& colaReservas)
 {
-    if(colaReservas == NULL){
-        cout << No hay ninguna cola de reservas todavía. << endl;
-        return;
-    }
     colaReservas.mostrarCola(); //Se puede implementar de esta manera(?
 } //Opción 2
 
@@ -65,29 +66,29 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
     colaReservas.vaciarCola();
 } //Opción 3
 
-Pila Gestor::generarPilaMesas(Pila pilaMesas)
+Pila Gestor::generarPilaMesas(Pila& pilaMesas)
 {
     string situaciones[2] = {"Terraza","Interior"};
     int capacidades[2] = {2,4};
-    for(int numeroMesa=1; numeroMesa<=20; numeroMesa++){
+    for(int numeroMesa=1; numeroMesa>=1; numeroMesa--)
+    {
         //Genera aleatoriamente la capacidad
         int capacidad = capacidades [rand() % 2];
         string situacion = situaciones [rand() % 2];
-        Mesa mesa = mesa(numeroMesa,capacidad,situacion);
-        pila.apilar(mesa);
+        Mesa mesa(numeroMesa,capacidad,situacion);
+        pilaMesas.apilar(mesa);
     }
     return pilaMesas;
 } //Opción 4
 
-void Gestor::mostrarPilaMesas()
+void Gestor::mostrarPilaMesas(Pila& pilaMesas)
 {
-
+    pilaMesas.mostrarPilaMesas();
 } //Opción 5
 
-Pila Gestor::vaciarPilaReservas()
+void Gestor::vaciarPilaReservas(Pila& pila)
 {
-    Pila pila;
-    return pila;
+    pila.vaciarPila();
 } //Opción 6
 
 void Gestor::simularGestionPrimeraReserva(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos)

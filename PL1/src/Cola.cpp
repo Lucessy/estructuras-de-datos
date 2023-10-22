@@ -31,7 +31,7 @@ void Cola::encolar(const Reserva& reserva)
     longitud++;
 }
 
-Reserva Cola::desencolar()
+void Cola::desencolar()
 {
     if(!esVacia()){
         Reserva reserva = primero->reserva;
@@ -48,7 +48,6 @@ Reserva Cola::desencolar()
             delete(aux);
         }
         longitud--;
-        return reserva;
     }
 }
 
