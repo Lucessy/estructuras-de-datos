@@ -52,3 +52,52 @@ Cola Gestor::generarColaReservas()
 
     return cola;
 }
+
+void Gestor::mostrarColaReservas(Cola colaReservas)
+{
+    colaReservas.mostrarCola(); //Se puede implementar de esta manera(?
+} //Opción 2
+
+Cola Gestor::vaciarColaReservas()
+{
+    Cola cola;
+    return cola;
+} //Opción 3
+
+Pila Gestor::generarPilaMesas()
+{
+    Pila pila;
+    return pila;
+} //Opción 4
+
+void Gestor::mostrarPilaMesas()
+{
+
+} //Opción 5
+
+Pila Gestor::vaciarPilaReservas()
+{
+    Pila pila;
+    return pila;
+} //Opción 6
+
+void Gestor::simularGestionPrimeraReserva(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos)
+{
+
+} //Opción 7
+
+void Gestor::simularGestionReservasProximaHora(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos)
+{
+
+}
+ //Opción 8
+
+void Gestor::simularGestionReservasTotal(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos)
+{
+
+} //Opción 9
+
+void Gestor::Salir()
+{
+
+} //Opción 0

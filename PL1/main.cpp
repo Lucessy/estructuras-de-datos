@@ -4,6 +4,7 @@
 #include "NodoCola.h"
 #include "Reserva.h"
 #include "Gestor.h"
+#include "Lista.h"
 #include <cstdlib> // for rand() and srand()
 #include <ctime> // for time()
 using namespace std;
@@ -55,41 +56,53 @@ int main()
     }
 
     Gestor gestor;
-    Cola cReservas;
+    Cola colaReservas;
+    Cola colaReservasPdtes;
+    Lista listaPedidos;
 
     switch(eleccion)
     {
         case 1:
             cout << "Generando aleatoriamente la cola de reservas...\n";
-            cReservas = gestor.generarColaReservas();
-            cReservas.mostrarCola();
+            //cReservas = gestor.generarColaReservas();
+            //cReservas.mostrarCola();
+            gestor.generarColaReservas();
             break;
         case 2:
-            cout << "Salir";
+            cout << "Mostrando la cola de reservas creada...\n";
+            gestor.mostrarColaReservas(colaReservas);
             break;
         case 3:
-            cout << "Salir";
+            cout << "Vaciando la cola de reservas...\n";
+            gestor.vaciarColaReservas();
             break;
         case 4:
-            cout << "Salir";
+            cout << "Generando aleatoriamente la pila de mesas...\n";
+            gestor.generarPilaMesas();
             break;
         case 5:
-            cout << "Salir";
+            cout << "Mostrando la pila de mesas creada...\n";
+            gestor.mostrarPilaMesas();
             break;
         case 6:
-            cout << "Salir";
+            cout << "Vaciando la pila de mesas...\n";
+            gestor.vaciarPilaReservas();
             break;
         case 7:
-            cout << "Salir";
+            cout << "Simulando la gestión de la primera reserva de la cola de reservas...\n";
+            gestor.simularGestionPrimeraReserva(colaReservas, colaReservasPdtes, listaPedidos);
             break;
         case 8:
-            cout << "Salir";
+            cout << "Simulando la gestión de las reservas y creación de pedidos de todas las reservas para la misma hora...\n";
+            gestor.simularGestionReservasProximaHora(colaReservas, colaReservasPdtes, listaPedidos); //Opción 8
             break;
         case 9:
-            cout << "Salir";
+            cout << "Simulando la gestión de todas las reservas del restaurante...\n";
+            gestor.simularGestionReservasTotal(colaReservas, colaReservasPdtes, listaPedidos); //Opción 9
             break;
+
         case 0:
-            cout << "Salir";
+            cout << "Saliendo del programa...";
             break;
     }
 
