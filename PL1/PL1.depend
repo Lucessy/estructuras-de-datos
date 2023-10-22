@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1697927130 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
+1697932154 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
 	<iostream>
 
 1697926818 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
@@ -47,4 +47,11 @@
 	"Cola.h"
 	"Pila.h"
 	"Lista.h"
+
+1697929913 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pedido.cpp
+	"Pedido.h"
+
+1697929950 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pedido.h
+	<iostream>
+	<string>
 
