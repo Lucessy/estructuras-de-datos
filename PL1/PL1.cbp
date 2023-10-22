@@ -39,6 +39,7 @@
 		<Unit filename="include/Lista.h" />
 		<Unit filename="include/Mesa.h" />
 		<Unit filename="include/NodoCola.h" />
+		<Unit filename="include/NodoPila.h" />
 		<Unit filename="include/Pedido.h" />
 		<Unit filename="include/Pila.h" />
 		<Unit filename="include/Reserva.h" />
@@ -48,6 +49,7 @@
 		<Unit filename="src/Lista.cpp" />
 		<Unit filename="src/Mesa.cpp" />
 		<Unit filename="src/NodoCola.cpp" />
+		<Unit filename="src/NodoPila.cpp" />
 		<Unit filename="src/Pedido.cpp" />
 		<Unit filename="src/Pila.cpp" />
 		<Unit filename="src/Reserva.cpp" />

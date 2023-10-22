@@ -2,7 +2,13 @@
 
 NodoPila::NodoPila()
 {
-    //ctor
+    elemento = Mesa();
+    siguiente = NULL;
+}
+NodoPila::NodoPila(Mesa elemento, NodoPila* sig)
+{
+    this -> elemento = elemento;
+    siguiente = sig;
 }
 
 NodoPila::~NodoPila()

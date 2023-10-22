@@ -12,6 +12,7 @@ class Pila
         bool esVacia();
         void apilar(Mesa mesa);
         void desapilar();
+        void mostrarCima();
         void mostrarPilaMesas();
 
     protected:
