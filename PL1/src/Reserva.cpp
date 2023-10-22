@@ -3,7 +3,8 @@
 
 Reserva::Reserva(string nombreCliente,string horaReserva)
 {
-    //Create new random reservation
+    this->nombreCliente=nombreCliente;
+    this->horaReserva=horaReserva;
 }
 
 Reserva::Reserva()

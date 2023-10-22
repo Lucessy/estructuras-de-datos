@@ -1,16 +1,19 @@
 #ifndef NODOCOLA_H
 #define NODOCOLA_H
 #include <iostream>
+#include "Reserva.h"
 
 class NodoCola
 {
     public:
         NodoCola();
         //Otro constructor
-        NodoCola(char e, NodoCola*sig=NULL);
+
+        NodoCola(const Reserva& reserva, NodoCola*sig=NULL);
         virtual ~NodoCola();
         NodoCola *siguiente;
-        char elemento;
+
+        Reserva reserva;
 
     protected:
 
