@@ -11,3 +11,8 @@ PL1/PL1.depend
 PL1/PL1.depend
 PL1/PL1.layout
 PL1/PL1.layout
+PL1/bin/Debug/PL1.exe
+PL1/obj/Debug/main.o
+PL1/obj/Debug/src/Gestor.o
+PL1/obj/Debug/src/Lista.o
+PL1/PL1.depend
