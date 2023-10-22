@@ -2,7 +2,6 @@
 #define LISTA_H
 #include <NodoLista.h>
 
-
 class Lista
 {
     public:
