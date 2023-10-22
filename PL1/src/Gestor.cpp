@@ -4,6 +4,8 @@
 #include <cstdlib> // for rand() and srand()
 #include <ctime> // for time()
 
+using namespace std;
+
 Gestor::Gestor()
 {
     //ctor
@@ -95,5 +97,8 @@ void Gestor::simularGestionReservasTotal(Cola colaReservas, Cola colaReservasPdt
 
 void Gestor::Salir()
 {
+    cout << "Gracias por usar UltraReserva3000. Nos vemos pronto." << endl;
+    //Otras cosas que realizar antes de salir:
+
 
 } //Opción 0
