@@ -39,10 +39,9 @@ void Pila::vaciarPila()
 
 void Pila::desapilar()
 {
-    NodoPila* nodo;
     if(cima)
     {
-        nodo = cima;
+        NodoPila* nodo= cima;
         cima = nodo->siguiente;
         delete nodo;
     }
