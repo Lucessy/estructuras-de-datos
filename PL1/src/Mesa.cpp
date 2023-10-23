@@ -1,4 +1,5 @@
 #include "Mesa.h"
+#include <iostream>
 
 //numero {1..20}
 //Capacidad {2 || 4}
@@ -14,6 +15,12 @@ Mesa::Mesa(int numero,int capacidad,string situacionMesa)
 Mesa::~Mesa()
 {
     //dtor
+}
+void Mesa::mostrarMesa()
+{
+    cout << "Numero de mesa: " << numMesa << endl;
+    cout << "  -Capacidad: " << capacidad << endl;
+    cout << "  -Situación de mesa: " << situacionMesa <<  endl;
 }
 
 int Mesa::getNumMesa()

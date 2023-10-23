@@ -15,6 +15,8 @@ class Reserva
         string getPreferenciaMenu();
         string getHoraReserva();
 
+        void mostrarReserva();
+
     protected:
 
     private:

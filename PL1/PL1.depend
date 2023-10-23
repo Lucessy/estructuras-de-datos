@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1698060834 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
+1698068763 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
 	<iostream>
 	<locale.h>
 	"Cola.h"
@@ -17,22 +17,23 @@
 1698060516 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
 	<NodoLista.h>
 
-1698060628 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\reserva.cpp
+1698069092 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\reserva.cpp
 	"Reserva.h"
 	<cstring>
 	<iostream>
 
-1698060206 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\reserva.h
+1698069100 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\reserva.h
 	<iostream>
 	<string>
 
-1698058489 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\mesa.cpp
+1698069201 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\mesa.cpp
 	"Mesa.h"
+	<iostream>
 
-1698058488 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\mesa.h
+1698069143 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\mesa.h
 	<string>
 
-1698060826 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
+1698069135 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
 	"Pila.h"
 	<iostream>
 	"NodoPila.h"
@@ -48,7 +49,7 @@
 	<iostream>
 	"Reserva.h"
 
-1698060620 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\cola.cpp
+1698069047 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\cola.cpp
 	"Cola.h"
 	"NodoCola.h"
 	<iostream>
@@ -58,7 +59,7 @@
 	"NodoCola.h"
 	"Reserva.h"
 
-1698060783 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
+1698061015 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
@@ -72,10 +73,11 @@
 	"Pila.h"
 	"Lista.h"
 
-1698004043 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pedido.cpp
+1698068770 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pedido.cpp
 	"Pedido.h"
+	<iostream>
 
-1698004021 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pedido.h
+1698068673 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pedido.h
 	<iostream>
 	<string>
 

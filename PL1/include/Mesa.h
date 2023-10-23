@@ -12,6 +12,8 @@ class Mesa
         int getCapacidad();
         string getSituacionMesa();
 
+        void mostrarMesa();
+
     protected:
 
     private:

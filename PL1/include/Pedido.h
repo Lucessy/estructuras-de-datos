@@ -7,13 +7,26 @@ using namespace std;
 class Pedido
 {
     public:
-        Pedido();
+        Pedido(int numMesa[], string nomCliente, int numPersonas, string prefMenu, string sitMesa, bool finalizado);
         virtual ~Pedido();
+        int* getpNumMesa();
+        string getNombreCliente();
+        int getNumPersonas();
+        string getPreferenciaMenu();
+        string getSituacionMesa();
+        bool getFinalizado();
 
+        void mostrarPedido();
 
     protected:
 
     private:
+        int numeroMesa[2];
+        string nombreCliente;
+        int numeroPersonas;
+        string preferenciaMenu;
+        string situacionMesa;
+        bool finalizado;
 
 };
 

@@ -88,7 +88,7 @@ void Lista::mostrarDatosLista()
     NodoLista* aux = primero;
     for(int i = 0; i<longitud; i++)
     {
-        //cout << aux->valor.nombrePedido << endl;
+        aux->pPedido->mostrarPedido();
         aux = aux->siguiente;
     }
 }

@@ -17,6 +17,13 @@ Reserva::~Reserva()
     //dtor
 }
 
+void Reserva::mostrarReserva(){
+     cout << "Nombre cliente: " << nombreCliente << endl;
+    cout << "  -Hora de la reserva: " << horaReserva << endl;
+    cout << "  -Número de personas: " << numeroPersonas << endl;
+    cout << "  -Situación de preferencia: " << situacionMesa <<  endl;
+    cout << "  -Menú de preferencia: " << preferenciaMenu << endl << endl;
+}
 
 
 //Getters

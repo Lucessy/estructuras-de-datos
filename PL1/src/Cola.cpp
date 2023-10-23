@@ -86,12 +86,7 @@ void Cola::mostrarCola()
         else{
             cout << "Datos de la cola:" << endl << endl;
             while(aux){
-                cout << "Nombre cliente: " << aux->preserva->getNombreCliente() << endl;
-                cout << "  -Hora de la reserva: " << aux->preserva->getHoraReserva() << endl;
-                cout << "  -Número de personas: " << aux->preserva->getNumPersonas() << endl;
-                cout << "  -Situación de preferencia: " << aux->preserva->getSituacionMesa() <<  endl;
-                cout << "  -Menú de preferencia: " << aux->preserva->getPreferenciaMenu() << endl << endl;
-
+                aux->preserva->mostrarReserva();
                 aux = aux->siguiente;
             }
             cout << "Fin de los datos de la cola de reservas." << endl;
