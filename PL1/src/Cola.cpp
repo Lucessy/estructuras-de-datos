@@ -56,19 +56,19 @@ void Cola::vaciarCola(){
     }
 }
 
-Reserva Cola::inicio()
+Reserva* Cola::inicio()
 {
         if(!esVacia())
         {
-            return *(primero->preserva);
+            return (primero->preserva);
         }
 }
 
-Reserva Cola::fin()
+Reserva* Cola::fin()
 {
     if(!esVacia())
     {
-            return *(ultimo->preserva);
+            return (ultimo->preserva);
     }
 }
 

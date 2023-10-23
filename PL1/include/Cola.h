@@ -11,8 +11,8 @@ class Cola
         //Metodos de la clase
         void encolar(Reserva& reserva);
         void desencolar();
-        Reserva inicio();
-        Reserva fin();
+        Reserva* inicio();
+        Reserva* fin();
         bool esVacia();
         void mostrarCola();
         int getLongitud();

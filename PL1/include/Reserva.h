@@ -8,6 +8,7 @@ class Reserva
 {
     public:
         Reserva(string nombreCliente,string horaReserva,string situacionMesa,int numeroPersonas,string preferenciaMenu);
+
         virtual ~Reserva();
         string getNombreCliente();
         string getSituacionMesa();
@@ -16,6 +17,7 @@ class Reserva
         string getHoraReserva();
 
         void mostrarReserva();
+
 
     protected:
 

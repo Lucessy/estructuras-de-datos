@@ -16,7 +16,7 @@ class Lista
         Pedido& elemEnPosicion(int indice);
         void mostrarDatosLista();
         void borrarLista();
-
+        void completarSiguientes4Pedidos();
 
     protected:
 

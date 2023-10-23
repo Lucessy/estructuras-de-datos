@@ -36,6 +36,11 @@ int* Pedido::getpNumMesa(){
     return numeroMesa;
 }
 
+void Pedido::setFinalizado(bool estado)
+{
+    finalizado = estado;
+}
+
 
 string Pedido::getNombreCliente()
 {

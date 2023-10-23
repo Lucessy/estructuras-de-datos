@@ -68,6 +68,19 @@ bool Lista::esVacia()
     return longitud == 0;
 }
 
+void Lista::completarSiguientes4Pedidos(){
+    NodoLista* aux = primero;
+    int i = 0;
+    while(i<4)
+    {
+        aux = aux->siguiente;
+        if(aux->pPedido->getFinalizado() == false){
+            aux->pPedido->setFinalizado(true);
+            i++;
+        }
+    }
+}
+
 Pedido& Lista::elemEnPosicion(int indice)
 {
     NodoLista* aux = primero;

@@ -15,6 +15,7 @@ class Pedido
         string getPreferenciaMenu();
         string getSituacionMesa();
         bool getFinalizado();
+        void setFinalizado(bool estado);
 
         void mostrarPedido();
 

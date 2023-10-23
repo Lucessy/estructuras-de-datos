@@ -5,21 +5,25 @@
 #include "Reserva.h"
 #include "Gestor.h"
 #include "Lista.h"
+#include "Gestor.h"
 #include <cstdlib> // for rand() and srand()
 #include <ctime> // for time()
 using namespace std;
 
-
-Gestor gestor;
+//Se definen las colecciones a usar
 Cola colaReservas;
 Cola colaReservasPdtes;
 Lista listaPedidos;
 Pila pilaMesas;
 
+//Se inicializan las variables estáticas
+int Gestor::numReservasGestionadas = 0;
+
 int main()
 {
     //Cambiamos el formato de texto de la consola para que soporte tildes y otros carácteres castellanos
     setlocale(LC_ALL, "");
+
 
     //Comienzo de programa
     //Mostrar por pantalla las opciones disponibles:
@@ -66,44 +70,44 @@ int main()
         {
             case 1:
                 cout << "Generando aleatoriamente la cola de reservas..." << endl;
-                gestor.generarColaReservas(colaReservas);
+                Gestor::generarColaReservas(colaReservas);
                 break;
             case 2:
                 cout << "Mostrando la cola de reservas creada..." << endl;
-                gestor.mostrarColaReservas(colaReservas);
+                Gestor::mostrarColaReservas(colaReservas);
                 break;
             case 3:
                 cout << "Vaciando la cola de reservas..." << endl;
-                gestor.vaciarColaReservas(colaReservas);
+                Gestor::vaciarColaReservas(colaReservas);
                 break;
             case 4:
                 cout << "Generando aleatoriamente la pila de mesas..." << endl;
-                gestor.generarPilaMesas(pilaMesas);
+                Gestor::generarPilaMesas(pilaMesas);
                 break;
             case 5:
                 cout << "Mostrando la pila de mesas creada..." << endl;
-                gestor.mostrarPilaMesas(pilaMesas);
+                Gestor::mostrarPilaMesas(pilaMesas);
                 break;
             case 6:
                 cout << "Vaciando la pila de mesas..." << endl;
-                gestor.vaciarPilaMesas(pilaMesas);
+                Gestor::vaciarPilaMesas(pilaMesas);
                 break;
             case 7:
                 cout << "Simulando la gestión de la primera reserva de la cola de reservas..." << endl;
-                gestor.simularGestionPrimeraReserva(colaReservas, colaReservasPdtes, listaPedidos);
+                Gestor::simularGestionProximaReserva(colaReservas, colaReservasPdtes, pilaMesas,listaPedidos);
                 break;
             case 8:
                 cout << "Simulando la gestión de las reservas y creación de pedidos de todas las reservas para la misma hora..." << endl;
-                gestor.simularGestionReservasProximaHora(colaReservas, colaReservasPdtes, listaPedidos); //Opción 8
+                Gestor::simularGestionReservasProximaHora(colaReservas, colaReservasPdtes,pilaMesas, listaPedidos); //Opción 8
                 break;
             case 9:
                 cout << "Simulando la gestión de todas las reservas del restaurante..." << endl;
-                gestor.simularGestionReservasTotal(colaReservas, colaReservasPdtes, listaPedidos); //Opción 9
+                Gestor::simularGestionReservasTotal(colaReservas, colaReservasPdtes,pilaMesas, listaPedidos); //Opción 9
                 break;
 
             case 0:
                 cout << "Saliendo del programa..." << endl;
-                gestor.Salir();
+                Gestor::Salir();
                 programaEnEjecucion = false;
                 break;
             }
