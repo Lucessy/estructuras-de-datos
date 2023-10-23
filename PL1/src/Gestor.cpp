@@ -17,7 +17,7 @@ Gestor::~Gestor()
 {
     //dtor
 }
-0
+
 void Gestor::generarColaReservas(Cola& colaReservas)
 {
     if(colaReservas.esVacia() == false)
@@ -94,7 +94,13 @@ void Gestor::generarPilaMesas(Pila& pilaMesas)
     {
         //Genera aleatoriamente la capacidad
         int capacidad = capacidades [rand() % 2];
-        string situacion = situaciones [rand() % 2];
+        string situacion;
+        if(numeroMesa>=12){
+            situacion = situaciones[0];
+        }else{
+            situacion = situaciones [rand() % 2];
+        }
+
         Mesa* pmesa = new Mesa(numeroMesa,capacidad,situacion);
         pilaMesas.apilar(*pmesa);
     }
