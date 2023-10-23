@@ -49,8 +49,8 @@ Cola Gestor::generarColaReservas(Cola& colaReservas)
         {
             hora = horas[rand() % 3];
         }
-        Reserva reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
-        colaReservas.encolar(reserva);
+        Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
+        colaReservas.encolar(*preserva);
     }
     cout << "Cola de reservas generada." << endl;
     return colaReservas;
@@ -63,21 +63,27 @@ void Gestor::mostrarColaReservas(Cola& colaReservas)
 
 void Gestor::vaciarColaReservas(Cola& colaReservas)
 {
+    if(colaReservas.esVacia()){
+        cout << "La cola de reservas ya está vacía." << endl;
+        return;
+    }
     colaReservas.vaciarCola();
+    cout << "Cola de reservas vaciada." << endl;
 } //Opción 3
 
 Pila Gestor::generarPilaMesas(Pila& pilaMesas)
 {
     string situaciones[2] = {"Terraza","Interior"};
     int capacidades[2] = {2,4};
-    for(int numeroMesa=1; numeroMesa>=1; numeroMesa--)
+    for(int numeroMesa=20; numeroMesa>=1; numeroMesa--)
     {
         //Genera aleatoriamente la capacidad
         int capacidad = capacidades [rand() % 2];
         string situacion = situaciones [rand() % 2];
-        Mesa mesa(numeroMesa,capacidad,situacion);
-        pilaMesas.apilar(mesa);
+        Mesa* pmesa = new Mesa(numeroMesa,capacidad,situacion);
+        pilaMesas.apilar(*pmesa);
     }
+    cout << "Pila de mesas generada." << endl;
     return pilaMesas;
 } //Opción 4
 
@@ -86,9 +92,14 @@ void Gestor::mostrarPilaMesas(Pila& pilaMesas)
     pilaMesas.mostrarPilaMesas();
 } //Opción 5
 
-void Gestor::vaciarPilaReservas(Pila& pila)
+void Gestor::vaciarPilaMesas(Pila& pila)
 {
+    if(pila.esVacia()){
+        cout << "La pila de mesas está vacía."<<endl;
+        return;
+    }
     pila.vaciarPila();
+    cout << "Pila de mesas vaciada."<<endl;
 } //Opción 6
 
 void Gestor::simularGestionPrimeraReserva(Cola colaReservas, Cola colaReservasPdtes, Lista listaPedidos)

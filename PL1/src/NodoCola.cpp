@@ -1,16 +1,10 @@
 #include "NodoCola.h"
+#include <iostream>
 
-NodoCola::NodoCola()
+
+NodoCola::NodoCola(Reserva& reservaCliente, NodoCola*sig)
 {
-    reserva=Reserva();
-    siguiente=NULL;
-    //ctor
-}
-
-
-NodoCola::NodoCola(const Reserva& reservaCliente, NodoCola*sig)
-{
-    reserva = reservaCliente;
+    preserva = &reservaCliente;
     siguiente = sig;
 }
 

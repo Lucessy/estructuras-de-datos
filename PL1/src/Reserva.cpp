@@ -1,5 +1,6 @@
 #include "Reserva.h"
 #include <cstring>
+#include <iostream>
 
 Reserva::Reserva(string nombreCliente,string horaReserva,string situacionMesa,int numeroPersonas,string preferenciaMenu)
 {
@@ -10,10 +11,6 @@ Reserva::Reserva(string nombreCliente,string horaReserva,string situacionMesa,in
     this->preferenciaMenu=preferenciaMenu;
 }
 
-Reserva::Reserva()
-{
-    //Create new random reservation
-}
 
 Reserva::~Reserva()
 {

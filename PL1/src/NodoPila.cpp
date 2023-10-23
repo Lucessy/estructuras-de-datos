@@ -1,14 +1,10 @@
 #include "NodoPila.h"
 #include "Mesa.h"
+#include <iostream>
 
-NodoPila::NodoPila()
+NodoPila::NodoPila(Mesa& elemento, NodoPila* sig)
 {
-    elemento = Mesa();
-    siguiente = NULL;
-}
-NodoPila::NodoPila(const Mesa& elemento, NodoPila* sig)
-{
-    this -> elemento = elemento;
+    pmesa = &elemento;
     siguiente = sig;
 }
 

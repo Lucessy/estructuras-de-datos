@@ -88,7 +88,7 @@ int main()
                 break;
             case 6:
                 cout << "Vaciando la pila de mesas..." << endl;
-                gestor.vaciarPilaReservas(pilaMesas);
+                gestor.vaciarPilaMesas(pilaMesas);
                 break;
             case 7:
                 cout << "Simulando la gestión de la primera reserva de la cola de reservas..." << endl;

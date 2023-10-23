@@ -8,12 +8,12 @@ class Lista
         Lista();
         virtual ~Lista();
 
-        void extenderListaPorDerecha(const Pedido& elem);
-        void extenderListaPorIzquierda(const Pedido& elem);
-        const Pedido& elemInicial();
-        const Pedido& elemFinal();
+        void extenderListaPorDerecha(Pedido& elem);
+        void extenderListaPorIzquierda(Pedido& elem);
+        Pedido& elemInicial();
+        Pedido& elemFinal();
         bool esVacia();
-        const Pedido& elemEnPosicion(int indice);
+        Pedido& elemEnPosicion(int indice);
         void mostrarDatosLista();
         void borrarLista();
 

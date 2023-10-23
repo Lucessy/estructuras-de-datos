@@ -6,14 +6,13 @@
 class NodoPila
 {
     public:
-        NodoPila();
-        NodoPila(const Mesa& elemento,NodoPila *sig = NULL);
+        NodoPila(Mesa& elemento,NodoPila *sig = NULL);
         virtual ~NodoPila();
 
     protected:
 
     private:
-        Mesa elemento;
+        Mesa* pmesa;
         NodoPila *siguiente;
         friend class Pila;
 };

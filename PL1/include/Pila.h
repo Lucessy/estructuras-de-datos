@@ -10,7 +10,7 @@ class Pila
         virtual ~Pila();
 
         bool esVacia();
-        void apilar(const Mesa& mesa);
+        void apilar(Mesa& mesa);
         void desapilar();
         void mostrarCima();
         void mostrarPilaMesas();

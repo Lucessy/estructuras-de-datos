@@ -23,7 +23,7 @@ bool Pila::esVacia()
     return cima == NULL;
 }
 
-void Pila::apilar(const Mesa& mesa)
+void Pila::apilar(Mesa& mesa)
 {
     NodoPila* nuevo = new NodoPila(mesa,cima);
     cima = nuevo;
@@ -31,7 +31,7 @@ void Pila::apilar(const Mesa& mesa)
 
 void Pila::vaciarPila()
 {
-        while(cima)
+    while(cima!=NULL)
     {
         desapilar();
     }
@@ -55,7 +55,7 @@ void Pila::mostrarCima()
     }
     else
     {
-        cout << "Número de mesa de cima: " << cima->elemento.numMesa << endl;
+        cout << "Número de mesa de cima: " << cima->pmesa ->numMesa << endl;
     }
 }
 
@@ -69,9 +69,9 @@ void Pila::mostrarPilaMesas()
         else{
             cout << "Datos de la pila:" << endl << endl;
             while(aux){
-                cout << "Numero de mesa: " << aux->elemento.getNumMesa() << endl;
-                cout << "  -Capacidad: " << aux->elemento.getCapacidad() << endl;
-                cout << "  -Situación de preferencia: " << aux->elemento.getSituacionMesa() <<  endl;
+                cout << "Numero de mesa: " << aux->pmesa->getNumMesa() << endl;
+                cout << "  -Capacidad: " << aux->pmesa->getCapacidad() << endl;
+                cout << "  -Situación de preferencia: " << aux->pmesa->getSituacionMesa() <<  endl;
                 aux = aux->siguiente;
             }
             cout << "Fin de los datos de la cola de reservas." << endl;

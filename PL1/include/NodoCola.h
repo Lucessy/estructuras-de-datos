@@ -6,10 +6,7 @@
 class NodoCola
 {
     public:
-        NodoCola();
-        //Otro constructor
-
-        NodoCola(const Reserva& reserva, NodoCola*sig=NULL);
+        NodoCola(Reserva& reserva, NodoCola*sig=NULL);
         virtual ~NodoCola();
 
     protected:
@@ -17,7 +14,7 @@ class NodoCola
     private:
         //Los atributos
         NodoCola *siguiente;
-        Reserva reserva;
+        Reserva* preserva;
         friend class Cola;
 };
 

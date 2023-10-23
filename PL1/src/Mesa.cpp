@@ -4,11 +4,6 @@
 //Capacidad {2 || 4}
 //situacion {Interior || Terraza}
 
-Mesa::Mesa()
-{
-    //Create new random table
-}
-
 Mesa::Mesa(int numero,int capacidad,string situacionMesa)
 {
     this->numMesa=numero;

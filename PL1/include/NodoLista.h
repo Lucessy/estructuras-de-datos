@@ -6,14 +6,13 @@
 class NodoLista
 {
     public:
-        NodoLista();
-        NodoLista(const Pedido& elem, NodoLista*sig=NULL, NodoLista*ant = NULL);
+        NodoLista(Pedido& elem, NodoLista*sig=NULL, NodoLista*ant = NULL);
         virtual ~NodoLista();
 
     protected:
 
     private:
-        Pedido valor;
+        Pedido* pPedido;
         NodoLista* siguiente;
         NodoLista* anterior;
         friend class Lista;

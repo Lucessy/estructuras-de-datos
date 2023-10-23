@@ -9,7 +9,7 @@ class Cola
         Cola();
         virtual ~Cola();
         //Metodos de la clase
-        void encolar(const Reserva& reserva);
+        void encolar(Reserva& reserva);
         void desencolar();
         Reserva inicio();
         Reserva fin();

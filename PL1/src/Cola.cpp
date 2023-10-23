@@ -18,7 +18,7 @@ Cola::~Cola()
     //dtor
 }
 
-void Cola::encolar(const Reserva& reserva)
+void Cola::encolar(Reserva& reserva)
 {
     NodoCola *nuevo_nodo = new NodoCola(reserva);
     if(esVacia()){
@@ -34,7 +34,6 @@ void Cola::encolar(const Reserva& reserva)
 void Cola::desencolar()
 {
     if(!esVacia()){
-        Reserva reserva = primero->reserva;
         NodoCola *aux = primero;
 
         if((primero==ultimo)&&(primero->siguiente == NULL)){
@@ -61,7 +60,7 @@ Reserva Cola::inicio()
 {
         if(!esVacia())
         {
-            return primero->reserva;
+            return *(primero->preserva);
         }
 }
 
@@ -69,7 +68,7 @@ Reserva Cola::fin()
 {
     if(!esVacia())
     {
-            return ultimo->reserva;
+            return *(ultimo->preserva);
     }
 }
 
@@ -87,11 +86,11 @@ void Cola::mostrarCola()
         else{
             cout << "Datos de la cola:" << endl << endl;
             while(aux){
-                cout << "Nombre cliente: " << aux->reserva.getNombreCliente() << endl;
-                cout << "  -Hora de la reserva: " << aux->reserva.getHoraReserva() << endl;
-                cout << "  -Número de personas: " << aux->reserva.getNumPersonas() << endl;
-                cout << "  -Situación de preferencia: " << aux->reserva.getSituacionMesa() <<  endl;
-                cout << "  -Menú de preferencia: " << aux->reserva.getPreferenciaMenu() << endl << endl;
+                cout << "Nombre cliente: " << aux->preserva->getNombreCliente() << endl;
+                cout << "  -Hora de la reserva: " << aux->preserva->getHoraReserva() << endl;
+                cout << "  -Número de personas: " << aux->preserva->getNumPersonas() << endl;
+                cout << "  -Situación de preferencia: " << aux->preserva->getSituacionMesa() <<  endl;
+                cout << "  -Menú de preferencia: " << aux->preserva->getPreferenciaMenu() << endl << endl;
 
                 aux = aux->siguiente;
             }
