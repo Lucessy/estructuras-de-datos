@@ -24,9 +24,23 @@ Cola Gestor::generarColaReservas(Cola& colaReservas)
     {
         vaciarColaReservas(colaReservas);
     }
-    string horas[3] = {"13:30", "14:30", "15:30"};
-    string menus[3] = {"vegano", "sinGluten", "completo"};
-    string situaciones[2] = {"Terraza","Interior"};
+    string horas[] = {"13:30", "14:30", "15:30"};
+    string menus[] = {"vegano", "sinGluten", "completo"};
+    string situaciones[] = {"Terraza","Interior"};
+    string nombresPosibles[] = {
+        "Frodo", "Aragorn", "Gandalf", "Legolas", "Gimli",
+        "Sam", "Boromir", "Merry", "Pippin", "Sauron",
+        "Saruman", "Elrond", "Galadriel", "Faramir", "Denethor",
+        "Théoden", "Éowyn", "Gollum", "Bilbo", "Thorin",
+        "Dwalin", "Balin", "Kili", "Fili", "Oin",
+        "Gloin", "Dori", "Nori", "Ori", "Bombur", //30
+        "Gollum", "Bilbo", "Thorin", "Dwalin", "Balin",
+        "Kili", "Fili", "Oin", "Gloin", "Dori",
+        "Nori", "Ori", "Bombur", "Gollum", "Bilbo", //45
+        "Thorin", "Dwalin", "Balin", "Kili", "Fili", //50
+        "Oin", "Gloin", "Nori", "Ori", "Bombur", //55
+        "Gollum", "Bilbo", "Thorin", "Dwalin", "Balin" //60
+    };
 
     int limite = 12;
 
@@ -35,7 +49,7 @@ Cola Gestor::generarColaReservas(Cola& colaReservas)
 
     for(int i = 0; i < 20; i++)
     {
-        string nombreCliente = "Client" + to_string(i+1);
+        string nombreCliente = nombresPosibles[rand() % 60];
         string menu = menus[rand() % 3];
         string situacion = situaciones [rand() % 2];
         int numeroPersonas = rand() % 8 + 1;

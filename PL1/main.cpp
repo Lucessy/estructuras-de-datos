@@ -21,8 +21,6 @@ int main()
     //Cambiamos el formato de texto de la consola para que soporte tildes y otros carácteres castellanos
     setlocale(LC_ALL, "");
 
-    //string nombresPosibles[] = {"Alice", "Bob", "Charlie", "David", "Eve", "Frank","Grace", "Hannah", "Ivan", "Jack", "Karen"}
-
     //Comienzo de programa
     //Mostrar por pantalla las opciones disponibles:
     cout << "Bienvenido al simulador de gestión de mesas y reservas UltraReserva3000." << endl;
