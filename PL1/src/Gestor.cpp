@@ -44,6 +44,8 @@ void Gestor::generarColaReservas(Cola& colaReservas,int limite)
     };
 
     srand(time(0));
+    int turnoHora = -1;
+    int numReservasPorTurno = (int)limite/3;
 
     for(int i = 0; i < limite; i++)
     {
@@ -52,8 +54,11 @@ void Gestor::generarColaReservas(Cola& colaReservas,int limite)
         string situacion = situaciones [rand() % 2];
         int numeroPersonas = rand() % 8 + 1;
 
-        string hora;
-        hora = horas[(i/4)%3];
+        if((i)%numReservasPorTurno == 0 && turnoHora<2){
+            turnoHora ++;
+            cout << "Cambio de turno" << i << endl;
+        }
+        string hora = horas[turnoHora];
 
         Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
         colaReservas.encolar(*preserva);
