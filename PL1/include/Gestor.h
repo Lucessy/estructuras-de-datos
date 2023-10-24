@@ -18,9 +18,12 @@ class Gestor
         static void mostrarPilaMesas(Pila& pilaMesas); //Opción 5
         static void vaciarPilaMesas(Pila& pila); //Opción 6
 
-        static void procesarSiguienteReserva(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos);
+        static void procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos,bool insertarEnReservasPdtes);
         static void simularCambioHora(Pila& pilaMesas, Lista& listaPedidos);
         static void simularGestionReservaPendiente(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos);
+        static Reserva* siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes);
+        static bool comprobarCambioHora(string horaInicial,Cola& colaReservas);
+
         static void simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservasPdtes, Pila& pilaMesas,Lista& listaPedidos); //Opción 7
         static void simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos); //Opción 8
         static void simularGestionReservasTotal(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos); //Opción 9

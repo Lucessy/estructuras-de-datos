@@ -11,7 +11,7 @@
 	<cstdlib>
 	<ctime>
 
-1698069284 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
+1698076480 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
 	"Lista.h"
 	<iostream>
 
@@ -69,7 +69,7 @@
 	<cstdlib>
 	<ctime>
 
-1698075750 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\gestor.h
+1698146217 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\gestor.h
 	"Cola.h"
 	"Pila.h"
 	"Lista.h"
@@ -181,7 +181,7 @@
 	"NodoPila.h"
 	"Mesa.h"
 
-1698060428 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodolista.h
+1698091428 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodolista.h
 	<iostream>
 	<Pedido.h>
 
