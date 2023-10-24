@@ -69,8 +69,18 @@ int main()
         switch(eleccion)
         {
             case 1:
-                cout << "Generando aleatoriamente la cola de reservas..." << endl;
-                Gestor::generarColaReservas(colaReservas);
+                cout << "Introduce el número de reservas aleatorias a gestionar:" << endl;
+                try{
+                    int numero;
+                    std::cin >> numero;
+                    if(numero>=12 && numero<=50){
+                        cout << "Generando aleatoriamente la cola de reservas..." << endl;
+                        Gestor::generarColaReservas(colaReservas,numero);
+                    }
+                }
+                catch(std::exception& e){
+                    cout << "Número o carácter incorrecto. Volviendo al menú principal...";
+                }
                 break;
             case 2:
                 cout << "Mostrando la cola de reservas creada..." << endl;
