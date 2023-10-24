@@ -18,7 +18,7 @@ Gestor::~Gestor()
     //dtor
 }
 
-void Gestor::generarColaReservas(Cola& colaReservas)
+void Gestor::generarColaReservas(Cola& colaReservas,int limite)
 {
     if(colaReservas.esVacia() == false)
     {
@@ -43,12 +43,9 @@ void Gestor::generarColaReservas(Cola& colaReservas)
         "Gollum", "Bilbo", "Thorin", "Dwalin", "Balin" //60
     };
 
-    int limite = 12;
-
     srand(time(0));
 
-
-    for(int i = 0; i < 20; i++)
+    for(int i = 0; i < limite; i++)
     {
         string nombreCliente = nombresPosibles[rand() % 60];
         string menu = menus[rand() % 3];
@@ -56,19 +53,13 @@ void Gestor::generarColaReservas(Cola& colaReservas)
         int numeroPersonas = rand() % 8 + 1;
 
         string hora;
-        if(i<limite)
-        {
-            hora = horas[i / 4];
-        }
-        else
-        {
-            hora = horas[rand() % 3];
-        }
+        hora = horas[(i/4)%3];
+
         Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
         colaReservas.encolar(*preserva);
     }
     cout << "Cola de reservas generada." << endl;
-}
+} //Opcioón 1
 
 void Gestor::mostrarColaReservas(Cola& colaReservas)
 {
