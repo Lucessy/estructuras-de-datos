@@ -2,6 +2,7 @@
 #define RESERVA_H
 #include <iostream>
 #include <string>
+#include "Mesa.h"
 using namespace std;
 
 class Reserva
@@ -15,6 +16,9 @@ class Reserva
         int getNumPersonas();
         string getPreferenciaMenu();
         string getHoraReserva();
+        Mesa getMesaAsignada();
+        void asignarMesa(Mesa* mesa);
+        int getNumeroMesasAsignadas();
 
         void mostrarReserva();
 
@@ -27,6 +31,9 @@ class Reserva
         int numeroPersonas;
         string horaReserva;
         string preferenciaMenu;
+        Mesa* mesaAsignada1;
+        Mesa* mesaAsignada2;
+        int numeroMesasAsignadas;
 };
 
 #endif // RESERVA_H

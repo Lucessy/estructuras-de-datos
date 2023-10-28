@@ -30,6 +30,9 @@ class Gestor
 
         static void Salir(); //Opción 0
 
+        bool buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad);
+        bool buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad);
+
         //Atributos públicos
         static int numReservasGestionadas;
 

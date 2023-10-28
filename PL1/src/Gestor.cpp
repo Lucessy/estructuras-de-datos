@@ -85,7 +85,8 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
 
 void Gestor::generarPilaMesas(Pila& pilaMesas)
 {
-    if(!pilaMesas.esVacia()){
+    if(!pilaMesas.esVacia())
+    {
         cout << "Generando nueva pila de mesas. Vaciando la pila anterior." << endl;
         vaciarPilaMesas(pilaMesas);
     }
@@ -102,10 +103,13 @@ void Gestor::generarPilaMesas(Pila& pilaMesas)
         //Genera aleatoriamente la situación
         numSituacion = rand() % 2;
         //Garantizamos que habrá un mínimo de 8 mesas en Terraza
-        if(numeroMesasTerraza < 8 && numSituacion == 0){
+        if(numeroMesasTerraza < 8 && numSituacion == 0)
+        {
             situacion = situaciones[0];
             numeroMesasTerraza++;
-        }else{
+        }
+        else
+        {
             situacion = situaciones [numSituacion];
         }
         Mesa* pmesa = new Mesa(numeroMesa,capacidad,situacion);
@@ -146,20 +150,148 @@ void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
     cout << "Se han marcado los cuatro siguientes pedidos como finalizados y se han liberado sus mesas." << endl;
 }
 
-
-void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos,bool insertarEnReservasPdtes)
+bool Gestor::buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad)
 {
+    bool mesaEncontrada = false;
 
-    //Se buscan las mesas necesarias con la situaci�n deseada
-    bool mesasDisponibles = false;
-    int numerosMesa[2] = {0,0};
-    if(pReserva->getNumPersonas() <= 4)
+    while (!mesaEncontrada && !pilaMesas.esVacia())
     {
+        Mesa cima = pilaMesas.getCima();
+        if (capacidad == cima.getCapacidad() && pReserva->getSituacionMesa() == cima.getSituacionMesa())
+        {
+            pReserva->asignarMesa(&cima);
+            pilaMesas.desapilar();
+            mesaEncontrada = true;
+        }
+        else
+        {
+            pilaAux.apilar(cima);
+            pilaMesas.desapilar();
+        }
+    }
 
+    while (!pilaAux.esVacia())
+    {
+        pilaMesas.apilar(pilaAux.getCima());
+        pilaAux.desapilar();
+    }
+
+    return mesaEncontrada;
+}
+
+bool Gestor::buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad)
+{
+    bool primeraMesaEncontrada = false;
+    bool segundaMesaEncontrada = false;
+    // Crear una copia de las pilas: pilaMesas
+    Pila pilaCopia;
+    Pila pilaNoModificada;
+    while (!pilaMesas.esVacia())
+    {
+        Mesa cima = pilaMesas.getCima();
+        pilaAux.apilar(cima);
+        pilaNoModificada.apilar(cima);  // Mantén un registro de la pila original
+        pilaMesas.desapilar();
+    }
+    while(!pilaAux.esVacia())
+    {
+        Mesa cima = pilaMesas.getCima();
+        pilaCopia.apilar(cima);  // Pila que se va a modificar
+        pilaAux.desapilar();
+    }
+
+    while (!pilaCopia.esVacia() && (!primeraMesaEncontrada || !segundaMesaEncontrada))
+    {
+        Mesa cima = pilaCopia.getCima();
+        if (capacidad == cima.getCapacidad() && pReserva->getSituacionMesa() == cima.getSituacionMesa())
+        {
+            if (!primeraMesaEncontrada)
+            {
+                pReserva->asignarMesa(&cima);
+                primeraMesaEncontrada = true;
+            }
+            else if (!segundaMesaEncontrada)
+            {
+                pReserva->asignarMesa(&cima);
+                segundaMesaEncontrada = true;
+            }
+        }
+        else
+        {
+            pilaAux.apilar(cima);
+        }
+        pilaCopia.desapilar();
+    }
+
+    // Si encontraste dos mesas, está todo bien
+    if (primeraMesaEncontrada && segundaMesaEncontrada)
+    {
+        // Devuelve las mesas que no se asignaron a una reserva a la pila original
+        while (!pilaAux.esVacia())
+        {
+            pilaMesas.apilar(pilaAux.getCima());
+            pilaAux.desapilar();
+        }
+        return true;
     }
     else
     {
+        // Si no se encontraron suficientes mesas, devuelve false y restaura la pila original
+        while (!pilaNoModificada.esVacia())
+        {
+            pilaMesas.apilar(pilaNoModificada.getCima());
+            pilaNoModificada.desapilar();
+            pReserva->mesaAsignada1=nullptr;
+            pReserva->mesaAsignada2=nullptr;
+        }
 
+        return false;
+    }
+}
+
+void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos,bool insertarEnReservasPdtes)
+{
+    //Pila auxiliar para almacenar las mesas no asignadas
+    Pila pilaAux;
+
+    //Se buscan las mesas necesarias con la situaci�n deseada
+    bool mesasDisponibles = false;
+
+    //int numerosMesa[2] = {0,0};
+    int numPersonas = pReserva->getNumPersonas();
+
+    //Buscamos las mesas necesarias para cada numPersonas
+    //Si solo se necesita una mesa
+    if (numPersonas <= 2)
+    {
+        // Buscar mesa de capacidad 2
+        mesasDisponibles = buscarMesa(pilaMesas, pilaAux, pReserva, 2);
+
+        if (!mesasDisponibles)
+        {
+            // Si no se encontró mesa de capacidad 2, buscar mesa de capacidad 4
+            mesasDisponibles = buscarMesa(pilaMesas, pilaAux, pReserva, 4);
+        }
+    }
+    else if (numPersonas <= 4)
+    {
+        // Buscar mesa de capacidad 4
+        mesasDisponibles = buscarMesa(pilaMesas, pilaAux, pReserva, 4);
+    }
+    /*else if (numPersonas <= 6)
+    {
+        // Buscar mesa de capacidad 6 (Capcidad 4 y otra capacidad 2)
+        mesasDisponibles = buscarDosMesas(pilaMesas, pilaAux, pReserva, 6);
+        if (!mesasDisponibles)
+        {
+            // Si no se encontró mesa de capacidad 4 y capacidad 2, buscar dos mesas de capacidad 4
+            mesasDisponibles = buscarDosMesas(pilaMesas, pilaAux, pReserva, 4);
+        }
+    }*/
+    else
+    {
+        // Buscar mesa de capacidad 8 - 5 (Dos de capacidad 4)
+        mesasDisponibles = buscarDosMesas(pilaMesas, pilaAux, pReserva, 4);
     }
 
     //Si hay mesas disponiles
@@ -178,7 +310,7 @@ void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pi
     }
 }
 
-
+}
 void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos)
 {
     //Comprueba que las cola no est�n vac�a y si se trata de una reserva pendiente en la �ltima
@@ -221,6 +353,23 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
 
 } //Opci�n 7
 
+Reserva* Gestor::siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes)
+{
+    //Siguiente reserva, ya sea de colaReservas o de colaReservasPdtes
+    //Se saca la reserva de la cola
+    if(!esReservaPdte)
+    {
+        Reserva* pReserva = colaReservas.inicio();
+        colaReservas.desencolar();
+        return pReserva;
+    }
+    else
+    {
+        Reserva* pReserva = colaReservasPdtes.inicio();
+        colaReservasPdtes.desencolar();
+        return pReserva;
+    }
+}
 
 bool Gestor::comprobarCambioHora(string horaInicial,Cola& colaReservas)
 {
@@ -293,20 +442,3 @@ void Gestor::Salir()
 
 } //Opci�n 0
 
-Reserva* Gestor::siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes)
-{
-    //Siguiente reserva, ya sea de colaReservas o de colaReservasPdtes
-    //Se saca la reserva de la cola
-    if(!esReservaPdte)
-    {
-        Reserva* pReserva = colaReservas.inicio();
-        colaReservas.desencolar();
-        return pReserva;
-    }
-    else
-    {
-        Reserva* pReserva = colaReservasPdtes.inicio();
-        colaReservasPdtes.desencolar();
-        return pReserva;
-    }
-}

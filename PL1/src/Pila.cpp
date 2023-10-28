@@ -58,19 +58,54 @@ void Pila::mostrarCima()
     }
 }
 
+Mesa Pila::getCima()
+{
+    return cima->pmesa;
+
+}
 
 void Pila::mostrarPilaMesas()
 {
     NodoPila* aux = cima;
-        if(esVacia()){
-            cout << "Pila vacia" << endl;
+    if(esVacia())
+    {
+        cout << "Pila vacia" << endl;
+    }
+    else
+    {
+        cout << "Datos de la pila:" << endl << endl;
+        while(aux)
+        {
+            aux->pmesa->mostrarMesa();
+            aux = aux->siguiente;
         }
-        else{
-            cout << "Datos de la pila:" << endl << endl;
-            while(aux){
-                aux->pmesa->mostrarMesa();
-                aux = aux->siguiente;
-            }
-            cout << "Fin de los datos de la cola de reservas." << endl;
-        }
+        cout << "Fin de los datos de la cola de reservas." << endl;
+    }
+}
+
+//!!!!!!!!!!!!!!!!!
+void Pila::sacarEnPosicion(int posicion)
+{
+    if (n <= 0)
+    {
+        // No hay nada que hacer si n es 0 o negativo.
+        return;
+    }
+
+    if (p.esVacia())
+    {
+        // No hay suficientes datos en la pila.
+        cout << "No hay suficientes datos en la pila." << endl;
+        return;
+    }
+
+    Mesa mesa;
+    p.desapilar();
+    sacar_en_pos(p, n - 1);
+
+    if (n != 1)
+    {
+        p.apilar(mesa);
+    }
+
 }
