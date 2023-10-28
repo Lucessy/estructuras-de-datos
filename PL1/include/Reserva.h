@@ -16,9 +16,11 @@ class Reserva
         int getNumPersonas();
         string getPreferenciaMenu();
         string getHoraReserva();
-        Mesa getMesaAsignada();
+        Mesa getMesaAsignada1();
+        Mesa getMesaAsignada2();
         void asignarMesa(Mesa* mesa);
         int getNumeroMesasAsignadas();
+        void restablecerMesasAsignadas();
 
         void mostrarReserva();
 

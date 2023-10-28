@@ -16,6 +16,7 @@ Mesa::~Mesa()
 {
     //dtor
 }
+
 void Mesa::mostrarMesa()
 {
     cout << "Numero de mesa: " << numMesa << endl;

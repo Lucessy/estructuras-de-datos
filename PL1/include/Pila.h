@@ -15,8 +15,7 @@ class Pila
         void mostrarCima();
         void mostrarPilaMesas();
         void vaciarPila();
-        Mesa getCima();
-        void sacarEnPosicion(int posicion);//!!!!!!!!!!
+        Mesa& getCima();
 
 
     protected:

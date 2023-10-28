@@ -23,7 +23,7 @@ bool Pila::esVacia()
     return cima == NULL;
 }
 
-void Pila::apilar(Mesa& mesa)
+void Pila::apilar(Mesa& mesa) //Modificado
 {
     NodoPila* nuevo = new NodoPila(mesa,cima);
     cima = nuevo;
@@ -58,9 +58,9 @@ void Pila::mostrarCima()
     }
 }
 
-Mesa Pila::getCima()
+Mesa& Pila::getCima()
 {
-    return cima->pmesa;
+    return *(cima->pmesa);
 
 }
 
@@ -83,29 +83,4 @@ void Pila::mostrarPilaMesas()
     }
 }
 
-//!!!!!!!!!!!!!!!!!
-void Pila::sacarEnPosicion(int posicion)
-{
-    if (n <= 0)
-    {
-        // No hay nada que hacer si n es 0 o negativo.
-        return;
-    }
 
-    if (p.esVacia())
-    {
-        // No hay suficientes datos en la pila.
-        cout << "No hay suficientes datos en la pila." << endl;
-        return;
-    }
-
-    Mesa mesa;
-    p.desapilar();
-    sacar_en_pos(p, n - 1);
-
-    if (n != 1)
-    {
-        p.apilar(mesa);
-    }
-
-}

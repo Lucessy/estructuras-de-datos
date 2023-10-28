@@ -120,7 +120,7 @@
 	<iostream>
 	"Reserva.h"
 
-1698314890 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
+1698528894 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
@@ -129,12 +129,12 @@
 	<cstdlib>
 	<ctime>
 
-1698146408 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\gestor.h
+1698525636 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\gestor.h
 	"Cola.h"
 	"Pila.h"
 	"Lista.h"
 
-1698094798 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\pila.h
+1698524628 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\pila.h
 	<NodoPila.h>
 
 1698095654 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\lista.h
@@ -144,7 +144,7 @@
 	"Lista.h"
 	<iostream>
 
-1698094798 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\mesa.cpp
+1698523903 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\mesa.cpp
 	"Mesa.h"
 	<iostream>
 
@@ -163,19 +163,21 @@
 	<iostream>
 	<string>
 
-1698094798 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pila.cpp
+1698524615 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pila.cpp
 	"Pila.h"
 	<iostream>
 	"NodoPila.h"
 
-1698094798 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\reserva.cpp
+1698524871 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\reserva.cpp
 	"Reserva.h"
 	<cstring>
 	<iostream>
+	"Mesa.h"
 
-1698095654 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\reserva.h
+1698524866 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\reserva.h
 	<iostream>
 	<string>
+	"Mesa.h"
 
 1697966980 shed changes
 

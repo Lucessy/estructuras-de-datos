@@ -57,9 +57,14 @@ string Reserva::getHoraReserva()
     return horaReserva;
 }
 
-Mesa Reserva::getMesaAsignada()
+Mesa Reserva::getMesaAsignada1()
 {
-    return mesaAsignada;
+    return *mesaAsignada1;
+}
+
+Mesa Reserva::getMesaAsignada2()
+{
+    return *mesaAsignada2;
 }
 
 void Reserva::asignarMesa(Mesa* mesa)
@@ -75,4 +80,10 @@ void Reserva::asignarMesa(Mesa* mesa)
     numeroMesasAsignadas++;
 }
 
-//Meter quitarMesaAsignada()
+void Reserva::restablecerMesasAsignadas()
+{
+    mesaAsignada1 = nullptr;
+    mesaAsignada2 = nullptr;
+    numeroMesasAsignadas = 0;
+}
+
