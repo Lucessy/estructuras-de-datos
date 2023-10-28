@@ -79,7 +79,7 @@ void Pila::mostrarPilaMesas()
             aux->pmesa->mostrarMesa();
             aux = aux->siguiente;
         }
-        cout << "Fin de los datos de la cola de reservas." << endl;
+        cout << "Fin de los datos de la cola de reservas." << endl << endl;
     }
 }
 

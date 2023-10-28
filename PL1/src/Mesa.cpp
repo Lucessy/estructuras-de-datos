@@ -21,7 +21,7 @@ void Mesa::mostrarMesa()
 {
     cout << "Numero de mesa: " << numMesa << endl;
     cout << "  -Capacidad: " << capacidad << endl;
-    cout << "  -Situación de mesa: " << situacionMesa <<  endl;
+    cout << "  -Situación de mesa: " << situacionMesa <<  endl << endl;
 }
 
 int Mesa::getNumMesa()

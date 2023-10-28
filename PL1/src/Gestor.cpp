@@ -153,15 +153,12 @@ void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
 
 bool Gestor::buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad)
 {
-    cout << "Buscando una mesa" << endl;
+
     bool mesaEncontrada = false;
 
     while (!mesaEncontrada && !pilaMesas.esVacia())
     {
         Mesa& cima = pilaMesas.getCima();
-        cout << "Número de mesa en la cima: " << cima.getNumMesa() << endl;
-        cout << "Capacidad de la mesa en la cima: " << cima.getCapacidad() << endl;
-        cout << "Situación de la mesa en la cima: " << cima.getSituacionMesa() << endl;
 
         if (capacidad == cima.getCapacidad() && pReserva->getSituacionMesa() == cima.getSituacionMesa())
         {
@@ -195,15 +192,15 @@ bool Gestor::buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, i
     Pila pilaNoModificada;
     while (!pilaMesas.esVacia())
     {
-        Mesa& cima = pilaMesas.getCima();
-        pilaAux.apilar(cima);
-        pilaNoModificada.apilar(cima);  // Mantén un registro de la pila original
+        Mesa& cimaMesa = pilaMesas.getCima();
+        pilaAux.apilar(cimaMesa);
+        pilaNoModificada.apilar(cimaMesa);  // Mantén un registro de la pila original
         pilaMesas.desapilar();
     }
     while(!pilaAux.esVacia())
     {
-        Mesa& cima = pilaMesas.getCima();
-        pilaCopia.apilar(cima);  // Pila que se va a modificar
+        Mesa& cimaAux = pilaAux.getCima();
+        pilaCopia.apilar(cimaAux);  // Pila que se va a modificar
         pilaAux.desapilar();
     }
 
@@ -234,6 +231,12 @@ bool Gestor::buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, i
     if (primeraMesaEncontrada && segundaMesaEncontrada)
     {
         // Devuelve las mesas que no se asignaron a una reserva a la pila original
+        while (!pilaCopia.esVacia())
+        {
+            Mesa& cimaCopia = pilaCopia.getCima();
+            pilaAux.apilar(cimaCopia);
+            pilaCopia.desapilar();
+        }
         while (!pilaAux.esVacia())
         {
             Mesa& cimaAux = pilaAux.getCima();
@@ -244,13 +247,15 @@ bool Gestor::buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, i
     }
     else
     {
-        // Si no se encontraron suficientes mesas, devuelve false y restaura la pila original
+        cout << "No se han encontrado mesas suficientes para esta reserva." << endl;
+        // Si no se encontraron suficientes mesas, devuelve false y restaura la pila original y la auxiliar
         while (!pilaNoModificada.esVacia())
         {
             Mesa& cimaNoMod = pilaNoModificada.getCima();
             pilaMesas.apilar(cimaNoMod);
             pilaNoModificada.desapilar();
             pReserva->restablecerMesasAsignadas();
+            pilaAux.vaciarPila();
         }
 
         return false;
@@ -354,10 +359,16 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
     //Se procesa la siguiente reserva
     procesarReserva(pReserva,colaReservasPdtes,pilaMesas,listaPedidos);
 
+    //colaReservas.desencolar();
+
     //Mostramos por pantalla la cola de reservas, cola de reservas pendientes, pila de mesas y lista de pedidos
+    cout << "-----------COLA DE RESERVAS----------------------" << endl;
     colaReservas.mostrarCola();
+    cout << "-----------COLA DE RESERVAS PENDIENTES-----------" << endl;
     colaReservasPdtes.mostrarCola();
+    cout << "-----------PILA DE MESAS DISPONIBLES-------------" << endl;
     pilaMesas.mostrarPilaMesas();
+    cout << "-----------LISTA DE PEDIDOS----------------------" << endl;
     listaPedidos.mostrarDatosLista();
 
     //Por cada 2 reservas que salen de cola reservas se comprueba una de colas pendientes si la hay

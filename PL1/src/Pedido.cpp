@@ -28,7 +28,7 @@ void Pedido::mostrarPedido()
     cout << "  -Número de personas: " << numeroPersonas <<  endl;
     cout << "  -Preferencia de menú: " << preferenciaMenu <<  endl;
     cout << "  -Situación de la mesa: " << situacionMesa <<  endl;
-    cout << "  -Pedido: " << (finalizado ? "" : "no") << " finalizado" <<  endl;
+    cout << "  -Pedido: " << (finalizado ? "" : "no") << " finalizado" <<  endl << endl;
 }
 
 
