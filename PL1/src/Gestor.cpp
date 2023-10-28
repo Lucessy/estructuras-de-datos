@@ -54,7 +54,8 @@ void Gestor::generarColaReservas(Cola& colaReservas,int limite)
         string situacion = situaciones [rand() % 2];
         int numeroPersonas = rand() % 8 + 1;
 
-        if((i)%numReservasPorTurno == 0 && turnoHora<2){
+        if((i)%numReservasPorTurno == 0 && turnoHora<2)
+        {
             turnoHora ++;
             cout << "Cambio de turno" << i << endl;
         }
@@ -84,23 +85,34 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
 
 void Gestor::generarPilaMesas(Pila& pilaMesas)
 {
+    if(!pilaMesas.esVacia()){
+        cout << "Generando nueva pila de mesas. Vaciando la pila anterior." << endl;
+        vaciarPilaMesas(pilaMesas);
+    }
     string situaciones[2] = {"Terraza","Interior"};
     int capacidades[2] = {2,4};
+    int numeroMesasTerraza = 0;
+    int numSituacion;
     for(int numeroMesa=20; numeroMesa>=1; numeroMesa--)
     {
         //Genera aleatoriamente la capacidad
         int capacidad = capacidades [rand() % 2];
-        string situacion;
-        if(numeroMesa>=12){
-            situacion = situaciones[0];
-        }else{
-            situacion = situaciones [rand() % 2];
-        }
 
+        string situacion;
+        //Genera aleatoriamente la situación
+        numSituacion = rand() % 2;
+        //Garantizamos que habrá un mínimo de 8 mesas en Terraza
+        if(numeroMesasTerraza < 8 && numSituacion == 0){
+            situacion = situaciones[0];
+            numeroMesasTerraza++;
+        }else{
+            situacion = situaciones [numSituacion];
+        }
         Mesa* pmesa = new Mesa(numeroMesa,capacidad,situacion);
         pilaMesas.apilar(*pmesa);
     }
     cout << "Pila de mesas generada." << endl;
+    //cout << "Numero mesas en terraza:" << numeroMesasTerraza << endl;
 } //Opci�n 4
 
 void Gestor::mostrarPilaMesas(Pila& pilaMesas)

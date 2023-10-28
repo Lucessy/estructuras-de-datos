@@ -70,26 +70,38 @@ int main()
         switch(eleccion)
         {
         case 1:
-            cout << "Introduce el número de reservas aleatorias a gestionar:" << endl;
-            try
             {
-                int numero;
-                cin >> numero;
-                if(numero>=12 && numero<=50)
+                cout << "Introduce el número de reservas aleatorias a gestionar. Puede gestionar un mínimo de 12 reservas y un máximo de 50:" << endl;
+                // Crea una variable string numeroStr
+                string numeroStr;
+                cin >> numeroStr;
+                std::string str = numeroStr;
+                try
                 {
-                    cout << "Generando aleatoriamente la cola de reservas..." << endl;
-                    Gestor::generarColaReservas(colaReservas,numero);
+                    // Intenta pasarlo de String to Int
+                    int numero = std::stoi(str);
+                        //std::cout << numero << std::endl;
+                    if(numero>=12 && numero<=50)
+                    {
+                        cout << "Generando aleatoriamente la cola de reservas..." << endl;
+                        Gestor::generarColaReservas(colaReservas,numero);
+                    }
+                    else
+                    {
+                        cout << "Número o carácter incorrecto. Volviendo al menú principal..." <<endl;
+                    }
                 }
-                else
+                // Capta las excepciones y vuelve al menú principal
+                catch (const std::invalid_argument& ia)
                 {
-                    cout << "Número o carácter incorrecto. Volviendo al menú principal..." <<endl;
+                    std::cerr << "Número o carácter incorrecto. Volviendo al menú principal..." /*<< ia.what()*/ << '\n';
+                }
+                catch (const std::out_of_range& oor)
+                {
+                    std::cerr << "Número o carácter incorrecto. Volviendo al menú principal..." /*<< ia.what()*/ << '\n';
                 }
             }
-            catch(exception& e)
-            {
-                cout << "Número o carácter incorrecto. Volviendo al menú principal..."<<endl;
-            }
-            break;
+        break;
         case 2:
             cout << "Mostrando la cola de reservas creada..." << endl;
             Gestor::mostrarColaReservas(colaReservas);
