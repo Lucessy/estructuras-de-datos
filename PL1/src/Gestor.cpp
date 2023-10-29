@@ -139,6 +139,45 @@ void Gestor::vaciarPilaMesas(Pila& pila)
 
 void Gestor::simularGestionReservaPendiente(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos)
 {
+    //Comprueba que las cola no est�n vac�a y si se trata de una reserva pendiente en la �ltima
+    //pasada de la simulaci�n.
+    if(colaReservasPdtes.esVacia())
+    {
+        cout << "No hay reservas pendientes que simular.";
+        return;
+    }
+    //Siguiente reserva de colaReservasPdtes
+    Reserva* pReservaPdte = colaReservasPdtes.inicio();
+    //Se saca la reserva de la cola
+    colaReservasPdtes.desencolar();
+
+    //Se procesa la siguiente reserva
+    procesarReserva(pReservaPdte,colaReservasPdtes,pilaMesas,listaPedidos,true);
+
+    //Mostramos por pantalla la cola de reservas, cola de reservas pendientes, pila de mesas y lista de pedidos
+    cout << "-----------COLA DE RESERVAS----------------------" << endl;
+    colaReservas.mostrarCola();
+    cout << "-----------COLA DE RESERVAS PENDIENTES-----------" << endl;
+    colaReservasPdtes.mostrarCola();
+    cout << "-----------PILA DE MESAS DISPONIBLES-------------" << endl;
+    pilaMesas.mostrarPilaMesas();
+    cout << "-----------LISTA DE PEDIDOS----------------------" << endl;
+    listaPedidos.mostrarDatosLista();
+
+    //Por cada 2 reservas que salen de cola reservas se comprueba una de colas pendientes si la hay
+    /*if(numReservasGestionadas>0 && numReservasGestionadas%2 == 0)
+    {
+        simularGestionReservaPendiente(colaReservas,colaReservasPdtes,pilaMesas,listaPedidos);
+    }
+
+    if(!esReservaPdte)
+    {
+        //Se comprueba si han terminado todas las reservas de una hora
+        if(comprobarCambioHora(horaActual,colaReservas))
+        {
+            simularCambioHora(pilaMesas,listaPedidos);
+        }
+    }*/
 
 }
 
@@ -262,7 +301,7 @@ bool Gestor::buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, i
     }
 }
 
-void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos)
+void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos, bool esReservaPdte)
 {
     //Pila auxiliar para almacenar las mesas no asignadas
     Pila pilaAux;
@@ -323,7 +362,10 @@ void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pi
         }
         Pedido* pedido = new Pedido(numerosMesa,pReserva->getNombreCliente(),pReserva->getNumPersonas(),pReserva->getPreferenciaMenu(),pReserva->getSituacionMesa(),false);
         listaPedidos.extenderListaPorDerecha(*pedido);
+        if(!esReservaPdte) //Solo se suma las reservas de cReservas, no las de cReservasPdte
+        {
         numReservasGestionadas++;
+        }
         delete pReserva;
     }
     else
@@ -357,7 +399,7 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
     string horaActual = pReserva->getHoraReserva();
 
     //Se procesa la siguiente reserva
-    procesarReserva(pReserva,colaReservasPdtes,pilaMesas,listaPedidos);
+    procesarReserva(pReserva,colaReservasPdtes,pilaMesas,listaPedidos,esReservaPdte);
 
     //colaReservas.desencolar();
 
@@ -372,19 +414,19 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
     listaPedidos.mostrarDatosLista();
 
     //Por cada 2 reservas que salen de cola reservas se comprueba una de colas pendientes si la hay
-    /*if(numReservasGestionadas>0 && numReservasGestionadas%2 == 0)
+    if(numReservasGestionadas>0 && numReservasGestionadas%2 == 0)
     {
         simularGestionReservaPendiente(colaReservas,colaReservasPdtes,pilaMesas,listaPedidos);
-    }*/
+    }
 
-    /*if(!esReservaPdte)
+    if(!esReservaPdte)
     {
         //Se comprueba si han terminado todas las reservas de una hora
         if(comprobarCambioHora(horaActual,colaReservas))
         {
             simularCambioHora(pilaMesas,listaPedidos);
         }
-    }*/
+    }
 
 } //Opci�n 7
 
