@@ -58,7 +58,7 @@ void Pila::mostrarCima()
     }
 }
 
-Mesa& Pila::getCima()
+Mesa& Pila::getMesaCima()
 {
     return *(cima->pmesa);
 
@@ -81,6 +81,19 @@ void Pila::mostrarPilaMesas()
         }
         cout << "Fin de los datos de la cola de reservas." << endl << endl;
     }
+}
+
+bool Pila::buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad)
+{
+    NodoPila* anterior;
+    bool mesaEncontrada = false;
+
+    while (!mesaEncontrada)
+    {
+
+    }
+
+    return mesaEncontrada;
 }
 
 
