@@ -190,7 +190,7 @@ void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
     cout << "Se han marcado los cuatro siguientes pedidos como finalizados y se han liberado sus mesas." << endl;
 }
 
-bool Gestor::buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad)
+/*bool Gestor::buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad)
 {
 
     bool mesaEncontrada = false;
@@ -220,7 +220,10 @@ bool Gestor::buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int c
     }
 
     return mesaEncontrada;
-}
+}*/
+
+
+
 
 bool Gestor::buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad)
 {
@@ -318,6 +321,7 @@ void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pi
     {
         // Buscar mesa de capacidad 2
         mesasDisponibles = buscarMesa(pilaMesas, pilaAux, pReserva, 2);
+        mesasDisponibles = pilaMesas.buscarMesa();
 
         if (!mesasDisponibles)
         {

@@ -73,11 +73,11 @@ void Lista::completarSiguientes4Pedidos(){
     int i = 0;
     while(i<4)
     {
-        aux = aux->siguiente;
         if(aux->pPedido->getFinalizado() == false){
             aux->pPedido->setFinalizado(true);
             i++;
         }
+        aux = aux->siguiente;
     }
 }
 
