@@ -125,6 +125,7 @@ int main()
         case 7:
             cout << "Simulando la gestión de la primera reserva de la cola de reservas..." << endl;
             Gestor::simularGestionProximaReserva(colaReservas, colaReservasPdtes, pilaMesas,listaPedidos);
+            cout << "TERMINADO LA SIMULACIÓN... VOLVIENDO AL MAIN..." << endl;
             break;
         case 8:
             cout << "Simulando la gestión de las reservas y creación de pedidos de todas las reservas para la misma hora..." << endl;

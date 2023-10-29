@@ -71,6 +71,7 @@ bool Lista::esVacia()
 void Lista::completarSiguientes4Pedidos(){
     NodoLista* aux = primero;
     int i = 0;
+
     while(i<4)
     {
         if(aux->pPedido->getFinalizado() == false){

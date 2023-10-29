@@ -33,6 +33,8 @@ class Gestor
         static bool buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad);
         static bool buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad);
 
+        static void mostrarDatosDespuesDeGestionarReserva(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos);
+
         //Atributos públicos
         static int numReservasGestionadas;
 
