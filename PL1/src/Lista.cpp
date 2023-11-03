@@ -94,10 +94,6 @@ void Lista::mostrarDatosLista()
     }
 }
 
-void Lista::borrarLista()
-{
-
-}
 
 NodoLista* Lista::getPrimero()
 {

@@ -137,202 +137,117 @@ void Pila::mostrarPilaMesas()
     }
 }
 
-bool Pila::buscarMesa(Reserva* pReserva, int capacidad, Lista& listaPedidos)
+Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
 {
-    bool mesaEncontrada = false;
-    bool ultimoNodo = false;
-    bool aumentarMesa = false;
-    int capacidadActual;
-    //Creamos un puntero auxiliar hacia el NodoPila de la cima
-    NodoPila* actualNodo = cima;
-    //Creamos los punteros anterior y siguiente para poder localizar la mesa bien.
-    NodoPila* anteriorNodo = nullptr;
-    NodoPila* siguienteNodo = actualNodo->siguiente;
-    cout << "COMENZANDO---------" << endl;
-    if(capacidad<=4)
+    cout << "Entro xd" << endl;
+    NodoPila* ant1 = nullptr;
+    NodoPila* nodo1 = nullptr;
+    NodoPila* sig1 = nullptr;
+
+    NodoPila* ant2 = nullptr;
+    NodoPila* nodo2 = nullptr;
+    NodoPila* sig2 = nullptr;
+
+    NodoPila* antAux = nullptr;
+    NodoPila* nodoAux = cima;
+    NodoPila* sigAux = nodoAux->siguiente;
+
+
+
+    const int combs[4][2][2] = {{{2,0},{4,0}},
+                            {{4,0},{2,2}},
+                            {{2,4},{4,4}},
+                            {{4,4},{0,0}}};
+
+    // Busca las dos posibles combinaciones de mesas para la capacidad dada siguiendo el orden de preferencia
+    // Ejemplo: Para 6 personas, currentComb =  {{2,4},{4,4}}, por lo que se prioriza la combinación {2,4} a {4,4}
+    bool mesasEncontradas = false;
+    for(int i = 0; i<2; i++)
     {
-        capacidadActual = (capacidad <=2 ? 2 : 4);
-
-        while (!mesaEncontrada && !ultimoNodo)
+        cout << "Buscando primera combinación" << endl;
+        //Se buscan ambas mesas para la combinación actual
+        bool buscando = true;
+        while(nodoAux && buscando)
         {
-            if(capacidadActual==actualNodo->pmesa->getCapacidad() && pReserva->getSituacionMesa()==actualNodo->pmesa->getSituacionMesa())
+            //Encontrar primera mesa
+            if(nodoAux->pmesa->situacionMesa == pReserva->getSituacionMesa())
             {
-                cout << "MESA ENCONTRADA---------" << endl;
-                mesaEncontrada = true;
-                Mesa* mesaAsignada[2] = {actualNodo->pmesa,nullptr};
-                Pedido* pedido = new Pedido(mesaAsignada,pReserva->getNombreCliente(),pReserva->getNumPersonas(),pReserva->getPreferenciaMenu(),pReserva->getSituacionMesa(),false);
-                listaPedidos.extenderListaPorDerecha(*pedido);
-
-                //pReserva->asignarMesa(actualNodo->pmesa);
-                if(anteriorNodo==nullptr)
+                cout << "Analizando mesa con misma situacion" << endl;
+                //Si encuentra la primera mesa la guarda
+                if(nodoAux->pmesa->capacidad == combs[((capacidad-1)/2)][i][0] && nodo1 == nullptr)
                 {
-                    cima = siguienteNodo;
+                    cout << "Mesa 1 encontrada" << endl;
+                    ant1 = antAux;
+                    nodo1 = nodoAux;
+                    sig1 = sigAux;
                 }
-                else
+                //Si encuentra la segunda mesa la guarda
+                else if(nodoAux->pmesa->capacidad == combs[((capacidad-1)/2)][i][1] && nodo2 == nullptr)
                 {
-                    anteriorNodo->siguiente = siguienteNodo;
-
+                    cout << "Mesa 2 encontrada" << endl;
+                    ant2 = antAux;
+                    nodo1 = nodoAux;
+                    sig1 = sigAux;
                 }
-                delete actualNodo;
-            }
-            else
-            {
-                if(siguienteNodo==nullptr)
+                //Si tenemos la primera mesa y la segunda o la primera sin necesitar la segunda se deja de buscar
+                if(nodo1 != nullptr && (nodo2!=nullptr || combs[((capacidad-1)/2)][i][1] == 0))
                 {
-                    if(capacidad<=2 && !aumentarMesa)
-                    {
-                        //Resetamos los punteros de la pila para buscar de nuevo una mesa más grande
-                        actualNodo = cima;
-                        anteriorNodo = nullptr;
-                        siguienteNodo = actualNodo->siguiente;
-                        aumentarMesa = true;
-                        capacidadActual = 4;
-                        cout << "AUMENTO DE MESA---------" << endl;
-                    }
-                    else
-                    {
-                        ultimoNodo = true;
-                    }
-                }
-                else
-                {
-                    anteriorNodo = actualNodo;
-                    actualNodo = siguienteNodo;
-                    siguienteNodo = actualNodo->siguiente;
+                    cout << "Combinación encontrada" << endl;
+                    buscando = false;
                 }
             }
-
+            //Cambio de nodo
+            antAux = nodoAux;
+            nodoAux = sigAux;
+            sigAux = nodoAux->siguiente;
         }
-
-        return mesaEncontrada;
+        //Si ha encontrado la combinación primera no se sigue
+        if(!buscando){
+            mesasEncontradas = true;
+            break;
+        }
+        //Si no ha encontrado la combinación , se reinician las variables
+        else{
+            ant1 = nullptr;
+            nodo1 = nullptr;
+            sig1 = nullptr;
+            ant2 = nullptr;
+            nodo2 = nullptr;
+            sig2 = nullptr;
+        }
     }
-    else
-    {
-        bool mesaEncontrada2 = false;
 
-        //Creamos un puntero auxiliar hacia el NodoPila de la cima
-        NodoPila* actualNodo2 = cima;
-        //Creamos los punteros anterior y siguiente para poder localizar la mesa bien.
-        NodoPila* anteriorNodo2 = nullptr;
-        NodoPila* siguienteNodo2 = actualNodo2->siguiente;
-        capacidadActual = (capacidad <=6 ? 2 : 4);
+    Mesa** mesas = new Mesa*[2];
+    mesas[0] = nullptr;
+    mesas[1] = nullptr;
 
-        cout << "COMENZANDO WHILE---------" << endl;
-        while (!mesaEncontrada && !ultimoNodo)
-        {
-            if(capacidadActual==actualNodo->pmesa->getCapacidad() && pReserva->getSituacionMesa()==actualNodo->pmesa->getSituacionMesa())
-            {
-                cout << "MESA ENCONTRADA1---------" << endl;
-                mesaEncontrada = true;
-                capacidadActual = 4;
-                while(!mesaEncontrada2 && !ultimoNodo)
-                {
-                    if(capacidadActual==actualNodo2->pmesa->getCapacidad() && pReserva->getSituacionMesa()==actualNodo2->pmesa->getSituacionMesa() && actualNodo->pmesa->getNumMesa()!=actualNodo2->pmesa->getNumMesa())
-                    {
+    cout << "mesas encontradas: " << mesasEncontradas << endl;
+    //Se extirpan las mesas
+    if(mesasEncontradas){
 
-                        cout << "MESA ENCONTRADA2---------" << endl;
-                        mesaEncontrada2 = true;
-                    }
-                    else
-                    {
-                        if(siguienteNodo2==nullptr)
-                        {
-                            ultimoNodo = true;
-                        }
-                        else
-                        {
-                            anteriorNodo2 = actualNodo2;
-                            actualNodo2 = siguienteNodo2;
-                            siguienteNodo2 = actualNodo2->siguiente;
-                        }
-
-                    }
-                }
-            }
-            else
-            {
-                if(siguienteNodo==nullptr)
-                {
-                    if(capacidad<=6 && !aumentarMesa)
-                    {
-                        //Resetamos los punteros de la pila para buscar de nuevo una mesa más grande
-                        actualNodo = cima;
-                        anteriorNodo = nullptr;
-                        siguienteNodo = actualNodo->siguiente;
-                        aumentarMesa = true;
-                        capacidadActual = 4;
-                        cout << "Aumentamos capacidad---------" << endl;
-                    }
-                    else
-                    {
-                        ultimoNodo = true;
-                    }
-                }
-                else
-                {
-                    cout << "Siguiente mesa---------" << endl;
-                    anteriorNodo = actualNodo;
-                    actualNodo = siguienteNodo;
-                    siguienteNodo = actualNodo->siguiente;
-                }
-            }
-
+        //Se extirpa la mesa 1
+        mesas[0] = nodo1->pmesa;
+        if(ant1 != nullptr){
+            ant1->siguiente = sig1;
+        }else{
+            cima = sig1;
         }
+        delete nodo1;
 
-        cout << "SALIENDO WHILE---------" << endl;
-        if(mesaEncontrada && mesaEncontrada2)
-        {
-            if(actualNodo->pmesa->getNumMesa()>actualNodo2->pmesa->getNumMesa())
-            {
-                cout << "HACIENDO EL SWITCH---------" << endl;
-                std::swap(actualNodo, actualNodo2);
-                std::swap(anteriorNodo, anteriorNodo2);
-                std::swap(siguienteNodo, siguienteNodo2);
+        //Se extirpa la mesa 2 si la hay
+        if(nodo2 != nullptr){
+            mesas[1] = nodo2->pmesa;
+            if(ant2 != nullptr){
+                ant2->siguiente;
+            }else{
+                cima = sig2;
             }
-            cout << "SALIENDO switch---------" << endl;
-
-            Mesa* mesaAsignada[2] = {actualNodo->pmesa,actualNodo2->pmesa};
-            Pedido* pedido = new Pedido(mesaAsignada,pReserva->getNombreCliente(),pReserva->getNumPersonas(),pReserva->getPreferenciaMenu(),pReserva->getSituacionMesa(),false);
-            listaPedidos.extenderListaPorDerecha(*pedido);
-            cout << mesaAsignada[0]->getNumMesa() << endl;
-            cout << mesaAsignada[1]->getNumMesa() << endl;
-
-            if(anteriorNodo==nullptr)
-            {
-                if(anteriorNodo2->pmesa->getNumMesa()==actualNodo->pmesa->getNumMesa())
-                {
-                    cima = siguienteNodo2;
-                }
-                else
-                {
-                    cima = siguienteNodo;
-                    anteriorNodo2->siguiente = siguienteNodo2;
-                }
-            }
-            else
-            {
-                if(anteriorNodo2->pmesa->getNumMesa()==actualNodo->pmesa->getNumMesa())
-                {
-                    anteriorNodo->siguiente = siguienteNodo2;
-                }
-                else
-                {
-                    anteriorNodo->siguiente=siguienteNodo;
-                    anteriorNodo2->siguiente=siguienteNodo2;
-                }
-            }
-            delete actualNodo;
-            delete actualNodo2;
-
-
-            cout << "AMBAS MESAS ENCONTRADAS---------" << endl;
-
-            return true;
+            delete nodo2;
         }
-
-        cout << "NIGUNA MESA ENCONTRADA---------" << endl;
-        return false;
     }
+
+    cout << "Fin función" << endl;
+    return mesas;
 
 }
 

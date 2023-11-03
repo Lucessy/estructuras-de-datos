@@ -7,7 +7,6 @@ class Lista
     public:
         Lista();
         virtual ~Lista();
-
         void extenderListaPorDerecha(Pedido& elem);
         void extenderListaPorIzquierda(Pedido& elem);
         Pedido& elemInicial();
@@ -15,7 +14,6 @@ class Lista
         bool esVacia();
         Pedido& elemEnPosicion(int indice);
         void mostrarDatosLista();
-        void borrarLista();
         void completarSiguientes4Pedidos();
         NodoLista* getPrimero();
 

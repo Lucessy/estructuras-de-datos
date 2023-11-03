@@ -13,6 +13,7 @@ using namespace std;
 //Se definen las colecciones a usar
 Cola colaReservas;
 Cola colaReservasPdtes;
+Cola colaReservasNoGestionadas;
 Lista listaPedidos;
 Pila pilaMesas;
 
@@ -45,7 +46,6 @@ int main()
         cout << "0. Salir\n" << endl;
 
         int eleccion = 0;
-        cout << eleccion << endl;
         bool eleccionValida = false;
         int maxIntentos = 3;
         while(!eleccionValida && maxIntentos>0)
@@ -70,37 +70,37 @@ int main()
         switch(eleccion)
         {
         case 1:
+        {
+            cout << "Introduce el número de reservas aleatorias a gestionar. Puede gestionar un mínimo de 12 reservas y un máximo de 50:" << endl;
+            // Crea una variable string numeroStr
+            string numeroStr;
+            cin >> numeroStr;
+            std::string str = numeroStr;
+            try
             {
-                cout << "Introduce el número de reservas aleatorias a gestionar. Puede gestionar un mínimo de 12 reservas y un máximo de 50:" << endl;
-                // Crea una variable string numeroStr
-                string numeroStr;
-                cin >> numeroStr;
-                std::string str = numeroStr;
-                try
+                // Intenta pasarlo de String to Int
+                int numero = std::stoi(str);
+                //std::cout << numero << std::endl;
+                if(numero>=12 && numero<=50)
                 {
-                    // Intenta pasarlo de String to Int
-                    int numero = std::stoi(str);
-                        //std::cout << numero << std::endl;
-                    if(numero>=12 && numero<=50)
-                    {
-                        cout << "Generando aleatoriamente la cola de reservas..." << endl;
-                        Gestor::generarColaReservas(colaReservas,numero);
-                    }
-                    else
-                    {
-                        cout << "Número o carácter incorrecto. Volviendo al menú principal..." <<endl;
-                    }
+                    cout << "Generando aleatoriamente la cola de reservas..." << endl;
+                    Gestor::generarColaReservas(colaReservas,numero);
                 }
-                // Capta las excepciones y vuelve al menú principal
-                catch (const std::invalid_argument& ia)
+                else
                 {
-                    std::cerr << "Número o carácter incorrecto. Volviendo al menú principal..." /*<< ia.what()*/ << '\n';
-                }
-                catch (const std::out_of_range& oor)
-                {
-                    std::cerr << "Número o carácter incorrecto. Volviendo al menú principal..." /*<< ia.what()*/ << '\n';
+                    cout << "Número incorrecto. Volviendo al menú principal..." <<endl;
                 }
             }
+            // Capta las excepciones y vuelve al menú principal
+            catch (const std::invalid_argument& ia)
+            {
+                std::cerr << "Número incorrecto. Volviendo al menú principal..." << '\n';
+            }
+            catch (const std::out_of_range& oor)
+            {
+                std::cerr << "Número incorrecto. Volviendo al menú principal..."  << '\n';
+            }
+        }
         break;
         case 2:
             cout << "Mostrando la cola de reservas creada..." << endl;
@@ -124,16 +124,18 @@ int main()
             break;
         case 7:
             cout << "Simulando la gestión de la primera reserva de la cola de reservas..." << endl;
-            Gestor::simularGestionProximaReserva(colaReservas, colaReservasPdtes, pilaMesas,listaPedidos);
-            cout << "TERMINADO LA SIMULACIÓN... VOLVIENDO AL MAIN..." << endl;
+            Gestor::simularGestionProximaReserva(colaReservas, colaReservasPdtes, colaReservasNoGestionadas,pilaMesas,listaPedidos); //Opción 7
+            Gestor::mostrarDatos(colaReservas,colaReservasPdtes,colaReservasNoGestionadas,pilaMesas,listaPedidos);
             break;
         case 8:
             cout << "Simulando la gestión de las reservas y creación de pedidos de todas las reservas para la misma hora..." << endl;
-            Gestor::simularGestionReservasProximaHora(colaReservas, colaReservasPdtes,pilaMesas, listaPedidos); //Opción 8
+            Gestor::simularGestionReservasProximaHora(colaReservas, colaReservasPdtes, colaReservasNoGestionadas,pilaMesas, listaPedidos); //Opción 8
+            Gestor::mostrarDatos(colaReservas,colaReservasPdtes,colaReservasNoGestionadas,pilaMesas,listaPedidos);
             break;
         case 9:
             cout << "Simulando la gestión de todas las reservas del restaurante..." << endl;
-            Gestor::simularGestionReservasTotal(colaReservas, colaReservasPdtes,pilaMesas, listaPedidos); //Opción 9
+            Gestor::simularGestionReservasTotal(colaReservas, colaReservasPdtes, colaReservasNoGestionadas,pilaMesas, listaPedidos); //Opción 9
+            Gestor::mostrarDatos(colaReservas,colaReservasPdtes,colaReservasNoGestionadas,pilaMesas,listaPedidos);
             break;
 
         case 0:
