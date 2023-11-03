@@ -31,6 +31,58 @@ void Pila::apilar(Mesa& mesa) //Modificado
     cima = nuevo;
 }
 
+void Pila::apilarEnOrden(Mesa& mesa) //Modificado
+{
+    NodoPila* aux = cima;
+    NodoPila* anterior = nullptr;
+    bool apilado = false;
+    NodoPila* nuevo;
+    while(!apilado)
+    {
+        if(aux->siguiente!=nullptr)
+        {
+            if(aux->pmesa->getNumMesa()>mesa.getNumMesa())
+            {
+                if(cima==aux)
+                {
+                    nuevo = new NodoPila(mesa,cima);
+                    cima = nuevo;
+                    cout << "APILADO CIMA" << endl;
+                    apilado = true;
+                }
+                else
+                {
+                    apilado = true;
+                    nuevo = new NodoPila(mesa,aux);
+                    anterior->siguiente = nuevo;
+                    cout << "APILADO ENTRE MEDIAS" << endl;
+                }
+            }
+            else
+            {
+                anterior = aux;
+                aux = aux->siguiente;
+            }
+
+        }
+        else
+        {
+            apilado = true;
+            if(aux->pmesa->getNumMesa()>mesa.getNumMesa())
+            {
+                nuevo = new NodoPila(mesa,aux);
+                anterior->siguiente = nuevo;
+            }
+            else
+            {
+                nuevo = new NodoPila(mesa,nullptr);
+                aux->siguiente=nuevo;
+            }
+        }
+    }
+    cout << nuevo->pmesa->getNumMesa() << endl;
+}
+
 void Pila::vaciarPila()
 {
     while(cima!=NULL)
@@ -250,7 +302,9 @@ bool Pila::buscarMesa(Reserva* pReserva, int capacidad, Lista& listaPedidos)
                 if(anteriorNodo2->pmesa->getNumMesa()==actualNodo->pmesa->getNumMesa())
                 {
                     cima = siguienteNodo2;
-                }else{
+                }
+                else
+                {
                     cima = siguienteNodo;
                     anteriorNodo2->siguiente = siguienteNodo2;
                 }
@@ -260,14 +314,15 @@ bool Pila::buscarMesa(Reserva* pReserva, int capacidad, Lista& listaPedidos)
                 if(anteriorNodo2->pmesa->getNumMesa()==actualNodo->pmesa->getNumMesa())
                 {
                     anteriorNodo->siguiente = siguienteNodo2;
-                }else
+                }
+                else
                 {
                     anteriorNodo->siguiente=siguienteNodo;
                     anteriorNodo2->siguiente=siguienteNodo2;
                 }
             }
-                delete actualNodo;
-                delete actualNodo2;
+            delete actualNodo;
+            delete actualNodo2;
 
 
             cout << "AMBAS MESAS ENCONTRADAS---------" << endl;

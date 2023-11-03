@@ -120,7 +120,7 @@
 	<iostream>
 	"Reserva.h"
 
-1698971747 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
+1699023272 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
@@ -134,7 +134,7 @@
 	"Pila.h"
 	"Lista.h"
 
-1698968448 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\pila.h
+1699021975 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\pila.h
 	<NodoPila.h>
 	"Reserva.h"
 	"Lista.h"
@@ -157,7 +157,7 @@
 	"NodoCola.h"
 	<iostream>
 
-1698972742 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pedido.cpp
+1699020399 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pedido.cpp
 	"Pedido.h"
 	<iostream>
 
@@ -166,7 +166,7 @@
 	<string>
 	"Mesa.h"
 
-1698972584 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pila.cpp
+1699025719 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pila.cpp
 	"Pila.h"
 	<iostream>
 	"NodoPila.h"

@@ -20,13 +20,16 @@ Pedido::~Pedido()
 void Pedido::mostrarPedido()
 {
     cout << "Pedido con nombre de cliente: " << nombreCliente << endl;
-    if(mesa[1]==nullptr)
+    if( mesa[0]!=nullptr && mesa[1]==nullptr)
     {
         cout << "  -Numero de mesa asignada: " <<mesa[0]->getNumMesa() << endl;
     }
-    else
+    else if(mesa[0]!=nullptr && mesa[1]!=nullptr)
     {
         cout << "  -Números de mesas asignadas: " << mesa[0]->getNumMesa() << " , " << mesa[1]->getNumMesa() << endl;
+    }else
+    {
+        cout << "  -Número de mesa asignada: No hay mesas asignadas" << endl;
     }
     cout << "  -Número de personas: " << numeroPersonas <<  endl;
     cout << "  -Preferencia de menú: " << preferenciaMenu <<  endl;

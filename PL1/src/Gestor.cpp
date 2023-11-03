@@ -150,13 +150,20 @@ void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
     {
         if(aux->pPedido->getFinalizado() == false)
         {
+            cout << "MESA UNO..." << endl;
             aux->pPedido->setFinalizado(true);
-            pilaMesas.apilar(*aux->pPedido->getMesaAsignada1());
+
+            pilaMesas.apilarEnOrden(*aux->pPedido->getMesaAsignada1());
+
             if(aux->pPedido->getMesaAsignada2()!=nullptr)
             {
-                pilaMesas.apilar(*aux->pPedido->getMesaAsignada1());
+                cout << "MESA DOS..." << endl;
+                pilaMesas.apilarEnOrden(*aux->pPedido->getMesaAsignada2());
             }
+
+            cout << "BORRANDO MESAS..." << endl;
             aux->pPedido->restablecerMesasAsignadas();
+            cout << "MESAS BORRADAS..." << endl;
             i++;
         }
         aux = aux->siguiente;
@@ -231,8 +238,7 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
         cout << "Procesando siguiente mesa disponible PENDIENTES ---------" << endl;
         if(colaReservasPdtes.esVacia())
         {
-            cout << "No hay reservas que simular.";
-            return;
+            cout << "No hay reservas que simular." << endl;
         }
         else
         {
@@ -247,10 +253,13 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
     if(!esReservaPdte)
     {
         //Se comprueba si han terminado todas las reservas de una hora
-        cout << "Comprobando es reserva pendiente..." << endl;
+        cout << "NO ES RESERVA PENDIENTE -> Comprobamos si hay cambio de hora..." << endl;
+        cout << horaActual << endl;
         if(comprobarCambioHora(horaActual,colaReservas))
         {
+            cout << "Simulando el cambio de hora..." << endl;
             simularCambioHora(pilaMesas,listaPedidos);
+            mostrarDatosDespuesDeGestionarReserva(colaReservas,colaReservasPdtes,pilaMesas,listaPedidos);
         }
     }
 
@@ -291,11 +300,12 @@ bool Gestor::comprobarCambioHora(string horaInicial,Cola& colaReservas)
 {
     if(colaReservas.esVacia())
     {
-        return false; //Por que seria true????
+        return true;
     }
     else
     {
         Reserva* pSigReserva = colaReservas.inicio();
+        cout << pSigReserva->getHoraReserva() << endl;
         if(pSigReserva->getHoraReserva() != horaInicial)
         {
             return true;
