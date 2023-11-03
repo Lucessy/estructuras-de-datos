@@ -158,36 +158,7 @@ void Gestor::vaciarPilaMesas(Pila& pila)
 */
 void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
 {
-
-    /*
-    cout << "Simulando cambio de hora..." << endl;
-
-    NodoLista* aux = listaPedidos.getPrimero();
-    int i = 0;
-
-    while(i<4)
-    {
-        if(aux->pPedido->getFinalizado() == false)
-        {
-            cout << "MESA UNO..." << endl;
-            aux->pPedido->setFinalizado(true);
-
-            pilaMesas.apilarEnOrden(*aux->pPedido->getMesaAsignada1());
-
-            if(aux->pPedido->getMesaAsignada2()!=nullptr)
-            {
-                cout << "MESA DOS..." << endl;
-                pilaMesas.apilarEnOrden(*aux->pPedido->getMesaAsignada2());
-            }
-
-            cout << "BORRANDO MESAS..." << endl;
-            aux->pPedido->restablecerMesasAsignadas();
-            cout << "MESAS BORRADAS..." << endl;
-            i++;
-        }
-        aux = aux->siguiente;
-    }
-    cout << "Se han marcado los cuatro siguientes pedidos como finalizados y se han liberado sus mesas." << endl;*/
+    listaPedidos.completarSiguientesPedidos(pilaMesas);
 }
 
 /**
@@ -201,9 +172,11 @@ void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Cola& co
     //Buscamos las mesas necesarias para cada numPersonas y se añaden a la lista de pedidos si las encuentra
     bool mesasDisponibles = false;
     Mesa** mesas = pilaMesas.buscarMesas(pReserva,numPersonas);
-    crearPedidos(mesas,pReserva,listaPedidos);
     if(mesas[0] != nullptr){
         mesasDisponibles = true;
+    }
+    if(mesasDisponibles){
+        crearPedidos(mesas,pReserva,listaPedidos);
     }
 
 
@@ -260,12 +233,12 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
     if(!esReservaPdtDelFinal)
     {
         //Se comprueba si han terminado todas las reservas de una hora
-        cout << " Comprobamos si hay cambio de hora... Hora inicial: " << horaActual << endl;
         cout << " Cambio de hora: " << (comprobarCambioHora(horaActual,colaReservas) ? "Si":"No") << endl;
         if(comprobarCambioHora(horaActual,colaReservas))
         {
             cout << "Simulando el cambio de hora..." << endl;
             simularCambioHora(pilaMesas,listaPedidos);
+            cout << "Cambio de hora simulado." << endl;
         }
     }
 

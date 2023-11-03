@@ -139,18 +139,15 @@ void Pila::mostrarPilaMesas()
 
 Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
 {
-    cout << "Entro xd" << endl;
+    cout << "Comenzando busqueda de mesas..." << endl;
     NodoPila* ant1 = nullptr;
     NodoPila* nodo1 = nullptr;
-    NodoPila* sig1 = nullptr;
 
     NodoPila* ant2 = nullptr;
     NodoPila* nodo2 = nullptr;
-    NodoPila* sig2 = nullptr;
 
     NodoPila* antAux = nullptr;
     NodoPila* nodoAux = cima;
-    NodoPila* sigAux = nodoAux->siguiente;
 
 
 
@@ -164,7 +161,7 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
     bool mesasEncontradas = false;
     for(int i = 0; i<2; i++)
     {
-        cout << "Buscando primera combinación" << endl;
+        cout << "Buscando primera combinación de mesas" << endl;
         //Se buscan ambas mesas para la combinación actual
         bool buscando = true;
         while(nodoAux && buscando)
@@ -174,20 +171,18 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
             {
                 cout << "Analizando mesa con misma situacion" << endl;
                 //Si encuentra la primera mesa la guarda
-                if(nodoAux->pmesa->capacidad == combs[((capacidad-1)/2)][i][0] && nodo1 == nullptr)
+                if(nodo1 == nullptr && (nodoAux->pmesa->capacidad == combs[((capacidad-1)/2)][i][0]))
                 {
                     cout << "Mesa 1 encontrada" << endl;
                     ant1 = antAux;
                     nodo1 = nodoAux;
-                    sig1 = sigAux;
                 }
                 //Si encuentra la segunda mesa la guarda
-                else if(nodoAux->pmesa->capacidad == combs[((capacidad-1)/2)][i][1] && nodo2 == nullptr)
+                else if(nodo2 == nullptr&&(nodoAux->pmesa->capacidad == combs[((capacidad-1)/2)][i][1]))
                 {
                     cout << "Mesa 2 encontrada" << endl;
                     ant2 = antAux;
-                    nodo1 = nodoAux;
-                    sig1 = sigAux;
+                    nodo2 = nodoAux;
                 }
                 //Si tenemos la primera mesa y la segunda o la primera sin necesitar la segunda se deja de buscar
                 if(nodo1 != nullptr && (nodo2!=nullptr || combs[((capacidad-1)/2)][i][1] == 0))
@@ -198,8 +193,7 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
             }
             //Cambio de nodo
             antAux = nodoAux;
-            nodoAux = sigAux;
-            sigAux = nodoAux->siguiente;
+            nodoAux = nodoAux->siguiente;
         }
         //Si ha encontrado la combinación primera no se sigue
         if(!buscando){
@@ -210,10 +204,8 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
         else{
             ant1 = nullptr;
             nodo1 = nullptr;
-            sig1 = nullptr;
             ant2 = nullptr;
             nodo2 = nullptr;
-            sig2 = nullptr;
         }
     }
 
@@ -221,16 +213,15 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
     mesas[0] = nullptr;
     mesas[1] = nullptr;
 
-    cout << "mesas encontradas: " << mesasEncontradas << endl;
     //Se extirpan las mesas
     if(mesasEncontradas){
 
         //Se extirpa la mesa 1
         mesas[0] = nodo1->pmesa;
         if(ant1 != nullptr){
-            ant1->siguiente = sig1;
+            ant1->siguiente = nodo1->siguiente;
         }else{
-            cima = sig1;
+            cima = nodo1->siguiente;
         }
         delete nodo1;
 
@@ -238,15 +229,13 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
         if(nodo2 != nullptr){
             mesas[1] = nodo2->pmesa;
             if(ant2 != nullptr){
-                ant2->siguiente;
+                ant2->siguiente = nodo2->siguiente;
             }else{
-                cima = sig2;
+                cima = nodo2->siguiente;
             }
             delete nodo2;
         }
     }
-
-    cout << "Fin función" << endl;
     return mesas;
 
 }

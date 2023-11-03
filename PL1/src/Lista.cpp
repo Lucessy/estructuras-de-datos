@@ -99,3 +99,22 @@ NodoLista* Lista::getPrimero()
 {
     return primero;
 }
+
+void Lista::completarSiguientesPedidos(Pila& pilaMesas)
+{
+    int i= 0;
+    NodoLista* aux = primero;
+    while(aux && i < 4){
+        if(aux->pPedido->getFinalizado() == false){
+            aux->pPedido->setFinalizado(true);
+            if(aux->pPedido->getMesaAsignada1() != nullptr){
+                pilaMesas.apilarEnOrden(*(aux->pPedido->getMesaAsignada1()));
+            }
+            if(aux->pPedido->getMesaAsignada2() != nullptr){
+                pilaMesas.apilarEnOrden(*(aux->pPedido->getMesaAsignada2()));
+            }
+            i++;
+        }
+        aux = aux->siguiente;
+    }
+}

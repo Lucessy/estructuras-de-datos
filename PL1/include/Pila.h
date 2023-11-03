@@ -2,7 +2,6 @@
 #define PILA_H
 #include <NodoPila.h>
 #include "Reserva.h"
-#include "Lista.h"
 
 
 class Pila

@@ -1,6 +1,7 @@
 #ifndef LISTA_H
 #define LISTA_H
 #include <NodoLista.h>
+#include "Pila.h"
 
 class Lista
 {
@@ -14,7 +15,7 @@ class Lista
         bool esVacia();
         Pedido& elemEnPosicion(int indice);
         void mostrarDatosLista();
-        void completarSiguientes4Pedidos();
+        void completarSiguientesPedidos( Pila& pilaMesas);
         NodoLista* getPrimero();
 
     protected:
