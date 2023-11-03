@@ -1,6 +1,8 @@
 #include "Pila.h"
 #include <iostream>
 #include "NodoPila.h"
+#include "Pedido.h"
+#include "Mesa.h"
 using namespace std;
 
 
@@ -83,7 +85,7 @@ void Pila::mostrarPilaMesas()
     }
 }
 
-bool Pila::buscarMesa(Reserva* pReserva, int capacidad)
+bool Pila::buscarMesa(Reserva* pReserva, int capacidad, Lista& listaPedidos)
 {
     bool mesaEncontrada = false;
     bool ultimoNodo = false;
@@ -105,7 +107,11 @@ bool Pila::buscarMesa(Reserva* pReserva, int capacidad)
             {
                 cout << "MESA ENCONTRADA---------" << endl;
                 mesaEncontrada = true;
-                pReserva->asignarMesa(actualNodo->pmesa);
+                Mesa* mesaAsignada[2] = {actualNodo->pmesa,nullptr};
+                Pedido* pedido = new Pedido(mesaAsignada,pReserva->getNombreCliente(),pReserva->getNumPersonas(),pReserva->getPreferenciaMenu(),pReserva->getSituacionMesa(),false);
+                listaPedidos.extenderListaPorDerecha(*pedido);
+
+                //pReserva->asignarMesa(actualNodo->pmesa);
                 if(anteriorNodo==nullptr)
                 {
                     cima = siguienteNodo;
@@ -233,10 +239,12 @@ bool Pila::buscarMesa(Reserva* pReserva, int capacidad)
             }
             cout << "SALIENDO switch---------" << endl;
 
-            pReserva->asignarMesa(actualNodo->pmesa);
-            pReserva->asignarMesa(actualNodo2->pmesa);
+            Mesa* mesaAsignada[2] = {actualNodo->pmesa,actualNodo2->pmesa};
+            Pedido* pedido = new Pedido(mesaAsignada,pReserva->getNombreCliente(),pReserva->getNumPersonas(),pReserva->getPreferenciaMenu(),pReserva->getSituacionMesa(),false);
+            listaPedidos.extenderListaPorDerecha(*pedido);
+            cout << mesaAsignada[0]->getNumMesa() << endl;
+            cout << mesaAsignada[1]->getNumMesa() << endl;
 
-            cout << "Terminado asignar---------" << endl;
             if(anteriorNodo==nullptr)
             {
                 if(anteriorNodo2->pmesa->getNumMesa()==actualNodo->pmesa->getNumMesa())

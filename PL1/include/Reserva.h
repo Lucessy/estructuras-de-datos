@@ -16,14 +16,7 @@ class Reserva
         int getNumPersonas();
         string getPreferenciaMenu();
         string getHoraReserva();
-        Mesa getMesaAsignada1();
-        Mesa getMesaAsignada2();
-        void asignarMesa(Mesa* mesa);
-        int getNumeroMesasAsignadas();
-        void restablecerMesasAsignadas();
-
         void mostrarReserva();
-
 
     protected:
 
@@ -33,9 +26,6 @@ class Reserva
         int numeroPersonas;
         string horaReserva;
         string preferenciaMenu;
-        Mesa* mesaAsignada1;
-        Mesa* mesaAsignada2;
-        int numeroMesasAsignadas;
 };
 
 #endif // RESERVA_H

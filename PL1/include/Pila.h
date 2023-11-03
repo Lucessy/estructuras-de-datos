@@ -2,6 +2,7 @@
 #define PILA_H
 #include <NodoPila.h>
 #include "Reserva.h"
+#include "Lista.h"
 
 
 class Pila
@@ -17,7 +18,7 @@ class Pila
         void mostrarPilaMesas();
         void vaciarPila();
         Mesa& getMesaCima();
-        bool buscarMesa(Reserva* pReserva, int capacidad);
+        bool buscarMesa(Reserva* pReserva, int capacidad, Lista& listaPedidos);
 
     protected:
 

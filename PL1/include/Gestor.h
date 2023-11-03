@@ -18,11 +18,6 @@ class Gestor
         static void mostrarPilaMesas(Pila& pilaMesas); //Opción 5
         static void vaciarPilaMesas(Pila& pila); //Opción 6
 
-        static void procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos,bool esReservaPdte);
-        static void simularCambioHora(Pila& pilaMesas, Lista& listaPedidos);
-        static void simularGestionReservaPendiente(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos);
-        static Reserva* siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes);
-        static bool comprobarCambioHora(string horaInicial,Cola& colaReservas);
 
         static void simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservasPdtes, Pila& pilaMesas,Lista& listaPedidos); //Opción 7
         static void simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos); //Opción 8
@@ -30,10 +25,6 @@ class Gestor
 
         static void Salir(); //Opción 0
 
-        static bool buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad);
-        static bool buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad);
-
-        static void mostrarDatosDespuesDeGestionarReserva(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos);
 
         //Atributos públicos
         static int numReservasGestionadas;
@@ -41,6 +32,15 @@ class Gestor
     protected:
 
     private:
+
+        static void mostrarDatosDespuesDeGestionarReserva(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos);
+        static bool buscarDosMesas(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad);
+        static bool buscarMesa(Pila& pilaMesas, Pila& pilaAux, Reserva* pReserva, int capacidad);
+        static void procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos,bool esReservaPdte);
+        static void simularCambioHora(Pila& pilaMesas, Lista& listaPedidos);
+        static void simularGestionReservaPendiente(Cola& colaReservas, Cola& colaReservasPdtes,Pila& pilaMesas, Lista& listaPedidos);
+        static Reserva* siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes);
+        static bool comprobarCambioHora(string horaInicial,Cola& colaReservas);
 };
 
 #endif // GESTOR_H

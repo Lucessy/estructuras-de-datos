@@ -17,6 +17,7 @@ class Lista
         void mostrarDatosLista();
         void borrarLista();
         void completarSiguientes4Pedidos();
+        NodoLista* getPrimero();
 
     protected:
 

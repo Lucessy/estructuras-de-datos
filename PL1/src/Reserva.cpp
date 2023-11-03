@@ -10,9 +10,6 @@ Reserva::Reserva(string nombreCliente,string horaReserva,string situacionMesa,in
     this->situacionMesa=situacionMesa;
     this->numeroPersonas=numeroPersonas;
     this->preferenciaMenu=preferenciaMenu;
-    this->numeroMesasAsignadas=0;
-    this->mesaAsignada1=nullptr;
-    this->mesaAsignada2=nullptr;
 }
 
 
@@ -56,34 +53,3 @@ string Reserva::getHoraReserva()
 {
     return horaReserva;
 }
-
-Mesa Reserva::getMesaAsignada1()
-{
-    return *mesaAsignada1;
-}
-
-Mesa Reserva::getMesaAsignada2()
-{
-    return *mesaAsignada2;
-}
-
-void Reserva::asignarMesa(Mesa* mesa)
-{
-    if (numeroMesasAsignadas == 0)
-    {
-        mesaAsignada1 = mesa;
-    }
-    else if (numeroMesasAsignadas == 1)
-    {
-        mesaAsignada2 = mesa;
-    }
-    numeroMesasAsignadas++;
-}
-
-void Reserva::restablecerMesasAsignadas()
-{
-    mesaAsignada1 = nullptr;
-    mesaAsignada2 = nullptr;
-    numeroMesasAsignadas = 0;
-}
-

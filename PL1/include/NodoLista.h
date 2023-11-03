@@ -16,6 +16,7 @@ class NodoLista
         NodoLista* siguiente;
         NodoLista* anterior;
         friend class Lista;
+        friend class Gestor;
 };
 
 #endif // NODOLISTA_H

@@ -1,15 +1,15 @@
 #include "Pedido.h"
 #include <iostream>
 
-Pedido::Pedido(int numMesa[], string nomCliente, int numPersonas, string prefMenu, string sitMesa, bool finalizado)
+Pedido::Pedido(Mesa* mesaAsignada[], string nomCliente, int numPersonas, string prefMenu, string sitMesa,bool finalizado)
 {
-    numeroMesa[0] = numMesa[0];
-    numeroMesa[1] = numMesa[1];
     nombreCliente = nomCliente;
     numeroPersonas = numPersonas;
     preferenciaMenu = prefMenu;
     situacionMesa = sitMesa;
     this->finalizado = finalizado;
+    mesa[0] = mesaAsignada[0];
+    mesa[1] = mesaAsignada[1];
 }
 
 Pedido::~Pedido()
@@ -20,20 +20,18 @@ Pedido::~Pedido()
 void Pedido::mostrarPedido()
 {
     cout << "Pedido con nombre de cliente: " << nombreCliente << endl;
-    if(numeroMesa[1] == 0){
-        cout << "  -Numero de mesa asignada: " <<numeroMesa[0] << endl;
-    }else{
-        cout << "  -Números de mesas asignadas: " << numeroMesa[0] << " , " << numeroMesa[1] << endl;
+    if(mesa[1]==nullptr)
+    {
+        cout << "  -Numero de mesa asignada: " <<mesa[0]->getNumMesa() << endl;
+    }
+    else
+    {
+        cout << "  -Números de mesas asignadas: " << mesa[0]->getNumMesa() << " , " << mesa[1]->getNumMesa() << endl;
     }
     cout << "  -Número de personas: " << numeroPersonas <<  endl;
     cout << "  -Preferencia de menú: " << preferenciaMenu <<  endl;
     cout << "  -Situación de la mesa: " << situacionMesa <<  endl;
     cout << "  -Pedido: " << (finalizado ? "" : "no") << " finalizado" <<  endl << endl;
-}
-
-
-int* Pedido::getpNumMesa(){
-    return numeroMesa;
 }
 
 void Pedido::setFinalizado(bool estado)
@@ -65,4 +63,20 @@ string Pedido::getSituacionMesa()
 bool Pedido::getFinalizado()
 {
     return finalizado;
+}
+
+void Pedido::restablecerMesasAsignadas()
+{
+    mesa[0] = nullptr;
+    mesa[1] = nullptr;
+}
+
+Mesa* Pedido::getMesaAsignada1()
+{
+    return mesa[0];
+}
+
+Mesa* Pedido::getMesaAsignada2()
+{
+    return mesa[1];
 }

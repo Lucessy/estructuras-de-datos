@@ -2,32 +2,37 @@
 #define PEDIDO_H
 #include <iostream>
 #include <string>
+#include "Mesa.h"
 using namespace std;
 
 class Pedido
 {
-    public:
-        Pedido(int numMesa[], string nomCliente, int numPersonas, string prefMenu, string sitMesa, bool finalizado);
-        virtual ~Pedido();
-        int* getpNumMesa();
-        string getNombreCliente();
-        int getNumPersonas();
-        string getPreferenciaMenu();
-        string getSituacionMesa();
-        bool getFinalizado();
-        void setFinalizado(bool estado);
+public:
+    Pedido(Mesa* mesa[], string nomCliente, int numPersonas, string prefMenu, string sitMesa,bool finalizado);
+    virtual ~Pedido();
 
-        void mostrarPedido();
+    string getNombreCliente();
+    int getNumPersonas();
+    string getPreferenciaMenu();
+    string getSituacionMesa();
+    bool getFinalizado();
+    void setFinalizado(bool estado);
+    void restablecerMesasAsignadas();
+    Mesa* getMesaAsignada1();
+    Mesa* getMesaAsignada2();
+    void mostrarPedido();
 
-    protected:
+protected:
 
-    private:
-        int numeroMesa[2];
-        string nombreCliente;
-        int numeroPersonas;
-        string preferenciaMenu;
-        string situacionMesa;
-        bool finalizado;
+private:
+
+    string nombreCliente;
+    int numeroPersonas;
+    string preferenciaMenu;
+    string situacionMesa;
+    bool finalizado;
+    Mesa* mesa[2];
+
 
 };
 

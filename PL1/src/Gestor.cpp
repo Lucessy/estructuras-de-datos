@@ -142,7 +142,25 @@ void Gestor::vaciarPilaMesas(Pila& pila)
 void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
 {
     cout << "Simulando cambio de hora..." << endl;
-    listaPedidos.completarSiguientes4Pedidos();
+
+    NodoLista* aux = listaPedidos.getPrimero();
+    int i = 0;
+
+    while(i<4)
+    {
+        if(aux->pPedido->getFinalizado() == false)
+        {
+            aux->pPedido->setFinalizado(true);
+            pilaMesas.apilar(*aux->pPedido->getMesaAsignada1());
+            if(aux->pPedido->getMesaAsignada2()!=nullptr)
+            {
+                pilaMesas.apilar(*aux->pPedido->getMesaAsignada1());
+            }
+            aux->pPedido->restablecerMesasAsignadas();
+            i++;
+        }
+        aux = aux->siguiente;
+    }
     cout << "Se han marcado los cuatro siguientes pedidos como finalizados y se han liberado sus mesas." << endl;
 }
 
@@ -152,28 +170,17 @@ void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Pila& pi
     bool mesasDisponibles = false;
 
     int numerosMesa[2] = {0,0};
+    int capacidadNumerosMesa[2] = {0,0};
     int numPersonas = pReserva->getNumPersonas();
 
     //Buscamos las mesas necesarias para cada numPersonas
     cout << "Procesando siguiente mesa disponible ---------" << endl;
-    mesasDisponibles = pilaMesas.buscarMesa(pReserva,numPersonas);
+    mesasDisponibles = pilaMesas.buscarMesa(pReserva,numPersonas,listaPedidos);
     cout << "TERMINADO ---- MESA siguiente reserva---------" << endl;
 
     //Si hay mesas disponiles
     if(mesasDisponibles)
     {
-        //Se genera el pedido y se a�ade a la lista de pedidos
-        if(numPersonas<=4)
-        {
-            numerosMesa[0] = pReserva->getMesaAsignada1().getNumMesa();
-        }
-        else
-        {
-            numerosMesa[0] = pReserva->getMesaAsignada1().getNumMesa();
-            numerosMesa[1] = pReserva->getMesaAsignada2().getNumMesa();
-        }
-        Pedido* pedido = new Pedido(numerosMesa,pReserva->getNombreCliente(),pReserva->getNumPersonas(),pReserva->getPreferenciaMenu(),pReserva->getSituacionMesa(),false);
-        listaPedidos.extenderListaPorDerecha(*pedido);
         if(!esReservaPdte) //Solo se suma las reservas de cReservas, no las de cReservasPdte
         {
             numReservasGestionadas++;

@@ -5,8 +5,8 @@ using namespace std;
 Lista::Lista()
 {
     //Se crea lista vacia
-    primero = NULL;
-    ultimo = NULL;
+    primero = nullptr;
+    ultimo = nullptr;
     longitud = 0;
 }
 
@@ -68,19 +68,6 @@ bool Lista::esVacia()
     return longitud == 0;
 }
 
-void Lista::completarSiguientes4Pedidos(){
-    NodoLista* aux = primero;
-    int i = 0;
-
-    while(i<4)
-    {
-        if(aux->pPedido->getFinalizado() == false){
-            aux->pPedido->setFinalizado(true);
-            i++;
-        }
-        aux = aux->siguiente;
-    }
-}
 
 Pedido& Lista::elemEnPosicion(int indice)
 {
@@ -110,4 +97,9 @@ void Lista::mostrarDatosLista()
 void Lista::borrarLista()
 {
 
+}
+
+NodoLista* Lista::getPrimero()
+{
+    return primero;
 }
