@@ -93,17 +93,6 @@ void Pila::desapilar()
         delete nodo;
     }
 }
-void Pila::mostrarCima()
-{
-    if(esVacia())
-    {
-        cout << "Pila vacia"<<endl;
-    }
-    else
-    {
-        cout << "Número de mesa de cima: " << cima->pmesa ->numMesa << endl;
-    }
-}
 
 Mesa& Pila::getMesaCima()
 {
