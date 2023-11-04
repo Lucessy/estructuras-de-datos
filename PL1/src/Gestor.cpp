@@ -19,15 +19,17 @@ Gestor::~Gestor()
 }
 
 /**
-* Genera una cola de reservas
+* Genera una cola de reservas aleatoria del tamaño limite dado (con nombres del señor de los anillos)
 */
 void Gestor::generarColaReservas(Cola& colaReservas,int limite)
 {
+    //Si la cola ya tiene reservas se vacia primero
     if(colaReservas.esVacia() == false)
     {
         cout << "Generando nueva cola de reservas. Vaciando la cola anterior." << endl;
         vaciarColaReservas(colaReservas);
     }
+    //Datos
     string horas[] = {"13:30", "14:30", "15:30"};
     string menus[] = {"vegano", "sinGluten", "completo"};
     string situaciones[] = {"Terraza","Interior"};
@@ -36,21 +38,23 @@ void Gestor::generarColaReservas(Cola& colaReservas,int limite)
         "Frodo", "Aragorn", "Gandalf", "Legolas", "Gimli",
         "Sam", "Boromir", "Merry", "Pippin", "Sauron",
         "Saruman", "Elrond", "Galadriel", "Faramir", "Denethor",
-        "Th�oden", "�owyn", "Gollum", "Bilbo", "Thorin",
+        "Théoden", "Éowyn", "Gollum", "Bilbo", "Thorin",
         "Dwalin", "Balin", "Kili", "Fili", "Oin",
         "Gloin", "Dori", "Nori", "Ori", "Bombur", //30
-        "Gollum", "Bilbo", "Thorin", "Dwalin", "Balin",
-        "Kili", "Fili", "Oin", "Gloin", "Dori",
-        "Nori", "Ori", "Bombur", "Gollum", "Bilbo",
-        "Thorin", "Dwalin", "Balin", "Kili", "Fili",
-        "Oin", "Gloin", "Nori", "Ori", "Bombur",
-        "Gollum", "Bilbo", "Thorin", "Dwalin", "Balin" //60
+        "Eomer", "Theodred", "Arwen", "Bard", "Thrain",
+        "Dis", "Smaug", "Thranduil", "Celeborn", "Glorfindel",
+        "Radagast", "Beorn", "Gwaihir", "Tom Bombadil", "Goldberry", //45
+        "Treebeard", "Quickbeam", "Fangorn", "Barliman", "Butterbur",
+        "Shadowfax", "Windfola", "Hasufel", "Arod", "Shadowfax",
+        "Billy", "Bruce willis", "Gengis-khan", "Grishnákh","Sherlock" //60
     };
 
+    //Inicialización de variables
     srand(time(0));
     int turnoHora = -1;
     int numReservasPorTurno = (int)limite/3;
 
+    //Generación de las reservas
     for(int i = 0; i < limite; i++)
     {
         string nombreCliente = nombresPosibles[rand() % 60];
@@ -64,6 +68,7 @@ void Gestor::generarColaReservas(Cola& colaReservas,int limite)
         }
         string hora = horas[turnoHora];
 
+        //Crear y añadir nueva reserva
         Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
         colaReservas.encolar(*preserva);
     }
@@ -93,25 +98,28 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
 } //Opci�n 3
 
 /**
-*  Genera una pila de mesas
+*  Genera una pila de 20 mesas con datos aleatorios (al menos 8 en terraza)
 */
 void Gestor::generarPilaMesas(Pila& pilaMesas)
 {
+    //Si la pila no está vacia se vacía primero
     if(!pilaMesas.esVacia())
     {
         cout << "Generando nueva pila de mesas. Vaciando la pila anterior." << endl;
         vaciarPilaMesas(pilaMesas);
     }
+    //Inicialización de variables
     string situaciones[2] = {"Terraza","Interior"};
     int capacidades[2] = {2,4};
     int numeroMesasTerraza = 0;
     int numSituacion;
+    //Generación de mesas
     for(int numeroMesa=20; numeroMesa>=1; numeroMesa--)
     {
         //Genera aleatoriamente la capacidad
         int capacidad = capacidades [rand() % 2];
-
         string situacion;
+
         //Genera aleatoriamente la situación
         numSituacion = rand() % 2;
         //Garantizamos que habrá un mínimo de 8 mesas en Terraza
@@ -124,6 +132,7 @@ void Gestor::generarPilaMesas(Pila& pilaMesas)
         {
             situacion = situaciones [numSituacion];
         }
+        //Se crea la nueva mesa y se apila
         Mesa* pmesa = new Mesa(numeroMesa,capacidad,situacion);
         pilaMesas.apilar(*pmesa);
     }
@@ -154,7 +163,7 @@ void Gestor::vaciarPilaMesas(Pila& pila)
 } //Opci�n 6
 
 /**
-*   Completa los siguientes cuatro pedidos después de cada cambio de hora
+* Completa los siguientes cuatro pedidos después de cada cambio de hora y libera las mesas de los pedidos reapilandolas en la pila de mesas
 */
 void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
 {
@@ -162,6 +171,12 @@ void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
 }
 
 /**
+* Procesa una reserva dada (ya sea pdte o común)
+*
+* Procesa la reserva dada, buscando las mesas disponibles correspondientes, saca esas mesas de la pila si las hay
+* y se crea un pedido con los datos de la reserva y las mesas asignadas. Si no se consigue gestionar se encola en
+* la cola de reservas pendientes a menos que sea una reserva la última pasada de la simulación por la cola de reservas
+* pendientes, en cuyo caso se añade a la cola de reservas no gestionadas (o de gestión fallida).
 *
 */
 void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos,bool esReservaPdt, bool esReservaPdtDelFinal)
@@ -206,7 +221,11 @@ void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Cola& co
 }
 
 /**
+* Simula la gestión completa de la siguiente reserva
 *
+* Simula la gestión completa de la siguiente reserva (ya sea de la cola de reservas, o si la cola de reservas está
+* vacía, de la cola de reservas pendientes), procesandola y atendiendo a la simulación de reservas pendientes
+* cada 2 reservas comunes y simulando el cambio de hora si es necesario.
 */
 void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservasPdtes, Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
@@ -258,7 +277,7 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
             procesarReserva(pReserva,colaReservasPdtes,colaReservasNoGestionadas,pilaMesas,listaPedidos,true,false);
         }
     }
-    cout << "SIMULACION DE LAS GESTIONES TERMINADA" << endl;
+    cout << "SIMULACION DE LAS GESTION DE LA PROXIMA RESERVA TERMINADA" << endl;
 } //Opci�n 7
 
 /**
@@ -281,7 +300,7 @@ void Gestor::mostrarDatos(Cola& colaReservas, Cola& colaReservasPdtes,Cola& cola
 }
 
 /**
-*   Retorna la siguiente reserva o reserva pendiente
+*   Devuelve la siguiente reserva de la cola reservas, o si está vacía, de la cola de reservas pendientes
 */
 Reserva* Gestor::siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes)
 {
@@ -302,7 +321,7 @@ Reserva* Gestor::siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& 
 }
 
 /**
-* Comprueba si se ha producido un cambio de hora
+* Comprueba si se ha producido un cambio de hora, entre la hora inicial dada y el primer elemento de la cola de reservas dada
 */
 bool Gestor::comprobarCambioHora(string horaInicial,Cola& colaReservas)
 {
@@ -322,7 +341,7 @@ bool Gestor::comprobarCambioHora(string horaInicial,Cola& colaReservas)
 }
 
 /**
-* Crear un pedido para una reserva con mesa/s asignadas.
+* Crear y añade un pedido para una reserva con mesa/s asignadas, dadas la reserva, las mesas y la lista de pedidos donde añadirlo
 */
 void Gestor::crearPedidos(Mesa** mesas, Reserva* pReserva,Lista& listaPedidos)
 {
@@ -335,7 +354,8 @@ void Gestor::crearPedidos(Mesa** mesas, Reserva* pReserva,Lista& listaPedidos)
 
 
 /**
-* Simula la gestión de todas las próximas reservas de cola reservas a la misma hora. No simula reservas pendientes del final.
+* Simula la gestión completa de todas las próximas reservas de cola reservas a la misma hora. Aunque gestiona una reserva pdte cada 2 comunes,
+* no gestiona las reservas pendientes de la última pasada de la simulación, cuando ya se han acabado las reservas de la cola de reservas.
 */
 void Gestor::simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
@@ -378,16 +398,17 @@ void Gestor::simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaRes
     cout << "Simulando el cambio de hora..." << endl;
     simularCambioHora(pilaMesas,listaPedidos);
     cout << "Cambio de hora simulado." << endl;
-}
-//Opci�n 8
+}//Opci�n 8
 
 /**
-* Simula la gestión de todas las reservas de cola y cola pendiente. Simula reservas pendientes del final.
+* Simula la gestión completa de todas las reservas de colaReservas y al acabarse estas, de colaReservasPdtes.
+* Simula el cambio de hora cuando es necesario y gestiona una reserva pdte cada 2 comunes.
 */
 void Gestor::simularGestionReservasTotal(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
     int maxCounter = 150;
-    while((!colaReservas.esVacia() || !colaReservasPdtes.esVacia()) && maxCounter > 0){
+    while((!colaReservas.esVacia() || !colaReservasPdtes.esVacia()) && maxCounter > 0)
+    {
         simularGestionProximaReserva(colaReservas,colaReservasPdtes,colaReservasNoGestionadas,pilaMesas,listaPedidos);
         maxCounter--;
     }
@@ -395,7 +416,9 @@ void Gestor::simularGestionReservasTotal(Cola& colaReservas, Cola& colaReservasP
 } //Opci�n 9
 
 
-
+/**
+* Muestra el mensaje de salida. Para funcionar de la forma esperada debe la última función llamada antes de finalizar el programa.
+*/
 void Gestor::Salir()
 {
     cout << "Gracias por usar UltraReserva3000. Nos vemos pronto." << endl;

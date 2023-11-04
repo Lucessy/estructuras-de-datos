@@ -33,7 +33,8 @@ int main()
     bool programaEnEjecucion = true;
     while(programaEnEjecucion)
     {
-        cout << endl << "Menú: Escribe el número de una las siguientes opciones para realizarla:" << endl;
+        cout << endl<<"---------------------MENU PRINCIPAL--------------------------" << endl;
+        cout << "Escribe el número de una las siguientes opciones para realizarla:" << endl;
         cout << "1. Generar una cola de reservas aleatoria" << endl;
         cout << "2. Mostrar los datos de la cola de reservas" << endl;
         cout << "3. Borrar los datos de la cola de reservas" << endl;
@@ -48,6 +49,8 @@ int main()
         int eleccion = 0;
         bool eleccionValida = false;
         int maxIntentos = 3;
+
+        //Se pide y valida la eleccion del usuario
         while(!eleccionValida && maxIntentos>0)
         {
             cin >> eleccion;
@@ -67,15 +70,17 @@ int main()
             return 0;
         }
 
+        //Se selecciona y ejecuta la elección elegida
         switch(eleccion)
         {
         case 1:
         {
             cout << "Introduce el número de reservas aleatorias a gestionar. Puede gestionar un mínimo de 12 reservas y un máximo de 50:" << endl;
-            // Crea una variable string numeroStr
+
+            // Crea una variable string numeroStr y se pide y valida la cantidad de reservas del usuario
             string numeroStr;
             cin >> numeroStr;
-            std::string str = numeroStr;
+            string str = numeroStr;
             try
             {
                 // Intenta pasarlo de String to Int
@@ -92,16 +97,17 @@ int main()
                 }
             }
             // Capta las excepciones y vuelve al menú principal
-            catch (const std::invalid_argument& ia)
+            catch (const invalid_argument& ia)
             {
-                std::cerr << "Número incorrecto. Volviendo al menú principal..." << '\n';
+                cerr << "Número incorrecto. Volviendo al menú principal..." << '\n';
             }
-            catch (const std::out_of_range& oor)
+            catch (const out_of_range& oor)
             {
-                std::cerr << "Número incorrecto. Volviendo al menú principal..."  << '\n';
+                cerr << "Número incorrecto. Volviendo al menú principal..."  << '\n';
             }
+
+            break;
         }
-        break;
         case 2:
             cout << "Mostrando la cola de reservas creada..." << endl;
             Gestor::mostrarColaReservas(colaReservas);
@@ -146,9 +152,7 @@ int main()
         }
     }
     cout << "EndOfMain";
-
-
-
+    return 0;
 }
 
 

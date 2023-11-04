@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1699038189 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
+1699103895 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
 	<iostream>
 	<locale.h>
 	"Cola.h"
@@ -37,7 +37,7 @@
 1698065543 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\mesa.h
 	<string>
 
-1699061144 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
+1699101227 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
 	"Pila.h"
 	<iostream>
 	"NodoPila.h"
@@ -66,7 +66,7 @@
 	"NodoCola.h"
 	"Reserva.h"
 
-1699057883 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
+1699102831 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
