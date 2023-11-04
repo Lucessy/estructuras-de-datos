@@ -146,8 +146,6 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
     NodoPila* antAux = nullptr;
     NodoPila* nodoAux = cima;
 
-
-
     const int combs[4][2][2] = {{{2,0},{4,0}},
         {{4,0},{2,2}},
         {{2,4},{4,4}},

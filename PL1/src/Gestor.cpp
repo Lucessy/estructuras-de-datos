@@ -19,7 +19,7 @@ Gestor::~Gestor()
 }
 
 /**
-*
+* Genera una cola de reservas
 */
 void Gestor::generarColaReservas(Cola& colaReservas,int limite)
 {
@@ -71,7 +71,7 @@ void Gestor::generarColaReservas(Cola& colaReservas,int limite)
 } //Opcio�n 1
 
 /**
-*
+* Muestra por pantalla la cola de reservas
 */
 void Gestor::mostrarColaReservas(Cola& colaReservas)
 {
@@ -79,7 +79,7 @@ void Gestor::mostrarColaReservas(Cola& colaReservas)
 } //Opci�n 2
 
 /**
-*
+* Vacia la cola de Reservas
 */
 void Gestor::vaciarColaReservas(Cola& colaReservas)
 {
@@ -93,7 +93,7 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
 } //Opci�n 3
 
 /**
-*
+*  Genera una pila de mesas
 */
 void Gestor::generarPilaMesas(Pila& pilaMesas)
 {
@@ -132,7 +132,7 @@ void Gestor::generarPilaMesas(Pila& pilaMesas)
 } //Opci�n 4
 
 /**
-*
+* Muestra por pantalla la pila de mesas
 */
 void Gestor::mostrarPilaMesas(Pila& pilaMesas)
 {
@@ -140,7 +140,7 @@ void Gestor::mostrarPilaMesas(Pila& pilaMesas)
 } //Opci�n 5
 
 /**
-*
+* Vacia la pila de mesas
 */
 void Gestor::vaciarPilaMesas(Pila& pila)
 {
@@ -154,7 +154,7 @@ void Gestor::vaciarPilaMesas(Pila& pila)
 } //Opci�n 6
 
 /**
-*
+*   Completa los siguientes cuatro pedidos después de cada cambio de hora
 */
 void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
 {
@@ -206,7 +206,7 @@ void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Cola& co
 }
 
 /**
-* Simula la gestión de todas las próximas reservas de cola reservas a la misma hora. No simula reservas pendientes.
+*
 */
 void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservasPdtes, Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
@@ -262,7 +262,7 @@ void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservas
 } //Opci�n 7
 
 /**
-*
+* Muestra los datos por pantalla de la cola de reservas, cola de reservas pendientes, cola de reservas con gestión fallida, pila de mesas y lista de pedidos
 */
 void Gestor::mostrarDatos(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
@@ -281,7 +281,7 @@ void Gestor::mostrarDatos(Cola& colaReservas, Cola& colaReservasPdtes,Cola& cola
 }
 
 /**
-*
+*   Retorna la siguiente reserva o reserva pendiente
 */
 Reserva* Gestor::siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes)
 {
@@ -302,7 +302,7 @@ Reserva* Gestor::siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& 
 }
 
 /**
-*
+* Comprueba si se ha producido un cambio de hora
 */
 bool Gestor::comprobarCambioHora(string horaInicial,Cola& colaReservas)
 {
@@ -322,7 +322,7 @@ bool Gestor::comprobarCambioHora(string horaInicial,Cola& colaReservas)
 }
 
 /**
-*
+* Crear un pedido para una reserva con mesa/s asignadas.
 */
 void Gestor::crearPedidos(Mesa** mesas, Reserva* pReserva,Lista& listaPedidos)
 {
@@ -335,7 +335,7 @@ void Gestor::crearPedidos(Mesa** mesas, Reserva* pReserva,Lista& listaPedidos)
 
 
 /**
-*
+* Simula la gestión de todas las próximas reservas de cola reservas a la misma hora. No simula reservas pendientes del final.
 */
 void Gestor::simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
@@ -382,7 +382,7 @@ void Gestor::simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaRes
 //Opci�n 8
 
 /**
-*
+* Simula la gestión de todas las reservas de cola y cola pendiente. Simula reservas pendientes del final.
 */
 void Gestor::simularGestionReservasTotal(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
