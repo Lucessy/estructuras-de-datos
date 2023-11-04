@@ -69,16 +69,6 @@ bool Lista::esVacia()
 }
 
 
-Pedido& Lista::elemEnPosicion(int indice)
-{
-    NodoLista* aux = primero;
-    for(int i = 0; i<indice; i++)
-    {
-        aux = aux->siguiente;
-    }
-    return *(aux->pPedido);
-}
-
 void Lista::mostrarDatosLista()
 {
     if(esVacia())

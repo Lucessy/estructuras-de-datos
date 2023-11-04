@@ -13,7 +13,6 @@ class Lista
         Pedido& elemInicial();
         Pedido& elemFinal();
         bool esVacia();
-        Pedido& elemEnPosicion(int indice);
         void mostrarDatosLista();
         void completarSiguientesPedidos( Pila& pilaMesas);
         NodoLista* getPrimero();
