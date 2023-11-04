@@ -108,10 +108,10 @@ void Lista::completarSiguientesPedidos(Pila& pilaMesas)
         if(aux->pPedido->getFinalizado() == false){
             aux->pPedido->setFinalizado(true);
             if(aux->pPedido->getMesaAsignada1() != nullptr){
-                pilaMesas.apilarEnOrden(*(aux->pPedido->getMesaAsignada1()));
+                pilaMesas.apilar(*(aux->pPedido->getMesaAsignada1()));
             }
             if(aux->pPedido->getMesaAsignada2() != nullptr){
-                pilaMesas.apilarEnOrden(*(aux->pPedido->getMesaAsignada2()));
+                pilaMesas.apilar(*(aux->pPedido->getMesaAsignada2()));
             }
             i++;
         }
