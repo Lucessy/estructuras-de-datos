@@ -10,7 +10,6 @@ Cola::Cola()
     //ctor
     primero=NULL;
     ultimo=NULL;
-    longitud=0;
 }
 
 Cola::~Cola()
@@ -28,7 +27,6 @@ void Cola::encolar(Reserva& reserva)
         ultimo->siguiente = nuevo_nodo;
         ultimo=nuevo_nodo;
     }
-    longitud++;
 }
 
 void Cola::desencolar()
@@ -46,7 +44,6 @@ void Cola::desencolar()
             aux->siguiente=NULL;
             delete(aux);
         }
-        longitud--;
     }
 }
 
@@ -91,18 +88,5 @@ void Cola::mostrarCola()
             }
             cout << "Fin de los datos de la cola de reservas." << endl << endl;
         }
-}
-
-int Cola::getLongitud()
-{
-    return longitud;
-}
-
-NodoCola& Cola::getNodo(int i) {
-    NodoCola* current = primero;
-    for (int j = 0; j < i; j++) {
-        current = current->siguiente;
-    }
-    return *current;
 }
 

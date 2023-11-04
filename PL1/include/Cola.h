@@ -15,8 +15,6 @@ class Cola
         Reserva* fin();
         bool esVacia();
         void mostrarCola();
-        int getLongitud();
-        NodoCola& getNodo(int i);
         void vaciarCola();
 
     protected:
@@ -24,7 +22,6 @@ class Cola
     private:
         NodoCola * primero;
         NodoCola * ultimo;
-        int longitud;
 };
 
 #endif // COLA_H
