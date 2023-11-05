@@ -12,6 +12,8 @@ class Lista
         void extenderListaPorIzquierda(Pedido& elem);
         Pedido& elemInicial();
         Pedido& elemFinal();
+        void eliminarPrimero();
+        void eliminarUltimo();
         bool esVacia();
         void mostrarDatosLista();
         void completarSiguientesPedidos( Pila& pilaMesas);

@@ -63,6 +63,17 @@ Pedido& Lista::elemFinal()
     return *(ultimo->pPedido);
 }
 
+void Lista::eliminarPrimero()
+{
+
+}
+
+void Lista::eliminarUltimo()
+{
+
+}
+
+
 bool Lista::esVacia()
 {
     return longitud == 0;
