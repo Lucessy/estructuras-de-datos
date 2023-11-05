@@ -65,12 +65,47 @@ Pedido& Lista::elemFinal()
 
 void Lista::eliminarPrimero()
 {
+    if(!esVacia())
+    {
+        NodoLista *aux = primero;
 
+        if((primero==ultimo)&&(primero->siguiente == NULL))
+        {
+            primero=NULL;
+            ultimo=NULL;
+        }
+        else
+        {
+            primero = primero->siguiente;
+        }
+        aux->siguiente=NULL;
+        aux->anterior = NULL;
+        delete(aux);
+        longitud--;
+    }
 }
 
 void Lista::eliminarUltimo()
 {
+    if(!esVacia())
+    {
+        NodoLista *aux = ultimo;
 
+        if((primero==ultimo)&&(ultimo->siguiente == NULL))
+        {
+            primero=NULL;
+            ultimo=NULL;
+        }
+        else
+        {
+            ultimo->anterior->siguiente = NULL;
+            ultimo = ultimo->anterior;
+        }
+        aux->siguiente=NULL;
+        aux->anterior = NULL;
+        delete(aux);
+        longitud--;
+    }
 }
 
 
@@ -105,13 +140,17 @@ void Lista::completarSiguientesPedidos(Pila& pilaMesas)
 {
     int i= 0;
     NodoLista* aux = primero;
-    while(aux && i < 4){
-        if(aux->pPedido->getFinalizado() == false){
+    while(aux && i < 4)
+    {
+        if(aux->pPedido->getFinalizado() == false)
+        {
             aux->pPedido->setFinalizado(true);
-            if(aux->pPedido->getMesaAsignada1() != nullptr){
+            if(aux->pPedido->getMesaAsignada1() != nullptr)
+            {
                 pilaMesas.apilar(*(aux->pPedido->getMesaAsignada1()));
             }
-            if(aux->pPedido->getMesaAsignada2() != nullptr){
+            if(aux->pPedido->getMesaAsignada2() != nullptr)
+            {
                 pilaMesas.apilar(*(aux->pPedido->getMesaAsignada2()));
             }
             i++;
