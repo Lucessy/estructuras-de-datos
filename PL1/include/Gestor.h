@@ -39,6 +39,8 @@ class Gestor
         static Reserva* siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes);
         static bool comprobarCambioHora(string horaInicial,Cola& colaReservas);
         static void crearPedidos(Mesa** mesas, Reserva* pReserva,Lista& listaPedidos);
+
+        static bool seHaComenzadoLaSimulacion;
 };
 
 #endif // GESTOR_H

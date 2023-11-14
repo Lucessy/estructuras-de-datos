@@ -19,6 +19,7 @@ Pila pilaMesas;
 
 //Se inicializan las variables estáticas
 int Gestor::numReservasGestionadas = 0;
+bool Gestor::seHaComenzadoLaSimulacion = false;
 
 int main()
 {
@@ -151,7 +152,6 @@ int main()
             break;
         }
     }
-    cout << "EndOfMain";
     return 0;
 }
 

@@ -31,50 +31,7 @@ void Pila::apilar(Mesa& mesa)
     cima = nuevo;
 }
 
-void Pila::apilarEnOrden(Mesa& mesa)
-{
-    NodoPila* aux = cima;
-    NodoPila* anterior = nullptr;
-    bool apilado = false;
-    while(!apilado)
-    {
-        if(aux->siguiente!=nullptr)
-        {
-            if(aux->pmesa->getNumMesa() > mesa.getNumMesa())
-            {
-                NodoPila* nuevo = new NodoPila(mesa,aux);
-                apilado = true;
-                if(cima==aux)
-                {
-                    cima = nuevo;
-                }
-                else
-                {
-                    anterior->siguiente = nuevo;
-                }
-            }
-            else
-            {
-                anterior = aux;
-                aux = aux->siguiente;
-            }
-        }
-        else
-        {
-            apilado = true;
-            if(aux->pmesa->getNumMesa()>mesa.getNumMesa())
-            {
-                NodoPila* nuevo = new NodoPila(mesa,aux);
-                anterior->siguiente = nuevo;
-            }
-            else
-            {
-                NodoPila* nuevo = new NodoPila(mesa,nullptr);
-                aux->siguiente=nuevo;
-            }
-        }
-    }
-}
+
 
 void Pila::vaciarPila()
 {

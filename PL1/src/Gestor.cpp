@@ -8,6 +8,8 @@
 
 using namespace std;
 
+
+
 Gestor::Gestor()
 {
     //ctor
@@ -90,7 +92,7 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
 {
     if(colaReservas.esVacia())
     {
-        cout << "La cola de reservas ya est� vac�a." << endl;
+        cout << "La cola de reservas ya está vacía." << endl;
         return;
     }
     colaReservas.vaciarCola();
@@ -102,6 +104,11 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
 */
 void Gestor::generarPilaMesas(Pila& pilaMesas)
 {
+    //Comprueba que la simulación no ha comenzado aún para evitar duplicamiento de mesas
+    if(seHaComenzadoLaSimulacion){
+        cout << "No se puede alterar la pila de mesas una vez se ha empezado la simulación." << endl;
+        return;
+    }
     //Si la pila no está vacia se vacía primero
     if(!pilaMesas.esVacia())
     {
@@ -155,7 +162,7 @@ void Gestor::vaciarPilaMesas(Pila& pila)
 {
     if(pila.esVacia())
     {
-        cout << "La pila de mesas est� vac�a."<<endl;
+        cout << "La pila de mesas está vacía."<<endl;
         return;
     }
     pila.vaciarPila();
@@ -229,6 +236,7 @@ void Gestor::procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Cola& co
 */
 void Gestor::simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservasPdtes, Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
+    seHaComenzadoLaSimulacion = true;
     //Comprueba que las cola no están vacías y si se trata de una reserva pendiente
     //en la última pasada de la simulación por la cola de reservas pendientes.
     bool esReservaPdtDelFinal = false;
@@ -359,6 +367,7 @@ void Gestor::crearPedidos(Mesa** mesas, Reserva* pReserva,Lista& listaPedidos)
 */
 void Gestor::simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
+    seHaComenzadoLaSimulacion = true;
     //Comprueba si la cola est� vac�a
     if(colaReservas.esVacia())
     {
@@ -406,6 +415,7 @@ void Gestor::simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaRes
 */
 void Gestor::simularGestionReservasTotal(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos)
 {
+    seHaComenzadoLaSimulacion = true;
     int maxCounter = 150;
     while((!colaReservas.esVacia() || !colaReservasPdtes.esVacia()) && maxCounter > 0)
     {
