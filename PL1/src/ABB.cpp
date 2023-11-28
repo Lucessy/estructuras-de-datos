@@ -1,5 +1,7 @@
 #include "ABB.h"
 #include "NodoABB.h"
+#include <iostream>
+using namespace std;
 
 ABB::ABB()
 {
@@ -7,7 +9,7 @@ ABB::ABB()
     raiz=nullptr;
 }
 
-ABB:ABB(NodoABB *r)
+ABB::ABB(NodoABB *r)
 {
     raiz=r;
 }
@@ -23,19 +25,19 @@ ABB::~ABB()
     //dtor
 }
 
-void ABB:verInOrden()
+void ABB::verInOrden()
 {
     verInOrden(raiz);
 }
 
-void ABB::verInOrden(NodoABB *arbol)
+void ABB::verInOrden(NodoABB *raiz)
 {
-    if(arb!=nullptr)
+    if(raiz!=nullptr)
     {
-        verInOrden(arbol->hijo_i);
-        cout << arbol->nombreCliente << endl; //Mostrar datos de cliente y sus pedidos
-        cout << "  " << arbol->listaPedidosCliente.mostrarDatosLista() << endl;
-        verInOrden(arbol->hijo_d);
+        verInOrden(raiz->hijo_i);
+        cout << raiz->nombreCliente << endl; //Mostrar datos de cliente y sus pedidos
+        raiz->listaPedidosCliente.mostrarDatosLista();
+        verInOrden(raiz->hijo_d);
     }
 }
 
@@ -46,7 +48,7 @@ void ABB::insertar(string nombreCliente)
 
 void ABB::insertar(string nombreCliente, NodoABB *nodo)
 {
-    if((nodo->valor>nombreCliente)||(nodo->valor==nombreCliente))
+    if((nodo->nombreCliente>nombreCliente)||(nodo->nombreCliente==nombreCliente))
     {
         if(nodo->hijo_i == nullptr)
         {

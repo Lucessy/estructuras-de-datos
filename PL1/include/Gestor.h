@@ -10,7 +10,7 @@ class Gestor
     public:
         Gestor();
         virtual ~Gestor();
-        static void generarColaReservas(Cola& colaReservas,int limite); //Opción 1
+        static void generarColaReservas(Cola& colaReservas); //Opción 1
         static void mostrarColaReservas(Cola& colaReservas); //Opción 2
         static void vaciarColaReservas(Cola& colaReservas); //Opción 3
 

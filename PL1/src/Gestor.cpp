@@ -5,10 +5,10 @@
 #include "Pila.h"
 #include <cstdlib> // for rand() and srand()
 #include <ctime> // for time()
+#include <random>
+#include <cstdlib>
 
 using namespace std;
-
-
 
 Gestor::Gestor()
 {
@@ -23,7 +23,7 @@ Gestor::~Gestor()
 /**
 * Genera una cola de reservas aleatoria del tamaño limite dado (con nombres del señor de los anillos)
 */
-void Gestor::generarColaReservas(Cola& colaReservas,int limite)
+void Gestor::generarColaReservas(Cola& colaReservas)
 {
     //Si la cola ya tiene reservas se vacia primero
     if(colaReservas.esVacia() == false)
@@ -31,6 +31,13 @@ void Gestor::generarColaReservas(Cola& colaReservas,int limite)
         cout << "Generando nueva cola de reservas. Vaciando la cola anterior." << endl;
         vaciarColaReservas(colaReservas);
     }
+
+    // Generar y mostrar el número aleatorio
+    int numeroAleatorio = rand() % (50 - 12 + 1) + 12;
+    cout << "Generando:" << numeroAleatorio << " reservas aleatorias..." << endl;
+
+    int turnoHora = 0;
+
     //Datos
     string horas[] = {"13:30", "14:30", "15:30"};
     string menus[] = {"vegano", "sinGluten", "completo"};
@@ -51,24 +58,40 @@ void Gestor::generarColaReservas(Cola& colaReservas,int limite)
         "Billy", "Bruce willis", "Gengis-khan", "Grishnákh","Sherlock" //60
     };
 
-    //Inicialización de variables
-    srand(time(0));
-    int turnoHora = -1;
-    int numReservasPorTurno = (int)limite/3;
-
     //Generación de las reservas
-    for(int i = 0; i < limite; i++)
+    for(int i = 0; i < 12; i++)
     {
         string nombreCliente = nombresPosibles[rand() % 60];
         string menu = menus[rand() % 3];
         string situacion = situaciones [rand() % 2];
         int numeroPersonas = rand() % 8 + 1;
 
-        if((i)%numReservasPorTurno == 0 && turnoHora<2)
+        if(i < 4)
         {
-            turnoHora ++;
+            turnoHora = 0;
         }
+        else if(i < 8)
+        {
+            turnoHora = 1;
+        }
+        else
+        {
+            turnoHora = 2;
+        }
+
         string hora = horas[turnoHora];
+
+        //Crear y añadir nueva reserva
+        Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
+        colaReservas.encolar(*preserva);
+    }
+    for(int j = 12; j < numeroAleatorio; j++)
+    {
+        string nombreCliente = nombresPosibles[rand() % 60];
+        string menu = menus[rand() % 3];
+        string situacion = situaciones [rand() % 2];
+        int numeroPersonas = rand() % 8 + 1;
+        string hora = horas[rand() % 3];
 
         //Crear y añadir nueva reserva
         Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
@@ -105,7 +128,8 @@ void Gestor::vaciarColaReservas(Cola& colaReservas)
 void Gestor::generarPilaMesas(Pila& pilaMesas)
 {
     //Comprueba que la simulación no ha comenzado aún para evitar duplicamiento de mesas
-    if(seHaComenzadoLaSimulacion){
+    if(seHaComenzadoLaSimulacion)
+    {
         cout << "No se puede alterar la pila de mesas una vez se ha empezado la simulación." << endl;
         return;
     }

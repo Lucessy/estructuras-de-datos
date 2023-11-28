@@ -7,7 +7,7 @@ NodoABB::NodoABB(string nomCliente, NodoABB *izq, NodoABB *der)
     nombreCliente=nomCliente;
     hijo_i=izq;
     hijo_d=der;
-    listaPedidosCliente = new Lista();
+    Lista listaPedidosCliente;
 }
 
 NodoABB::~NodoABB()
