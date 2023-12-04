@@ -1,4 +1,5 @@
 #include "NodoABB.h"
+#include "Lista.h"
 
 
 NodoABB::NodoABB(string nomCliente, NodoABB *izq, NodoABB *der)
@@ -7,7 +8,7 @@ NodoABB::NodoABB(string nomCliente, NodoABB *izq, NodoABB *der)
     nombreCliente=nomCliente;
     hijo_i=izq;
     hijo_d=der;
-    Lista listaPedidosCliente;
+    listaPedidosCliente;
 }
 
 NodoABB::~NodoABB()

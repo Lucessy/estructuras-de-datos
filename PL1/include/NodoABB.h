@@ -1,8 +1,12 @@
 #ifndef NODOABB_H
 #define NODOABB_H
+
+#include <string>
 #include "Pedido.h"
 #include "Lista.h"
+#include "ABB.h"
 
+class ABB;  // Forward declaration
 
 class NodoABB
 {

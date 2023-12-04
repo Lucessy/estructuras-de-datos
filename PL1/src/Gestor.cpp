@@ -10,9 +10,10 @@
 
 using namespace std;
 
+
 Gestor::Gestor()
 {
-    //ctor
+
 }
 
 Gestor::~Gestor()
@@ -198,7 +199,7 @@ void Gestor::vaciarPilaMesas(Pila& pila)
 */
 void Gestor::simularCambioHora(Pila& pilaMesas, Lista& listaPedidos)
 {
-    listaPedidos.completarSiguientesPedidos(pilaMesas);
+    listaPedidos.completarSiguientesPedidos(pilaMesas,abbPedidos);
 }
 
 /**

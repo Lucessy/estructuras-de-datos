@@ -148,9 +148,10 @@
 	<NodoPila.h>
 	"Reserva.h"
 
-1699142411 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\lista.h
+1701728734 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\lista.h
 	<NodoLista.h>
 	"Pila.h"
+	"ABB.h"
 
 1699319011 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\lista.cpp
 	"Lista.h"
@@ -222,18 +223,23 @@
 	<iostream>
 	<Pedido.h>
 
-1701172133 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodoabb.cpp
+1701729086 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodoabb.cpp
 	"NodoABB.h"
+	"Lista.h"
 
-1700588373 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodoabb.h
+1701729402 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodoabb.h
+	<string>
 	"Pedido.h"
 	"Lista.h"
+	"ABB.h"
 
 1701172561 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\abb.cpp
 	"ABB.h"
 	"NodoABB.h"
 	<iostream>
 
-1701170598 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\abb.h
+1701729276 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\abb.h
+	<string>
 	"NodoABB.h"
+	"Lista.h"
 

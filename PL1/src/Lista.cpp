@@ -136,11 +136,11 @@ NodoLista* Lista::getPrimero()
     return primero;
 }
 
-void Lista::completarSiguientesPedidos(Pila& pilaMesas)
+void Lista::completarSiguientesPedidos(Pila& pilaMesas,ABB& abbPedidos)
 {
     int i= 0;
     NodoLista* aux = primero;
-    while(aux && i < 4)
+    while(aux && i < 4) //Cambiar finalizado por la mitad de cada preferenica de menú
     {
         if(aux->pPedido->getFinalizado() == false)
         {
@@ -153,6 +153,7 @@ void Lista::completarSiguientesPedidos(Pila& pilaMesas)
             {
                 pilaMesas.apilar(*(aux->pPedido->getMesaAsignada2()));
             }
+            abbPedidos.insertar(aux->pPedido->getNombreCliente());
             i++;
         }
         aux = aux->siguiente;

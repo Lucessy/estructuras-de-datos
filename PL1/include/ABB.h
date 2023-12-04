@@ -1,6 +1,9 @@
 #ifndef ABB_H
 #define ABB_H
+
+#include <string>
 #include "NodoABB.h"
+#include "Lista.h"
 using namespace std;
 
 

@@ -3,6 +3,7 @@
 #include "Cola.h"
 #include "Pila.h"
 #include "Lista.h"
+#include "ABB.h"
 
 
 class Gestor
@@ -29,6 +30,7 @@ class Gestor
 
         //Atributos públicos
         static int numReservasGestionadas;
+        static ABB abbPedidos;
 
     protected:
 
@@ -41,6 +43,7 @@ class Gestor
         static void crearPedidos(Mesa** mesas, Reserva* pReserva,Lista& listaPedidos);
 
         static bool seHaComenzadoLaSimulacion;
+
 };
 
 #endif // GESTOR_H

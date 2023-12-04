@@ -38,26 +38,28 @@ int main()
     while(programaEnEjecucion)
     {
         cout << endl<<"---------------------MENU PRINCIPAL--------------------------" << endl;
-        cout << "Escribe el número de una las siguientes opciones para realizarla:" << endl;
         cout << "1. Generar una cola de reservas aleatoria realizadas por los clientes" << endl;
         cout << "2. Mostrar los datos de la cola de reservas realizadas por los clientes" << endl;
-        cout << "3. Borrar los datos de la cola de reservas realizadas por los clientes" << endl;
+        cout << "3. Borrar los datos de la cola de reservas" << endl;
         cout << "4. Generar una pila de 20 mesas aleatoria" << endl;
-        cout << "5. Mostrar los datos de la pila de mesas libres" << endl;
+        cout << "5. Mostrar los datos de la pila de mesas" << endl;
         cout << "6. Borrar los datos de la pila de mesas" << endl;
         cout << "7. Simular la gestión de la próxima reserva de la cola" << endl;
         cout << "8. Simular la gestión de toda la ronda de reservas de la próxima hora" << endl;
         cout << "9. Simular la gestión de todas las reservas de la cola" << endl;
 
-        cout << "10. Añadir pedidos a la lista de pedidos" << endl;
-        cout << "11. Mostrar los datos de la lista de pedidos" << endl;
-        cout << "12. Mostrar los datos de la cola de reservas" << endl;
-        cout << "13. Mostrar los datos de la cola de reservas pendientes" << endl;
-        cout << "14. Añadir un pedido al árbol binario de pedidos" << endl;
-        cout << "15. Mostrar los datos del árbol binario de pedidos" << endl;
-        cout << "16. Mostrar los clientes que hayan realizado al menos un pedido" << endl; //En orden alfabético
-        cout << "17. Mostrar los pedidos realizados por un cliente" << endl;
-        cout << "18. Mostrar los clientes que han pedido un menú vegano" << endl;
+        cout << "11. Mostrar los datos de la cola de reservas realizadas por los clientes" << endl;
+        cout << "12. Borrar la cola de reservas realizadas por los clientes" << endl;
+
+        cout << "13. Añadir pedidos a la lista de pedidos" << endl;
+        cout << "14. Mostrar los datos de la lista de pedidos" << endl;
+        cout << "15. Mostrar los datos de la cola de reservas" << endl;
+        cout << "16. Mostrar los datos de la cola de reservas pendientes" << endl;
+        cout << "17. Añadir un pedido al árbol binario de pedidos" << endl;
+        cout << "18. Mostrar los datos del árbol binario de pedidos" << endl;
+        cout << "19. Mostrar los clientes que hayan realizado al menos un pedido" << endl; //En orden alfabético
+        cout << "20. Mostrar los pedidos realizados por un cliente" << endl;
+        cout << "21. Mostrar los clientes que han pedido un menú vegano" << endl;
         cout << "0. Salir\n" << endl;
 
         int eleccion = 0;
