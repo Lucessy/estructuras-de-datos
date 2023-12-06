@@ -18,7 +18,7 @@ class Lista
         void eliminarUltimo();
         bool esVacia();
         void mostrarDatosLista();
-        void completarSiguientesPedidos(Pila& pilaMesas, ABB& abbPedidos);
+        void completarSiguientesPedidos(Pila& pilaMesas);
         NodoLista* getPrimero();
 
     protected:

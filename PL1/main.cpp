@@ -11,16 +11,9 @@
 #include <ctime> // for time()
 using namespace std;
 
-//Se definen las colecciones a usar
-Cola colaReservas;
-Cola colaReservasPdtes;
-Cola colaReservasNoGestionadas;
-Lista listaPedidos;
-Pila pilaMesas;
-
-//Se inicializan las variables estáticas
-int Gestor::numReservasGestionadas = 0;
-bool Gestor::seHaComenzadoLaSimulacion = false;
+//Se inicializan las variables
+bool seHaComenzadoLaSimulacion = false;
+Gestor gestor;
 
 int main()
 {
@@ -91,42 +84,42 @@ int main()
         {
         case 1:
             cout << "Generando aleatoriamente la cola de reservas..." << endl;
-            Gestor::generarColaReservas(colaReservas);
+            gestor.generarColaReservas();
             break;
         case 2:
             cout << "Mostrando la cola de reservas creada..." << endl;
-            Gestor::mostrarColaReservas(colaReservas);
+            gestor.mostrarColaReservas();
             break;
         case 3:
             cout << "Vaciando la cola de reservas..." << endl;
-            Gestor::vaciarColaReservas(colaReservas);
+            gestor.vaciarColaReservas();
             break;
         case 4:
             cout << "Generando aleatoriamente la pila de mesas..." << endl;
-            Gestor::generarPilaMesas(pilaMesas);
+            gestor.generarPilaMesas();
             break;
         case 5:
             cout << "Mostrando la pila de mesas creada..." << endl;
-            Gestor::mostrarPilaMesas(pilaMesas);
+            gestor.mostrarPilaMesas();
             break;
         case 6:
             cout << "Vaciando la pila de mesas..." << endl;
-            Gestor::vaciarPilaMesas(pilaMesas);
+            gestor.vaciarPilaMesas();
             break;
         case 7:
             cout << "Simulando la gestión de la primera reserva de la cola de reservas..." << endl;
-            Gestor::simularGestionProximaReserva(colaReservas, colaReservasPdtes, colaReservasNoGestionadas,pilaMesas,listaPedidos); //Opción 7
-            Gestor::mostrarDatos(colaReservas,colaReservasPdtes,colaReservasNoGestionadas,pilaMesas,listaPedidos);
+            gestor.simularGestionProximaReserva(); //Opción 7
+            gestor.mostrarDatos();
             break;
         case 8:
             cout << "Simulando la gestión de las reservas y creación de pedidos de todas las reservas para la misma hora..." << endl;
-            Gestor::simularGestionReservasProximaHora(colaReservas, colaReservasPdtes, colaReservasNoGestionadas,pilaMesas, listaPedidos); //Opción 8
-            Gestor::mostrarDatos(colaReservas,colaReservasPdtes,colaReservasNoGestionadas,pilaMesas,listaPedidos);
+            gestor.simularGestionReservasProximaHora(); //Opción 8
+            gestor.mostrarDatos();
             break;
         case 9:
             cout << "Simulando la gestión de todas las reservas del restaurante..." << endl;
-            Gestor::simularGestionReservasTotal(colaReservas, colaReservasPdtes, colaReservasNoGestionadas,pilaMesas, listaPedidos); //Opción 9
-            Gestor::mostrarDatos(colaReservas,colaReservasPdtes,colaReservasNoGestionadas,pilaMesas,listaPedidos);
+            gestor.simularGestionReservasTotal(); //Opción 9
+            gestor.mostrarDatos();
             break;
         case 10:
             break;
@@ -148,7 +141,7 @@ int main()
             break;
         case 0:
             cout << "Saliendo del programa..." << endl;
-            Gestor::Salir();
+            gestor.Salir();
             programaEnEjecucion = false;
             break;
         }

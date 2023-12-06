@@ -3,46 +3,51 @@
 #include "Cola.h"
 #include "Pila.h"
 #include "Lista.h"
-#include "ABB.h"
+#include <ABB.h>
 
+using namespace std;
 
 class Gestor
 {
-    public:
-        Gestor();
-        virtual ~Gestor();
-        static void generarColaReservas(Cola& colaReservas); //Opción 1
-        static void mostrarColaReservas(Cola& colaReservas); //Opción 2
-        static void vaciarColaReservas(Cola& colaReservas); //Opción 3
+public:
+    Gestor();
+    virtual ~Gestor();
+    void generarColaReservas(); //Opción 1
+    void mostrarColaReservas(); //Opción 2
+    void vaciarColaReservas(); //Opción 3
 
-        static void generarPilaMesas(Pila& pilaMesas); //Opción 4
-        static void mostrarPilaMesas(Pila& pilaMesas); //Opción 5
-        static void vaciarPilaMesas(Pila& pila); //Opción 6
+    void generarPilaMesas(); //Opción 4
+    void mostrarPilaMesas(); //Opción 5
+    void vaciarPilaMesas(); //Opción 6
+
+    void simularGestionProximaReserva(); //Opción 7
+    void simularGestionReservasProximaHora(); //Opción 8
+    void simularGestionReservasTotal(); //Opción 9
+
+    void mostrarDatos();
+
+    void Salir(); //Opción 0
 
 
-        static void simularGestionProximaReserva(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas, Pila& pilaMesas,Lista& listaPedidos); //Opción 7
-        static void simularGestionReservasProximaHora(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos); //Opción 8
-        static void simularGestionReservasTotal(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos); //Opción 9
-        static void mostrarDatos(Cola& colaReservas, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos);
+    //Atributos públicos
+    int numReservasGestionadas;
 
-        static void Salir(); //Opción 0
+protected:
 
+private:
+    ABB abbPedidos;
+    Cola colaReservas;
+    Cola colaReservasPdtes;
+    Cola colaReservasNoGestionadas;
+    Lista listaPedidos;
+    Pila pilaMesas;
+    void procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esReservaPdtDelFinal);
+    void simularCambioHora();
+    Reserva* siguienteReserva(bool esReservaPdte);
+    bool comprobarCambioHora(string horaInicial);
+    void crearPedidos(Mesa** mesas, Reserva* pReserva);
 
-        //Atributos públicos
-        static int numReservasGestionadas;
-        static ABB abbPedidos;
-
-    protected:
-
-    private:
-
-        static void procesarReserva(Reserva* pReserva, Cola& colaReservasPdtes,Cola& colaReservasNoGestionadas,Pila& pilaMesas, Lista& listaPedidos,bool esReservaPdt, bool esReservaPdtDelFinal);
-        static void simularCambioHora(Pila& pilaMesas, Lista& listaPedidos);
-        static Reserva* siguienteReserva(bool esReservaPdte, Cola& colaReservas, Cola& colaReservasPdtes);
-        static bool comprobarCambioHora(string horaInicial,Cola& colaReservas);
-        static void crearPedidos(Mesa** mesas, Reserva* pReserva,Lista& listaPedidos);
-
-        static bool seHaComenzadoLaSimulacion;
+    bool seHaComenzadoLaSimulacion;
 
 };
 

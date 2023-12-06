@@ -1,18 +1,15 @@
 #ifndef ABB_H
 #define ABB_H
-
+#include <NodoABB.h>
 #include <string>
-#include "NodoABB.h"
-#include "Lista.h"
 using namespace std;
-
 
 class ABB
 {
     public:
         ABB();
-        ABB(string nombre, NodoABB *hijo_lado_i=nullptr, NodoABB *hijo_lado_d=nullptr);
-        ABB(NodoABB *r);
+        ABB(string nombre, NodoABB*hijo_lado_i=nullptr, NodoABB*hijo_lado_d=nullptr);
+        ABB(NodoABB*r);
         virtual ~ABB();
         void verInOrden();
         void insertar(string nombre);
@@ -20,7 +17,7 @@ class ABB
     protected:
 
     private:
-        NodoABB *raiz;
+        NodoABB* raiz;
         void verInOrden(NodoABB *arb);
         void insertar(string nom, NodoABB *nodo);
 

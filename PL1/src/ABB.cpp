@@ -36,7 +36,7 @@ void ABB::verInOrden(NodoABB *raiz)
     {
         verInOrden(raiz->hijo_i);
         cout << raiz->nombreCliente << endl; //Mostrar datos de cliente y sus pedidos
-        raiz->listaPedidosCliente.mostrarDatosLista();
+        //raiz->listaPedidosCliente->mostrarDatosLista();
         verInOrden(raiz->hijo_d);
     }
 }
