@@ -136,7 +136,7 @@ NodoLista* Lista::getPrimero()
     return primero;
 }
 
-void Lista::completarSiguientesPedidos(Pila& pilaMesas)
+void Lista::completarSiguientesPedidos(Pila& pilaMesas, ABB& abbPedidos)
 {
     int i= 0;
     NodoLista* aux = primero;
@@ -153,6 +153,8 @@ void Lista::completarSiguientesPedidos(Pila& pilaMesas)
             {
                 pilaMesas.apilar(*(aux->pPedido->getMesaAsignada2()));
             }
+            cout << "Añadiendo a árbol de pedidos" << endl;
+            abbPedidos.insertar(aux->pPedido->getNombreCliente());
             i++;
         }
         aux = aux->siguiente;

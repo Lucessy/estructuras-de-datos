@@ -37,8 +37,6 @@ void Gestor::generarColaReservas()
     int numeroAleatorio = rand() % (50 - 12 + 1) + 12;
     cout << "Generando:" << numeroAleatorio << " reservas aleatorias..." << endl;
 
-    int turnoHora = 0;
-
     //Datos
     string horas[] = {"13:30", "14:30", "15:30"};
     string menus[] = {"vegano", "sinGluten", "completo"};
@@ -59,47 +57,28 @@ void Gestor::generarColaReservas()
         "Billy", "Bruce willis", "Gengis-khan", "Grishnákh","Sherlock" //60
     };
 
+    //Inicialización de variables
+    srand(time(0));
+    int turnoHora = -1;
+    int numReservasPorTurno = (int)numeroAleatorio/3;
+
     //Generación de las reservas
-    for(int i = 0; i < 12; i++)
+    for(int i = 0; i < numeroAleatorio; i++)
     {
         string nombreCliente = nombresPosibles[rand() % 60];
         string menu = menus[rand() % 3];
         string situacion = situaciones [rand() % 2];
         int numeroPersonas = rand() % 8 + 1;
-
-        if(i < 4)
+        if((i)%numReservasPorTurno == 0 && turnoHora<2)
         {
-            turnoHora = 0;
+            turnoHora ++;
         }
-        else if(i < 8)
-        {
-            turnoHora = 1;
-        }
-        else
-        {
-            turnoHora = 2;
-        }
-
         string hora = horas[turnoHora];
-
         //Crear y añadir nueva reserva
         Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
         colaReservas.encolar(*preserva);
     }
-    for(int j = 12; j < numeroAleatorio; j++)
-    {
-        string nombreCliente = nombresPosibles[rand() % 60];
-        string menu = menus[rand() % 3];
-        string situacion = situaciones [rand() % 2];
-        int numeroPersonas = rand() % 8 + 1;
-        string hora = horas[rand() % 3];
-
-        //Crear y añadir nueva reserva
-        Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
-        colaReservas.encolar(*preserva);
-    }
-    cout << "Cola de reservas generada." << endl;
-} //Opcio�n 1
+}
 
 /**
 * Muestra por pantalla la cola de reservas
@@ -195,11 +174,19 @@ void Gestor::vaciarPilaMesas()
 } //Opci�n 6
 
 /**
+* Muestra por pantalla el arbol binario de datos
+**/
+void Gestor::mostrarAbbPedidos()
+{
+    abbPedidos.verInOrden();
+}
+
+/**
 * Completa los siguientes cuatro pedidos después de cada cambio de hora y libera las mesas de los pedidos reapilandolas en la pila de mesas
 */
 void Gestor::simularCambioHora()
 {
-    listaPedidos.completarSiguientesPedidos(pilaMesas);
+    listaPedidos.completarSiguientesPedidos(pilaMesas,abbPedidos);
 }
 
 /**

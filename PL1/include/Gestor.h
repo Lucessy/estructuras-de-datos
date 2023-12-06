@@ -20,6 +20,8 @@ public:
     void mostrarPilaMesas(); //Opción 5
     void vaciarPilaMesas(); //Opción 6
 
+    void mostrarAbbPedidos(); //Opción 18
+
     void simularGestionProximaReserva(); //Opción 7
     void simularGestionReservasProximaHora(); //Opción 8
     void simularGestionReservasTotal(); //Opción 9

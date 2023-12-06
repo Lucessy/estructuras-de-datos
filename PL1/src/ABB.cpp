@@ -1,5 +1,4 @@
 #include "ABB.h"
-#include "NodoABB.h"
 #include <iostream>
 using namespace std;
 
@@ -32,6 +31,7 @@ void ABB::verInOrden()
 
 void ABB::verInOrden(NodoABB *raiz)
 {
+    cout << "Entrando en verInOrden..." << endl;
     if(raiz!=nullptr)
     {
         verInOrden(raiz->hijo_i);
@@ -48,6 +48,8 @@ void ABB::insertar(string nombreCliente)
 
 void ABB::insertar(string nombreCliente, NodoABB *nodo)
 {
+    cout << "Insertando en el árbol" << endl;
+    //Da problemas al intentar insertarlo en el arbol MIRARLO
     if((nodo->nombreCliente>nombreCliente)||(nodo->nombreCliente==nombreCliente))
     {
         if(nodo->hijo_i == nullptr)

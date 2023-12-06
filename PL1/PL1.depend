@@ -101,7 +101,7 @@
 
 1697975654 h"
 
-1701899034 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\main.cpp
+1701900666 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\main.cpp
 	<iostream>
 	<locale.h>
 	<random>
@@ -128,7 +128,7 @@
 	<iostream>
 	"Reserva.h"
 
-1701899087 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
+1701901512 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
@@ -139,7 +139,7 @@
 	<random>
 	<cstdlib>
 
-1701898770 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\gestor.h
+1701900871 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\gestor.h
 	"Cola.h"
 	"Pila.h"
 	"Lista.h"
@@ -149,12 +149,12 @@
 	<NodoPila.h>
 	"Reserva.h"
 
-1701898810 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\lista.h
+1701900256 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\lista.h
 	<NodoLista.h>
 	"Pila.h"
 	"ABB.h"
 
-1701898791 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\lista.cpp
+1701902009 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\lista.cpp
 	"Lista.h"
 	<iostream>
 
@@ -224,19 +224,17 @@
 	<iostream>
 	<Pedido.h>
 
-1701776631 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodoabb.cpp
+1701900848 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodoabb.cpp
 	"NodoABB.h"
-	"Lista.h"
 
-1701777680 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodoabb.h
+1701901175 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodoabb.h
 	<string>
 
-1701776642 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\abb.cpp
+1701901826 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\abb.cpp
 	"ABB.h"
-	"NodoABB.h"
 	<iostream>
 
-1701777666 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\abb.h
+1701901231 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\abb.h
 	<NodoABB.h>
 	<string>
 

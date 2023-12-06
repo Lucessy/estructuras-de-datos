@@ -1,5 +1,4 @@
 #include "NodoABB.h"
-#include "Lista.h"
 
 
 NodoABB::NodoABB(string nomCliente, NodoABB *izq, NodoABB *der)

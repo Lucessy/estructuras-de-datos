@@ -138,6 +138,14 @@ int main()
         case 17:
             break;
         case 18:
+            cout << "Mostrando el árbol binario creado..." << endl;
+            gestor.mostrarAbbPedidos();
+            break;
+        case 19:
+            break;
+        case 20:
+            break;
+        case 21:
             break;
         case 0:
             cout << "Saliendo del programa..." << endl;
