@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1699202120 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
+1702586888 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
 	<iostream>
 	<locale.h>
+	<random>
 	"Cola.h"
 	"NodoCola.h"
 	"Reserva.h"
@@ -11,13 +12,14 @@
 	<cstdlib>
 	<ctime>
 
-1699143044 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
+1702577646 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
 	"Lista.h"
 	<iostream>
 
-1699141829 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
+1702577646 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
 	<NodoLista.h>
 	"Pila.h"
+	"ABB.h"
 
 1699026565 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\reserva.cpp
 	"Reserva.h"
@@ -66,7 +68,7 @@
 	"NodoCola.h"
 	"Reserva.h"
 
-1699221503 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
+1702583167 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
@@ -74,11 +76,14 @@
 	"Pila.h"
 	<cstdlib>
 	<ctime>
+	<random>
+	<cstdlib>
 
-1699221710 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\gestor.h
+1702583129 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\gestor.h
 	"Cola.h"
 	"Pila.h"
 	"Lista.h"
+	<ABB.h>
 
 1699026565 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pedido.cpp
 	"Pedido.h"
@@ -237,4 +242,18 @@
 1701901231 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\abb.h
 	<NodoABB.h>
 	<string>
+
+1702577646 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\abb.h
+	<NodoABB.h>
+	<string>
+
+1702577646 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodoabb.h
+	<string>
+
+1702577646 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\abb.cpp
+	"ABB.h"
+	<iostream>
+
+1702577646 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodoabb.cpp
+	"NodoABB.h"
 

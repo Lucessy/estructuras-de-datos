@@ -13,7 +13,8 @@ using namespace std;
 
 Gestor::Gestor()
 {
-
+    seHaComenzadoLaSimulacion = false;
+    numReservasGestionadas = 0;
 }
 
 Gestor::~Gestor()
@@ -428,11 +429,9 @@ void Gestor::simularGestionReservasProximaHora()
 void Gestor::simularGestionReservasTotal()
 {
     seHaComenzadoLaSimulacion = true;
-    int maxCounter = 150;
-    while((!colaReservas.esVacia() || !colaReservasPdtes.esVacia()) && maxCounter > 0)
+    while((!colaReservas.esVacia() || !colaReservasPdtes.esVacia()))
     {
         simularGestionProximaReserva();
-        maxCounter--;
     }
 
 } //Opci�n 9
@@ -448,4 +447,71 @@ void Gestor::Salir()
 
 
 } //Opci�n 0
+
+
+/**
+* Inserta los pedidos del array de punteros a pedidos ,recibido como parámetro, en la lista de pedidos en su lugar correspondiente (ordenada por categoría).
+* Cada pedido en su lugar correspondiente sin reordenar la lista.
+*/
+void Gestor::insertarPedidosEnLista(Pedido** pedidos)
+{
+
+}
+
+/**
+* Muestra los datos de la lista de pedidos. No muestra mensaje inicial solo muestra los datos.
+*/
+void Gestor::mostrarListaPedidos()
+{
+
+}
+
+/**
+* Muestra los datos de la cola de reservas pendientes. No muestra mensaje inicial solo muestra los datos.
+*/
+void Gestor::mostrarColaReservasPendientes()
+{
+
+}
+
+/**
+* Inserta un pedido dado por un puntero a pedido en su posición correspondiente en el ABB.
+*/
+void Gestor::insertarPedidoEnABB(Pedido* pedido)
+{
+
+}
+
+/**
+* Muestra los nombres y solo los nombres de todos los clientes que han realizado al menos un pedido, ordenados alfabeticamente.
+*/
+void Gestor::mostrarNombresClientesAlfabeticamente()
+{
+
+}
+
+/**
+* Muestra todos los pedidos realizados por un cliente dado su nombre.
+*/
+void Gestor::mostrarPedidosDeCliente(string nombreCliente)
+{
+
+}
+
+/**
+* Muestra la cantidad de pedidos gestionados por cada categoría: MenuVegano, SinGluten, etc. No muestra mensaje inicial, solos los datos.
+*/
+void Gestor::mostrarCantidadPedidoPorCategoria()
+{
+
+}
+
+/**
+* Muestra los datos de los clientes que han realizado pedidos de categoría MenuVegano
+*/
+void Gestor::mostrarClientesConMenuVegano()
+{
+
+}
+
 

@@ -11,9 +11,11 @@
 #include <ctime> // for time()
 using namespace std;
 
-//Se inicializan las variables
-bool seHaComenzadoLaSimulacion = false;
+//Se inicializan las variables globales
 Gestor gestor;
+
+int validarEntero(string mensaje,string mensajeError, int minimoIncluido, int maximoExcluido,int maxIntentos);
+Pedido* cogerDatosPedido();
 
 int main()
 {
@@ -31,49 +33,33 @@ int main()
     while(programaEnEjecucion)
     {
         cout << endl<<"---------------------MENU PRINCIPAL--------------------------" << endl;
-        cout << "1. Generar una cola de reservas aleatoria realizadas por los clientes" << endl;
-        cout << "2. Mostrar los datos de la cola de reservas realizadas por los clientes" << endl;
-        cout << "3. Borrar los datos de la cola de reservas" << endl;
-        cout << "4. Generar una pila de 20 mesas aleatoria" << endl;
-        cout << "5. Mostrar los datos de la pila de mesas" << endl;
-        cout << "6. Borrar los datos de la pila de mesas" << endl;
-        cout << "7. Simular la gestión de la próxima reserva de la cola" << endl;
-        cout << "8. Simular la gestión de toda la ronda de reservas de la próxima hora" << endl;
-        cout << "9. Simular la gestión de todas las reservas de la cola" << endl;
+        cout << "0.  Generar una cola de reservas aleatoria realizadas por los clientes" << endl;
+        cout << "1.  Mostrar los datos de la cola de reservas realizadas por los clientes" << endl;
+        cout << "2.  Borrar los datos de la cola de reservas" << endl;
+        cout << "3.  Generar una pila de 20 mesas aleatoria" << endl;
+        cout << "4.  Mostrar los datos de la pila de mesas" << endl;
+        cout << "5.  Borrar los datos de la pila de mesas" << endl;
+        cout << "6.  Simular la gestión de la próxima reserva de la cola" << endl;
+        cout << "7.  Simular la gestión de toda la ronda de reservas de la próxima hora" << endl;
+        cout << "8.  Simular la gestión de todas las reservas de la cola" << endl;
+        cout << "9.  Añadir pedidos a la lista de pedidos" << endl;
+        cout << "10. Mostrar los datos de la lista de pedidos" << endl;
+        cout << "11. Mostrar los datos de la cola de reservas" << endl;
+        cout << "12. Mostrar los datos de la cola de reservas pendientes" << endl;
+        cout << "13. Añadir un pedido al árbol binario de pedidos" << endl;
+        cout << "14. Mostrar los datos del árbol binario de pedidos" << endl;
+        cout << "15. Mostrar los clientes que hayan realizado al menos un pedido" << endl; //En orden alfabético
+        cout << "16. Mostrar los pedidos realizados por un cliente" << endl;
+        cout << "17. Mostrar el número de pedidos realizados por categoría " << endl;
+        cout << "18. Mostrar los clientes que han pedido menú vegano " << endl;
+        cout << "19. Salir\n" << endl;
 
-        cout << "11. Mostrar los datos de la cola de reservas realizadas por los clientes" << endl;
-        cout << "12. Borrar la cola de reservas realizadas por los clientes" << endl;
-
-        cout << "13. Añadir pedidos a la lista de pedidos" << endl;
-        cout << "14. Mostrar los datos de la lista de pedidos" << endl;
-        cout << "15. Mostrar los datos de la cola de reservas" << endl;
-        cout << "16. Mostrar los datos de la cola de reservas pendientes" << endl;
-        cout << "17. Añadir un pedido al árbol binario de pedidos" << endl;
-        cout << "18. Mostrar los datos del árbol binario de pedidos" << endl;
-        cout << "19. Mostrar los clientes que hayan realizado al menos un pedido" << endl; //En orden alfabético
-        cout << "20. Mostrar los pedidos realizados por un cliente" << endl;
-        cout << "21. Mostrar los clientes que han pedido un menú vegano" << endl;
-        cout << "0. Salir\n" << endl;
-
-        int eleccion = 0;
-        bool eleccionValida = false;
         int maxIntentos = 3;
 
         //Se pide y valida la eleccion del usuario
-        while(!eleccionValida && maxIntentos>0)
-        {
-            cin >> eleccion;
-            if(eleccion >=0 && eleccion < 19)
-            {
-                eleccionValida=true;
-            }
-            else
-            {
-                cout << "La elección escogida no es correcta. Escoge una válida.\n" << endl;
-            }
-            maxIntentos--;
-        }
-        if(maxIntentos == 0)
+        int eleccion = validarEntero("","La elección escogida no es correcta. Escoge una válida.\n",0,20,3);
+        //Si se supera el máximo número de intentos el programa finaliza.
+        if(eleccion == -1)
         {
             cout << "Superaste el número de intentos de elección. Finalizando programa." << endl;
             return 0;
@@ -82,72 +68,113 @@ int main()
         //Se selecciona y ejecuta la elección elegida
         switch(eleccion)
         {
-        case 1:
+        case 0:
             cout << "Generando aleatoriamente la cola de reservas..." << endl;
             gestor.generarColaReservas();
             break;
-        case 2:
+        case 1:
             cout << "Mostrando la cola de reservas creada..." << endl;
             gestor.mostrarColaReservas();
             break;
-        case 3:
+        case 2:
             cout << "Vaciando la cola de reservas..." << endl;
             gestor.vaciarColaReservas();
             break;
-        case 4:
+        case 3:
             cout << "Generando aleatoriamente la pila de mesas..." << endl;
             gestor.generarPilaMesas();
             break;
-        case 5:
+        case 4:
             cout << "Mostrando la pila de mesas creada..." << endl;
             gestor.mostrarPilaMesas();
             break;
-        case 6:
+        case 5:
             cout << "Vaciando la pila de mesas..." << endl;
             gestor.vaciarPilaMesas();
             break;
-        case 7:
+        case 6:
             cout << "Simulando la gestión de la primera reserva de la cola de reservas..." << endl;
-            gestor.simularGestionProximaReserva(); //Opción 7
+            gestor.simularGestionProximaReserva(); //Opción 6
+            gestor.mostrarDatos();
+            break;
+        case 7:
+            cout << "Simulando la gestión de las reservas y creación de pedidos de todas las reservas para la misma hora..." << endl;
+            gestor.simularGestionReservasProximaHora(); //Opción 7
             gestor.mostrarDatos();
             break;
         case 8:
-            cout << "Simulando la gestión de las reservas y creación de pedidos de todas las reservas para la misma hora..." << endl;
-            gestor.simularGestionReservasProximaHora(); //Opción 8
-            gestor.mostrarDatos();
-            break;
-        case 9:
             cout << "Simulando la gestión de todas las reservas del restaurante..." << endl;
-            gestor.simularGestionReservasTotal(); //Opción 9
+            gestor.simularGestionReservasTotal(); //Opción 8
             gestor.mostrarDatos();
-            break;
-        case 10:
-            break;
-        case 11:
-            break;
-        case 12:
-            break;
-        case 13:
-            break;
-        case 14:
-            break;
-        case 15:
-            break;
-        case 16:
-            break;
-        case 17:
-            break;
-        case 18:
-            cout << "Mostrando el árbol binario creado..." << endl;
             gestor.mostrarAbbPedidos();
             break;
+        case 9:{
+            int numPedidos = validarEntero("¿Cuántos pedidos quieres añadir? (Max: 10) : ","Introduce un número de pedidos entre 1 y 10",1,11,100);
+            if (numPedidos == -1){
+                cout << "Demasiados intentos para escribir el número, volviendo al menú principal..." << endl;
+                break;
+            }
+
+            Pedido** pedidos = new Pedido*[numPedidos];
+            for(int i = 0; i<numPedidos;i++){
+                cout << "Introduce los datos del pedido " << i << ":" << endl;
+                Pedido* pedido = cogerDatosPedido();
+                if (pedido == nullptr){
+                    cout << "Error cogiendo los datos de los pedidos. No se añadieron los pedidos a la lista de pedidos." << endl;
+                    break;
+                }
+                pedidos[i] = pedido;
+            }
+            gestor.insertarPedidosEnLista(pedidos);
+            cout << "Insertados los " << numPedidos << " pedidos en la lista de pedidos." << endl;
+            break;
+            }
+
+        case 10:
+            cout << "Mostrando los datos de la lista de pedidos..." << endl;
+            gestor.mostrarListaPedidos();
+            break;
+        case 11:
+            cout << "Mostrando los datos de la cola de reservas..." << endl;
+            gestor.mostrarColaReservas();
+            break;
+        case 12:
+            cout << "Mostrando los datos de la cola de reservas pendientes..." << endl;
+            gestor.mostrarColaReservasPendientes();
+            break;
+        case 13:{
+            cout << "Introduce los datos del pedido:" << endl;
+            Pedido* pedido = cogerDatosPedido();
+            if (pedido == nullptr){
+                cout << "Error cogiendo los datos del pedido. No se añadió el pedido al ABB de pedidos." << endl;
+                break;
+            }
+            gestor.insertarPedidoEnABB(pedido);
+            cout << "Pedido añadido al árbol binario de búsqueda de pedidos." << endl;
+            break;}
+        case 14:
+            cout << "Mostrando los datos del árbol binario de búsqueda de pedidos..." << endl;
+            gestor.mostrarAbbPedidos();
+        case 15:
+            cout << "Mostrando los nombres de todos los clientes que han hecho un pedido en orden alfabético:" << endl;
+            gestor.mostrarNombresClientesAlfabeticamente();
+            break;
+        case 16:
+            string nombre;
+            cout << "¿De que cliente quieres ver los pedidos realizados? : ";
+            cin >> nombre;
+            cout << endl;
+            gestor.mostrarPedidosDeCliente(nombre);
+            break;
+        case 17:
+            cout << "Mostrando los números de pedidos gestionados por categoría:" << endl;
+            gestor.mostrarCantidadPedidoPorCategoria();
+            break;
+        case 18:
+            cout << "Mostrando los datos de los clientes que han pedido menú vegano:" << endl;
+            gestor.mostrarClientesConMenuVegano();
+            break;
         case 19:
-            break;
-        case 20:
-            break;
-        case 21:
-            break;
-        case 0:
             cout << "Saliendo del programa..." << endl;
             gestor.Salir();
             programaEnEjecucion = false;
@@ -157,5 +184,35 @@ int main()
     return 0;
 }
 
+Pedido* cogerDatosPedido(){
+    return nullptr;
+}
+
+int validarEntero(string mensaje,string mensajeError, int minimoIncluido, int maximoExcluido,int maxIntentos){
+    int eleccion = 0;
+    bool eleccionValida = false;
+
+    //Se pide y valida la eleccion del usuario
+    while(!eleccionValida && maxIntentos>0)
+    {
+        cout << mensaje;
+        cin >> eleccion;
+        if(eleccion >=minimoIncluido && eleccion < maximoExcluido)
+        {
+            eleccionValida=true;
+        }
+        else
+        {
+            cout << mensajeError << endl;
+        }
+        maxIntentos--;
+    }
+    if(maxIntentos == 0){
+        return -1;
+    }else{
+        return eleccion;
+    }
+
+}
 
 
