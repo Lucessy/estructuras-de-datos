@@ -289,7 +289,9 @@ void Gestor::simularGestionProximaReserva()
     cout << "-------------Procesando reserva-------------" <<endl;
     Pedido* pPedido = procesarReserva(pReserva,esReservaPdtDelFinal,esReservaPdtDelFinal,true);
     if (pPedido != nullptr){
-        listaPedidos.extenderListaPorDerecha(*pPedido);
+        Pedido** pedidos = new Pedido*[1];
+        pedidos[0] = pPedido;
+        insertarPedidosEnLista(pedidos,1);
     }
 
     //Si pertenece a colaReservas se comprueba el cambio de hora
@@ -420,7 +422,9 @@ void Gestor::simularGestionReservasProximaHora()
         cout << "----------Procesando reserva------------" <<endl;
         Pedido* pPedido = procesarReserva(pReserva,false,false,true);
         if (pPedido != nullptr){
-            listaPedidos.extenderListaPorDerecha(*pPedido);
+            Pedido** pedidos = new Pedido*[1];
+            pedidos[0] = pPedido;
+            insertarPedidosEnLista(pedidos,1);
         }
 
         //Por cada 2 reservas que salen de cola reservas se comprueba una de colas pendientes si la hay
@@ -476,7 +480,9 @@ void Gestor::Salir()
 */
 void Gestor::insertarPedidosEnLista(Pedido** pedidos,int longitudPedidos)
 {
-    cout << "Se han recibido " << longitudPedidos << "pedidos" << endl;
+    for(int i = 0; i< longitudPedidos;i++){
+        listaPedidos.extenderListaPorDerecha(*pedidos[i]);
+    }
 }
 
 /**
