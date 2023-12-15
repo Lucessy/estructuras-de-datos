@@ -17,8 +17,7 @@ class Pila
         void vaciarPila();
         Mesa& getMesaCima();
         Mesa** buscarMesas(Reserva* pReserva, int capacidad);
-
-        void apilarEnOrden(Mesa& mesa);
+        bool contiene(Mesa* mesa);
 
     protected:
 

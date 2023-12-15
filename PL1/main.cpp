@@ -14,6 +14,7 @@ using namespace std;
 //Se inicializan las variables globales
 Gestor gestor;
 
+// Cabeceras de las funciones
 int validarEntero(string mensaje,string mensajeError, int minimoIncluido, int maximoExcluido,int maxIntentos);
 Pedido* cogerDatosPedido();
 
@@ -57,7 +58,7 @@ int main()
         int maxIntentos = 3;
 
         //Se pide y valida la eleccion del usuario
-        int eleccion = validarEntero("","La elección escogida no es correcta. Escoge una válida.\n",0,20,3);
+        int eleccion = validarEntero("Elige una opción: ","La elección escogida no es correcta. Escoge una válida.\n",0,20,3);
         //Si se supera el máximo número de intentos el programa finaliza.
         if(eleccion == -1)
         {
@@ -109,24 +110,29 @@ int main()
             gestor.mostrarAbbPedidos();
             break;
         case 9:{
-            int numPedidos = validarEntero("¿Cuántos pedidos quieres añadir? (Max: 10) : ","Introduce un número de pedidos entre 1 y 10",1,11,100);
+            int numPedidos = validarEntero("¿Cuántos pedidos quieres añadir? (Max: 10) ('c' para cancelar): ","Introduce un número de pedidos entre 1 y 10",1,11,100);
             if (numPedidos == -1){
-                cout << "Demasiados intentos para escribir el número, volviendo al menú principal..." << endl;
+                cout << "Volviendo al menú principal." << endl;
                 break;
             }
 
             Pedido** pedidos = new Pedido*[numPedidos];
+            bool error = false;
             for(int i = 0; i<numPedidos;i++){
-                cout << "Introduce los datos del pedido " << i << ":" << endl;
+                cout << "Introduce los datos del pedido " << (i+1) << ":" << endl;
                 Pedido* pedido = cogerDatosPedido();
                 if (pedido == nullptr){
                     cout << "Error cogiendo los datos de los pedidos. No se añadieron los pedidos a la lista de pedidos." << endl;
+                    error = true;
                     break;
+                }else{
+                    pedidos[i] = pedido;
                 }
-                pedidos[i] = pedido;
             }
-            gestor.insertarPedidosEnLista(pedidos);
-            cout << "Insertados los " << numPedidos << " pedidos en la lista de pedidos." << endl;
+            if (!error){
+                gestor.insertarPedidosEnLista(pedidos,numPedidos);
+                cout << "Insertados los " << numPedidos << " pedidos en la lista de pedidos." << endl;
+            }
             break;
             }
 
@@ -159,13 +165,14 @@ int main()
             cout << "Mostrando los nombres de todos los clientes que han hecho un pedido en orden alfabético:" << endl;
             gestor.mostrarNombresClientesAlfabeticamente();
             break;
-        case 16:
+        case 16:{
             string nombre;
             cout << "¿De que cliente quieres ver los pedidos realizados? : ";
             cin >> nombre;
             cout << endl;
             gestor.mostrarPedidosDeCliente(nombre);
             break;
+        }
         case 17:
             cout << "Mostrando los números de pedidos gestionados por categoría:" << endl;
             gestor.mostrarCantidadPedidoPorCategoria();
@@ -185,19 +192,56 @@ int main()
 }
 
 Pedido* cogerDatosPedido(){
-    return nullptr;
+    /** Recoge los datos de los clientes*/
+    cout << "Introduzca el nombre del cliente: ";
+    string nombreCliente;
+    cin >> nombreCliente;
+    int numPersonas = validarEntero("Introduzca el número de personas ('c' para cancelar): ","\nIntroduce un número válido entre 1 y 8",1,9,1000);
+    // Si algo falla validando los números se devuelve nullptr
+    if (numPersonas == -1){
+        return nullptr;
+    }
+    int numPreferencia = validarEntero("Elija la preferencía de menú (Escoja el número)('c' para cancelar):\n1. Vegano\n2. Sin glutén\n3. Completo\n","Introduce un número válido",1,4,100);
+    // Si algo falla validando los números se devuelve nullptr
+    if (numPreferencia == -1){
+        return nullptr;
+    }
+    int numSituacion = validarEntero("Elija la situación de la mesa (Escoja el número)('c' para cancelar):\n1. Terraza\n2. Interior\n","Introduce un número válidO",1,3,100);
+    // Si algo falla validando los números se devuelve nullptr
+    if (numSituacion == -1){
+        return nullptr;
+    }
+
+    string menus[] = {"vegano", "sinGluten", "completo"};
+    string preferencia = menus[numPreferencia-1];
+    string situaciones[] = {"Terraza","Interior"};
+    string situacionMesa = situaciones[numSituacion-1];
+
+    //Se crea una nueva reserva con los datos para poder procesarla y que se le encuentren o no mesas
+    Reserva* reservaFicticia = new Reserva(nombreCliente,"",situacionMesa,numPersonas,preferencia);
+    Pedido* pPedido = gestor.procesarReserva(reservaFicticia,false,false,false);
+    return pPedido;
 }
 
 int validarEntero(string mensaje,string mensajeError, int minimoIncluido, int maximoExcluido,int maxIntentos){
-    int eleccion = 0;
     bool eleccionValida = false;
+    int eleccion = -1;
 
     //Se pide y valida la eleccion del usuario
     while(!eleccionValida && maxIntentos>0)
     {
+        string input;
         cout << mensaje;
-        cin >> eleccion;
-        if(eleccion >=minimoIncluido && eleccion < maximoExcluido)
+        cin >> input;
+
+        if(input == "c"){
+            cout << "Operación cancelada. ";
+            return -1;
+        }
+
+        char* finalDeCadena;
+        eleccion = strtol(input.c_str(), &finalDeCadena, 10);
+        if(eleccion >=minimoIncluido && eleccion < maximoExcluido && *finalDeCadena == '\0')
         {
             eleccionValida=true;
         }

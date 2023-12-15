@@ -136,7 +136,11 @@ NodoLista* Lista::getPrimero()
     return primero;
 }
 
-void Lista::completarSiguientesPedidos(Pila& pilaMesas, ABB& abbPedidos)
+
+/*
+* Saca de la lista los pedidos finalizados [la mitad de los pedidos de cada preferencia de menú] y devuelve una lista de pedidos con ellos
+*/
+Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
 {
     int i= 0;
     NodoLista* aux = primero;
@@ -154,7 +158,7 @@ void Lista::completarSiguientesPedidos(Pila& pilaMesas, ABB& abbPedidos)
                 pilaMesas.apilar(*(aux->pPedido->getMesaAsignada2()));
             }
             cout << "Añadiendo a árbol de pedidos" << endl;
-            abbPedidos.insertar(aux->pPedido->getNombreCliente());
+            //abbPedidos.insertar(aux->pPedido->getNombreCliente());
             i++;
         }
         aux = aux->siguiente;

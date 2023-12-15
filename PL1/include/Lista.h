@@ -1,9 +1,7 @@
 #ifndef LISTA_H
-#define LISTA_H
-class ABB;
+#define LISTA_H q
 #include <NodoLista.h>
 #include "Pila.h"
-#include "ABB.h"
 
 class Lista
 {
@@ -18,7 +16,7 @@ class Lista
         void eliminarUltimo();
         bool esVacia();
         void mostrarDatosLista();
-        void completarSiguientesPedidos(Pila& pilaMesas, ABB& abbPedidos);
+        Lista sacarSiguientesPedidos(Pila& pilaMesas);
         NodoLista* getPrimero();
 
     protected:

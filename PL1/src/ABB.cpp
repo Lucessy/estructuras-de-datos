@@ -24,20 +24,20 @@ ABB::~ABB()
     //dtor
 }
 
-void ABB::verInOrden()
+void ABB::verEnOrden()
 {
-    verInOrden(raiz);
+    verEnOrden(raiz);
 }
 
-void ABB::verInOrden(NodoABB *raiz)
+void ABB::verEnOrden(NodoABB *raiz)
 {
     cout << "Entrando en verInOrden..." << endl;
     if(raiz!=nullptr)
     {
-        verInOrden(raiz->hijo_i);
+        verEnOrden(raiz->hijo_i);
         cout << raiz->nombreCliente << endl; //Mostrar datos de cliente y sus pedidos
         //raiz->listaPedidosCliente->mostrarDatosLista();
-        verInOrden(raiz->hijo_d);
+        verEnOrden(raiz->hijo_d);
     }
 }
 

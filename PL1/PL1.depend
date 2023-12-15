@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1702586888 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
+1702644140 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\main.cpp
 	<iostream>
 	<locale.h>
 	<random>
@@ -12,14 +12,13 @@
 	<cstdlib>
 	<ctime>
 
-1702577646 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
+1702595928 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
 	"Lista.h"
 	<iostream>
 
-1702577646 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
+1702595784 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
 	<NodoLista.h>
 	"Pila.h"
-	"ABB.h"
 
 1699026565 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\reserva.cpp
 	"Reserva.h"
@@ -39,14 +38,14 @@
 1698065543 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\mesa.h
 	<string>
 
-1699221605 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
+1702642105 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
 	"Pila.h"
 	<iostream>
 	"NodoPila.h"
 	"Pedido.h"
 	"Mesa.h"
 
-1699140754 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pila.h
+1702599079 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pila.h
 	<NodoPila.h>
 	"Reserva.h"
 
@@ -68,7 +67,7 @@
 	"NodoCola.h"
 	"Reserva.h"
 
-1702583167 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
+1702643707 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
@@ -79,7 +78,7 @@
 	<random>
 	<cstdlib>
 
-1702583129 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\gestor.h
+1702643156 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\gestor.h
 	"Cola.h"
 	"Pila.h"
 	"Lista.h"
@@ -89,7 +88,7 @@
 	"Pedido.h"
 	<iostream>
 
-1699026565 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pedido.h
+1702598001 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pedido.h
 	<iostream>
 	<string>
 	"Mesa.h"
@@ -243,14 +242,15 @@
 	<NodoABB.h>
 	<string>
 
-1702577646 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\abb.h
+1702595013 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\abb.h
 	<NodoABB.h>
 	<string>
 
-1702577646 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodoabb.h
+1702595516 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodoabb.h
 	<string>
+	<Lista.h>
 
-1702577646 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\abb.cpp
+1702595481 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\abb.cpp
 	"ABB.h"
 	<iostream>
 

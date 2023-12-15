@@ -24,7 +24,7 @@ public:
     void simularGestionReservasProximaHora(); //Opción 7
     void simularGestionReservasTotal(); //Opción 8
 
-    void insertarPedidosEnLista(Pedido** pedidos); //Opción 9
+    void insertarPedidosEnLista(Pedido** pedidos,int longitudPedidos); //Opción 9
     void mostrarListaPedidos(); //Opción 10
     void mostrarColaReservasPendientes(); //Opción 12
     void insertarPedidoEnABB(Pedido* pedido); //Opción 13
@@ -36,7 +36,10 @@ public:
 
     void Salir(); //Opción 19
 
+    //Funciones públicas auxiliares
     void mostrarDatos();
+    bool estaEnPilaMesas(Mesa* mesa);
+    Pedido* procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esReservaPdtDelFinal,bool reinsertarEnCola);
 
 
 protected:
@@ -52,11 +55,10 @@ private:
     Pila pilaMesas;
 
     //Métodos y funciones privadas
-    void procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esReservaPdtDelFinal);
     void simularCambioHora();
     Reserva* siguienteReserva(bool esReservaPdte);
     bool comprobarCambioHora(string horaInicial);
-    void crearPedidos(Mesa** mesas, Reserva* pReserva);
+    Pedido* crearPedidos(Mesa** mesas, Reserva* pReserva);
 
     // Variables privadas
     bool seHaComenzadoLaSimulacion;

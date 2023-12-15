@@ -10,13 +10,18 @@
 
 using namespace std;
 
-
+/**
+* Constructor donde se inicializan las variables
+*/
 Gestor::Gestor()
 {
     seHaComenzadoLaSimulacion = false;
     numReservasGestionadas = 0;
 }
 
+/**
+* Destructor vacío
+*/
 Gestor::~Gestor()
 {
     //dtor
@@ -179,7 +184,7 @@ void Gestor::vaciarPilaMesas()
 **/
 void Gestor::mostrarAbbPedidos()
 {
-    abbPedidos.verInOrden();
+    abbPedidos.verEnOrden();
 }
 
 /**
@@ -187,22 +192,25 @@ void Gestor::mostrarAbbPedidos()
 */
 void Gestor::simularCambioHora()
 {
-    listaPedidos.completarSiguientesPedidos(pilaMesas,abbPedidos);
+    Lista pedidosFinalizados = listaPedidos.sacarSiguientesPedidos(pilaMesas);
 }
 
 /**
-* Procesa una reserva dada (ya sea pdte o común)
+* Procesa una reserva dada (ya sea pdte o común) y devuelve el pedido creado si consigue encontrar mesas.
 *
 * Procesa la reserva dada, buscando las mesas disponibles correspondientes, saca esas mesas de la pila si las hay
 * y se crea un pedido con los datos de la reserva y las mesas asignadas. Si no se consigue gestionar se encola en
 * la cola de reservas pendientes a menos que sea una reserva la última pasada de la simulación por la cola de reservas
 * pendientes, en cuyo caso se añade a la cola de reservas no gestionadas (o de gestión fallida).
-*
+* También permite procesar reservas fuera del sistema de colas con reinsertarEnCola puesto a false.
 */
-void Gestor::procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esReservaPdtDelFinal)
+Pedido* Gestor::procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esReservaPdtDelFinal, bool reinsertarEnCola)
 {
     //Se guarda el número de personas de la reserva
     int numPersonas = pReserva->getNumPersonas();
+
+    //Se inicializa el pedido a crear
+    Pedido* pPedido = nullptr;
 
     //Buscamos las mesas necesarias para cada numPersonas y se añaden a la lista de pedidos si las encuentra
     bool mesasDisponibles = false;
@@ -211,9 +219,16 @@ void Gestor::procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esReserva
     {
         mesasDisponibles = true;
     }
+
+
     if(mesasDisponibles)
     {
-        crearPedidos(mesas,pReserva);
+        //Se crea el pedido con esas mesas
+        pPedido = crearPedidos(mesas,pReserva);
+        //Si no es necesario reinsertarla en la cola se retorna el pedido creado. Especificamente se usa para crear pedidos independientes al sistema de colas, buscando las mesas.
+        if(!reinsertarEnCola){
+            return pPedido;
+        }
     }
 
 
@@ -234,10 +249,10 @@ void Gestor::procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esReserva
     }
     else
     {
-
         //Se añade a la cola de reservas no gestionadas
         colaReservasNoGestionadas.encolar(*pReserva);
     }
+    return pPedido;
 }
 
 /**
@@ -272,7 +287,10 @@ void Gestor::simularGestionProximaReserva()
 
     //Se procesa la siguiente reserva
     cout << "-------------Procesando reserva-------------" <<endl;
-    procesarReserva(pReserva,esReservaPdtDelFinal,esReservaPdtDelFinal);
+    Pedido* pPedido = procesarReserva(pReserva,esReservaPdtDelFinal,esReservaPdtDelFinal,true);
+    if (pPedido != nullptr){
+        listaPedidos.extenderListaPorDerecha(*pPedido);
+    }
 
     //Si pertenece a colaReservas se comprueba el cambio de hora
     if(!esReservaPdtDelFinal)
@@ -295,7 +313,7 @@ void Gestor::simularGestionProximaReserva()
             //Se guarda la próxima reserva pendiente, se procesa y se muestran sus datos
             cout << "--------------Procesando reserva pendiente----------" << endl;
             pReserva = siguienteReserva(true);
-            procesarReserva(pReserva,true,false);
+            procesarReserva(pReserva,true,false,true);
         }
     }
     cout << "SIMULACION DE LAS GESTION DE LA PROXIMA RESERVA TERMINADA" << endl;
@@ -362,15 +380,15 @@ bool Gestor::comprobarCambioHora(string horaInicial)
 }
 
 /**
-* Crear y añade un pedido para una reserva con mesa/s asignadas, dadas la reserva, las mesas y la lista de pedidos donde añadirlo
+* Crear y devuelve un pedido para una reserva con mesa/s asignadas, dadas la reserva, las mesas y la lista de pedidos donde añadirlo
 */
-void Gestor::crearPedidos(Mesa** mesas, Reserva* pReserva)
+Pedido* Gestor::crearPedidos(Mesa** mesas, Reserva* pReserva)
 {
     Mesa* mesasAsignadas[2];
     mesasAsignadas[0] = mesas[0];
     mesasAsignadas[1] = mesas[1];
     Pedido* pPedido = new Pedido(mesasAsignadas,pReserva->getNombreCliente(),pReserva->getNumPersonas(),pReserva->getPreferenciaMenu(),pReserva->getSituacionMesa(),false);
-    listaPedidos.extenderListaPorDerecha(*pPedido);
+    return pPedido;
 }
 
 
@@ -400,7 +418,10 @@ void Gestor::simularGestionReservasProximaHora()
 
         //Se procesa la siguiente reserva
         cout << "----------Procesando reserva------------" <<endl;
-        procesarReserva(pReserva,false,false);
+        Pedido* pPedido = procesarReserva(pReserva,false,false,true);
+        if (pPedido != nullptr){
+            listaPedidos.extenderListaPorDerecha(*pPedido);
+        }
 
         //Por cada 2 reservas que salen de cola reservas se comprueba una de colas pendientes si la hay
         if(numReservasGestionadas>0 && numReservasGestionadas%2 == 0)
@@ -410,7 +431,7 @@ void Gestor::simularGestionReservasProximaHora()
                 //Se guarda la próxima reserva pendiente, se procesa y se muestran sus datos
                 cout << "---------Procesando reserva pendiente--------------" << endl;
                 pReserva = siguienteReserva(true);
-                procesarReserva(pReserva,true,false);
+                procesarReserva(pReserva,true,false,true);
             }
         }
         //Se comprueba si ha habido cambio de hora
@@ -453,9 +474,9 @@ void Gestor::Salir()
 * Inserta los pedidos del array de punteros a pedidos ,recibido como parámetro, en la lista de pedidos en su lugar correspondiente (ordenada por categoría).
 * Cada pedido en su lugar correspondiente sin reordenar la lista.
 */
-void Gestor::insertarPedidosEnLista(Pedido** pedidos)
+void Gestor::insertarPedidosEnLista(Pedido** pedidos,int longitudPedidos)
 {
-
+    cout << "Se han recibido " << longitudPedidos << "pedidos" << endl;
 }
 
 /**
@@ -463,7 +484,8 @@ void Gestor::insertarPedidosEnLista(Pedido** pedidos)
 */
 void Gestor::mostrarListaPedidos()
 {
-
+    cout << "-----------LISTA DE PEDIDOS----------------------" << endl;
+    listaPedidos.mostrarDatosLista();
 }
 
 /**
@@ -471,7 +493,8 @@ void Gestor::mostrarListaPedidos()
 */
 void Gestor::mostrarColaReservasPendientes()
 {
-
+    cout << "-----------COLA DE RESERVAS PENDIENTES-----------" << endl;
+    colaReservasPdtes.mostrarCola();
 }
 
 /**
@@ -513,5 +536,14 @@ void Gestor::mostrarClientesConMenuVegano()
 {
 
 }
+
+/**
+* Indica si la mesa dada está en la pila de mesas
+*/
+bool Gestor::estaEnPilaMesas(Mesa* mesa)
+{
+    return pilaMesas.contiene(mesa);
+}
+
 
 

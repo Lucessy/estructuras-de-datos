@@ -202,3 +202,16 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
 }
 
 
+bool Pila::contiene(Mesa* mesa)
+{
+    NodoPila* aux = cima;
+    while(aux)
+    {
+        if (aux->pmesa == mesa){
+            return true;
+        }
+        aux = aux->siguiente;
+    }
+    return false;
+}
+

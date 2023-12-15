@@ -1,6 +1,7 @@
 #ifndef NODOABB_H
 #define NODOABB_H
 #include <string>
+#include <Lista.h>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class NodoABB
 
     private:
         string nombreCliente;
+        Lista listaPedidoCliente;
         NodoABB* hijo_i;
         NodoABB* hijo_d;
         friend class ABB;
