@@ -15,8 +15,7 @@ using namespace std;
 */
 Gestor::Gestor()
 {
-    seHaComenzadoLaSimulacion = false;
-    numReservasGestionadas = 0;
+
 }
 
 /**
@@ -508,7 +507,8 @@ void Gestor::mostrarColaReservasPendientes()
 */
 void Gestor::insertarPedidoEnABB(Pedido* pedido)
 {
-
+    pedido->setFinalizado(true);
+    abbPedidos.insertar(pedido->getNombreCliente(),pedido);
 }
 
 /**
@@ -516,7 +516,7 @@ void Gestor::insertarPedidoEnABB(Pedido* pedido)
 */
 void Gestor::mostrarNombresClientesAlfabeticamente()
 {
-
+    abbPedidos.verEnOrden(true);
 }
 
 /**
@@ -543,13 +543,7 @@ void Gestor::mostrarClientesConMenuVegano()
 
 }
 
-/**
-* Indica si la mesa dada está en la pila de mesas
-*/
-bool Gestor::estaEnPilaMesas(Mesa* mesa)
-{
-    return pilaMesas.contiene(mesa);
-}
+
 
 
 
