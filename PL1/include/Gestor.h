@@ -3,7 +3,7 @@
 #include "Cola.h"
 #include "Pila.h"
 #include "Lista.h"
-#include <ABB.h>
+#include "ABB.h"
 
 using namespace std;
 
@@ -38,7 +38,6 @@ public:
 
     //Funciones públicas auxiliares
     void mostrarDatos();
-    bool estaEnPilaMesas(Mesa* mesa);
     Pedido* procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esReservaPdtDelFinal,bool reinsertarEnCola);
 
 

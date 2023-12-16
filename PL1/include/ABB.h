@@ -8,18 +8,16 @@ class ABB
 {
     public:
         ABB();
-        ABB(string nombre, NodoABB*hijo_lado_i=nullptr, NodoABB*hijo_lado_d=nullptr);
-        ABB(NodoABB*r);
         virtual ~ABB();
-        void verEnOrden();
-        void insertar(string nombre);
+        void verEnOrden(bool mostrarSoloNombres=false);
+        void insertar(string nombre, Pedido* pedido);
 
     protected:
 
     private:
         NodoABB* raiz;
-        void verEnOrden(NodoABB *arb);
-        void insertar(string nom, NodoABB *nodo);
+        void verEnOrden(NodoABB *arb,bool mostrarSoloNombres,int left_counter,int right_counter);
+        void insertar(string nom, Pedido* pedido, NodoABB *nodo);
 
 };
 

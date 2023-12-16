@@ -49,7 +49,7 @@ int main()
         cout << "12. Mostrar los datos de la cola de reservas pendientes" << endl;
         cout << "13. Añadir un pedido al árbol binario de pedidos" << endl;
         cout << "14. Mostrar los datos del árbol binario de pedidos" << endl;
-        cout << "15. Mostrar los clientes que hayan realizado al menos un pedido" << endl; //En orden alfabético
+        cout << "15. Mostrar los nombres de los clientes con al menos un pedido gestionado" << endl; //En orden alfabético
         cout << "16. Mostrar los pedidos realizados por un cliente" << endl;
         cout << "17. Mostrar el número de pedidos realizados por categoría " << endl;
         cout << "18. Mostrar los clientes que han pedido menú vegano " << endl;
