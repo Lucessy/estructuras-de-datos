@@ -161,6 +161,7 @@ int main()
         case 14:
             cout << "Mostrando los datos del árbol binario de búsqueda de pedidos..." << endl;
             gestor.mostrarAbbPedidos();
+            break;
         case 15:
             cout << "Mostrando los nombres de todos los clientes que han hecho un pedido en orden alfabético:" << endl;
             gestor.mostrarNombresClientesAlfabeticamente();
