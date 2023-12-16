@@ -7,6 +7,10 @@ Lista::Lista()
     //Se crea lista vacia
     primero = nullptr;
     ultimo = nullptr;
+    ultCompleto = nullptr;
+    ultSinGluten = nullptr;
+    ultVegano = nullptr;
+
     longitud = 0;
 }
 
@@ -21,7 +25,7 @@ Lista::~Lista()
 
 
 
-void Lista::extenderListaPorDerecha(Pedido& elem)
+void Lista::extenderListaPorDerecha(Pedido& elem, int ult)
 {
     NodoLista* nuevoNodo = new NodoLista(elem,NULL,ultimo);
     if(esVacia())
@@ -34,10 +38,24 @@ void Lista::extenderListaPorDerecha(Pedido& elem)
         ultimo->siguiente = nuevoNodo;
         ultimo = nuevoNodo;
     }
+
+    switch(ult)
+    {
+    case 0:
+        ultCompleto = nuevoNodo;
+        break;
+    case 1:
+        ultSinGluten = nuevoNodo;
+        break;
+    case 2:
+        ultVegano = nuevoNodo;
+        break;
+    }
+
     longitud++;
 }
 
-void Lista::extenderListaPorIzquierda(Pedido& elem)
+void Lista::extenderListaPorIzquierda(Pedido& elem, int ult)
 {
     NodoLista* nuevoNodo = new NodoLista(elem,primero,NULL);
     if(esVacia())
@@ -50,7 +68,86 @@ void Lista::extenderListaPorIzquierda(Pedido& elem)
         primero->anterior = nuevoNodo;
         primero = nuevoNodo;
     }
+
+    switch(ult)
+    {
+    case 0:
+        ultCompleto = nuevoNodo;
+        break;
+    case 1:
+        ultSinGluten = nuevoNodo;
+        break;
+    case 2:
+        ultVegano = nuevoNodo;
+        break;
+    }
+
     longitud++;
+}
+
+void Lista::extenderListaPorCategoria(Pedido& elem)
+{
+    string categoria = elem.getPreferenciaMenu();
+    NodoLista* sig = nullptr;
+    if(categoria=="completo")
+    {
+        // 0
+        if(ultCompleto==nullptr)
+        {
+            extenderListaPorIzquierda(elem,0);
+        }
+        else
+        {
+            NodoLista* nuevoNodo = new NodoLista(elem,ultCompleto->siguiente,ultCompleto);
+            ultCompleto->siguiente->anterior = nuevoNodo;
+            ultCompleto->siguiente = nuevoNodo;
+            ultCompleto = nuevoNodo;
+            longitud++;
+        }
+    }
+    else if(categoria=="sinGluten")
+    {
+        // 1
+        if(ultSinGluten==nullptr)
+        {
+            if(ultCompleto!=nullptr)
+            {
+                NodoLista* nuevoNodo = new NodoLista(elem,ultCompleto->siguiente,ultCompleto);
+                ultCompleto->siguiente->anterior = nuevoNodo;
+                ultCompleto->siguiente = nuevoNodo;
+                ultSinGluten = nuevoNodo;
+                longitud++;
+            }
+            else
+            {
+                extenderListaPorIzquierda(elem,1);
+            }
+        }
+        else
+        {
+            NodoLista* nuevoNodo = new NodoLista(elem,ultSinGluten->siguiente,ultSinGluten);
+            ultSinGluten->siguiente->anterior = nuevoNodo;
+            ultSinGluten->siguiente = nuevoNodo;
+            ultSinGluten = nuevoNodo;
+            longitud++;
+        }
+    }
+    else
+    {
+        // 2
+        if(ultVegano==nullptr)
+        {
+            extenderListaPorDerecha(elem,2);
+        }
+        else
+        {
+            NodoLista* nuevoNodo = new NodoLista(elem,ultVegano->siguiente,ultVegano);
+            ultVegano->siguiente->anterior = nuevoNodo;
+            ultVegano->siguiente = nuevoNodo;
+            ultVegano = nuevoNodo;
+            longitud++;
+        }
+    }
 }
 
 Pedido& Lista::elemInicial()

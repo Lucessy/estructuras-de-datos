@@ -8,8 +8,8 @@ class Lista
     public:
         Lista();
         virtual ~Lista();
-        void extenderListaPorDerecha(Pedido& elem);
-        void extenderListaPorIzquierda(Pedido& elem);
+        void extenderListaPorDerecha(Pedido& elem, int ult = -1); //Se inicia a -1 para que no entre
+        void extenderListaPorIzquierda(Pedido& elem, int ult = -1); //Se inicia a -1 para que no entre
         Pedido& elemInicial();
         Pedido& elemFinal();
         void eliminarPrimero();
@@ -19,9 +19,15 @@ class Lista
         Lista sacarSiguientesPedidos(Pila& pilaMesas);
         NodoLista* getPrimero();
 
+        void extenderListaPorCategoria(Pedido& elem);
+
     protected:
 
     private:
+        NodoLista* ultCompleto;
+        NodoLista* ultSinGluten;
+        NodoLista* ultVegano;
+
         NodoLista* primero;
         NodoLista* ultimo;
         int longitud;
