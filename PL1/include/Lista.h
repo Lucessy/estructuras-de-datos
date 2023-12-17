@@ -15,10 +15,10 @@ class Lista
         void eliminarPrimero();
         void eliminarUltimo();
         bool esVacia();
-        void mostrarDatosLista();
+        void mostrarDatosLista(string pref = "");
         Lista sacarSiguientesPedidos(Pila& pilaMesas);
         NodoLista* getPrimero();
-
+        NodoLista* getUltVegano();
         void extenderListaPorCategoria(Pedido& elem);
 
     protected:

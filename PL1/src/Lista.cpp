@@ -225,7 +225,7 @@ bool Lista::esVacia()
 }
 
 
-void Lista::mostrarDatosLista()
+void Lista::mostrarDatosLista(string pref)
 {
     if(esVacia())
     {
@@ -235,7 +235,9 @@ void Lista::mostrarDatosLista()
     NodoLista* aux = primero;
     for(int i = 0; i<longitud; i++)
     {
-        aux->pPedido->mostrarPedido();
+        if(pref == "" || pref == aux->pPedido->getPreferenciaMenu()){
+            aux->pPedido->mostrarPedido();
+        }
         aux = aux->siguiente;
     }
 }
@@ -246,6 +248,10 @@ NodoLista* Lista::getPrimero()
     return primero;
 }
 
+NodoLista* Lista::getUltVegano()
+{
+    return ultVegano;
+}
 
 /*
 * Saca de la lista los pedidos finalizados [la mitad de los pedidos de cada preferencia de menú] y devuelve una lista de pedidos con ellos

@@ -535,11 +535,11 @@ void Gestor::mostrarCantidadPedidoPorCategoria()
 }
 
 /**
-* Muestra los datos de los clientes que han realizado pedidos de categoría MenuVegano
+* Muestra los datos de los pedidos gestionados de los clientes que han realizado pedidos de categoría MenuVegano
 */
 void Gestor::mostrarClientesConMenuVegano()
 {
-
+    abbPedidos.verEnOrden(false,true);
 }
 
 
