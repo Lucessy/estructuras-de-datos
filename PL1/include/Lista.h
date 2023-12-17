@@ -36,9 +36,13 @@ class Lista
         NodoLista* ultVegano;
         int longVegano;
 
+
         NodoLista* primero;
         NodoLista* ultimo;
         int longitud;
+
+        void finalizarPedidos(Lista& listaPedidos,Pila& pilaMesas);
+        void insertarMitadCategoria(Lista& listaAux,NodoLista* primCategoria,int* contadorCategoria,NodoLista** punteroCategoria);
         friend class NodoLista;
 };
 

@@ -86,7 +86,7 @@ void Cola::mostrarCola()
                 aux->preserva->mostrarReserva();
                 aux = aux->siguiente;
             }
-            cout << "Fin de los datos de la cola de reservas." << endl << endl;
+            cout << "Fin de los datos de la cola" << endl << endl;
         }
 }
 

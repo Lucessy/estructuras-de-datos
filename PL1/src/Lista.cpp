@@ -80,110 +80,95 @@ void Lista::extenderListaPorIzquierda(Pedido& elem)
     string pref = elem.getPreferenciaMenu();
     if(pref == "completo")
     {
-        ultCompleto = nuevoNodo;
+        if(ultCompleto == nullptr){
+            ultCompleto = nuevoNodo;
+        }
         longCompleto++;
     }
     else if(pref == "sinGluten")
     {
-        ultSinGluten = nuevoNodo;
+        if(ultSinGluten == nullptr){
+            ultSinGluten = nuevoNodo;
+        }
         longSinGluten++;
     }
     else
     {
-        ultVegano = nuevoNodo;
+        if(ultVegano == nullptr){
+            ultVegano = nuevoNodo;
+        }
         longVegano++;
     }
 
     longitud++;
 }
 
+
+
 /**
-* Extiende la lista con el elemento dado, en su posición correspondiente por categoría.
-* Las categorías se distribuyen en este orden: completo, sinGluten,vegano
-* La lista está siempre ordenada, los nuevos elementos se insertan en su posición correspondiente al final su categoría.
+* Extiende la lista con el elemento dado, en su posiciï¿½n correspondiente por categorï¿½a.
+* Las categorï¿½as se distribuyen en este orden: completo, sinGluten,vegano
+* La lista estï¿½ siempre ordenada, los nuevos elementos se insertan en su posiciï¿½n correspondiente al final su categorï¿½a.
 */
-void Lista::extenderListaPorCategoria(Pedido& elem)
-{
+void Lista::extenderListaPorCategoria(Pedido& elem) {
     string categoria = elem.getPreferenciaMenu();
-    NodoLista* sig = nullptr;
 
-    // Se guarda una referencia al puntero que se usará para insertar el elemento dependiendo de su categoría.
-    NodoLista** punteroUtilizado = nullptr;
-    bool insertar = false;
+    NodoLista** punteroAUtilizar = nullptr;
+    int* contadorAUtilizar = nullptr;
 
-    if(categoria=="completo")
-    {
-        // Si aún no hay ningún menú completo la lista simplemente se extiende por la izquierda porque irá primero así
-        if(ultCompleto==nullptr)
-        {
-            extenderListaPorIzquierda(elem);
-        }
-        else
-        {
-            insertar = true;
-            punteroUtilizado = &ultCompleto;
-            longCompleto++;
-        }
+    if(categoria == "completo"){
+        punteroAUtilizar = &ultCompleto;
+        contadorAUtilizar = &longCompleto;
+    }else if (categoria == "sinGluten"){
+        punteroAUtilizar = &ultSinGluten;
+        contadorAUtilizar = &longSinGluten;
+    }else{
+        punteroAUtilizar = &ultVegano;
+        contadorAUtilizar = &longVegano;
     }
-    else if(categoria=="sinGluten")
-    {
-        // Si no hay ya un pedido sin glutén, si no hay un pedido completo (el primero de las 3 categorías) se coloca a la izquierda
-        // y si sí lo hay entonces se coloca a su derecha
-        if(ultSinGluten==nullptr)
-        {
-            if(ultCompleto!=nullptr)
-            {
-                //Lo crea justo después del último completo
-                NodoLista* nuevoNodo = new NodoLista(elem,ultCompleto->siguiente,ultCompleto);
-                longitud++;
-                longSinGluten++;
-                if(ultCompleto->siguiente != nullptr)
-                {
-                    ultCompleto->siguiente->anterior = nuevoNodo;
-                }
-                ultCompleto->siguiente = nuevoNodo;
-                ultSinGluten = nuevoNodo;
-            }
-            else
-            {
-                extenderListaPorIzquierda(elem);
-            }
-        }
-        else
-        {
-            insertar = true;
-            punteroUtilizado = &ultSinGluten;
-            longSinGluten++;
-        }
-    }
-    else
-    {
-        // Si no hay ya un último pedido vegano se inserta por la derecha y así será la última categoría como debe ser
-        if(ultVegano==nullptr)
-        {
+
+    bool insertar = true;
+    if(*punteroAUtilizar == nullptr){
+        if(categoria == "vegano"){
             extenderListaPorDerecha(elem);
-        }
-        else
-        {
-            insertar = true;
-            punteroUtilizado = &ultVegano;
-            longVegano++;
+            insertar = false;
+        }else if (categoria == "completo"){
+            extenderListaPorIzquierda(elem);
+            insertar = false;
+        }else{
+            if(ultSinGluten != nullptr){
+                punteroAUtilizar = &ultSinGluten;
+            }else if(ultCompleto != nullptr){
+                punteroAUtilizar = &ultCompleto;
+            }else{
+                extenderListaPorIzquierda(elem);
+                insertar = false;
+            }
         }
     }
-
-    //Si el pedido no era el primero en ningún caso se inserta en su lugar correspondiente usando el puntero correspondiente a la categoría
-    if(insertar)
-    {
-        NodoLista* nuevoNodo = new NodoLista(elem, (*punteroUtilizado)->siguiente, (*punteroUtilizado));
+    if(insertar){
+        NodoLista* nuevoNodo = new NodoLista(elem,(*punteroAUtilizar)->siguiente,(*punteroAUtilizar));
+        (*punteroAUtilizar)->siguiente = nuevoNodo;
+        if(*punteroAUtilizar != nullptr){
+            (*punteroAUtilizar)->siguiente->anterior = nuevoNodo;
+        }
+        (*punteroAUtilizar) = nuevoNodo;
+        if(nuevoNodo->siguiente == nullptr){
+            ultimo = nuevoNodo;
+        }
+        if(nuevoNodo->anterior == nullptr){
+            primero = nuevoNodo;
+        }
+        (*contadorAUtilizar)++;
         longitud++;
-        if( (*punteroUtilizado)->siguiente != nullptr)
-        {
-            (*punteroUtilizado)->siguiente->anterior = nuevoNodo;
-        }
-        (*punteroUtilizado)->siguiente = nuevoNodo;
-        *punteroUtilizado = nuevoNodo;
     }
+    cout << "Longitud: " << longitud <<endl;
+    cout << "LongCompleto: " << longCompleto<<endl;
+    cout << "LongSinGluten: " << longSinGluten<<endl;
+    cout << "LongVegano: " << longVegano<<endl;
 }
+
+
 
 Pedido& Lista::elemInicial()
 {
@@ -303,10 +288,11 @@ void Lista::mostrarDatosLista(string pref)
 {
     if(esVacia())
     {
-        cout << "La lista está vacía" << endl;
+        cout << "La lista estï¿½ vacï¿½a" << endl;
         return;
     }
     NodoLista* aux = primero;
+    cout << "Longitud: " << longitud <<endl;
     for(int i = 0; i<longitud; i++)
     {
         if(pref == "" || pref == aux->pPedido->getPreferenciaMenu())
@@ -329,130 +315,104 @@ NodoLista* Lista::getUltVegano()
 }
 
 /**
-* Saca de la lista los pedidos finalizados [la mitad de los pedidos de cada preferencia de menú] y devuelve una lista de pedidos con ellos
+* Saca de la lista los pedidos finalizados [la mitad de los pedidos de cada preferencia de menï¿½] y devuelve una lista de pedidos con ellos
 */
-Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
-{
-    Lista auxLista;
-    NodoLista* aux;
-    NodoLista* primCategoria;
 
-    if(ultCompleto != nullptr)
-    {
-        cout << "Sacando ultCompleto" << endl;
-        primCategoria = primero;
-        aux = primCategoria;
-        int iteraciones = ceil(longCompleto/2);
-        for(int i = 0; i < iteraciones ; i++)
-        {
-            auxLista.extenderListaPorDerecha(*(aux->pPedido));
-            longCompleto--;
-            aux = aux->siguiente;
-        }
-        if (longCompleto ==0)
-        {
-            ultCompleto = nullptr;
-        }
-        if(aux != nullptr)
-        {
-            aux->anterior = primCategoria->anterior;
-        }
+Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas) {
+    Lista listaAux;
+
+    if(ultCompleto != nullptr){
+        cout << "Sacando pedidos completos " <<endl;
+        NodoLista* primCategoria = primero;
+        int* contador = &longCompleto;
+        NodoLista** punteroACategoria = &ultCompleto;
+        insertarMitadCategoria(listaAux,primCategoria,contador,punteroACategoria);
     }
-
-    if(ultSinGluten != nullptr)
-    {
-        cout << "Sacando ultSinGluten" << endl;
-        if(ultCompleto != nullptr)
-        {
+    if(ultSinGluten != nullptr){
+        cout << "Sacando pedidos sin glutï¿½n " <<endl;
+        NodoLista* primCategoria = nullptr;
+        if(ultCompleto != nullptr){
             primCategoria = ultCompleto->siguiente;
-        }
-        else
-        {
+        }else{
             primCategoria = primero;
         }
-        aux = primCategoria;
-        int iteraciones = ceil(longSinGluten/2);
-        for(int i = 0; i < iteraciones; i++)
-        {
-            auxLista.extenderListaPorDerecha(*(aux->pPedido));
-            longSinGluten--;
-            aux = aux->siguiente;
-        }
-
-        if(longSinGluten==0)
-        {
-            ultSinGluten = nullptr;
-        }
-
-        if(aux != nullptr)
-        {
-            aux->anterior = primCategoria->anterior;
-        }
-        if(primCategoria->anterior != nullptr)
-        {
-            primCategoria->anterior->siguiente = aux;
-        }
+        cout << "PrimCategoria " <<primCategoria<<endl;
+        int* contador = &longSinGluten;
+        NodoLista** punteroACategoria = &ultSinGluten;
+        insertarMitadCategoria(listaAux,primCategoria,contador,punteroACategoria);
     }
-
-    if(ultVegano != nullptr)
-    {
-        cout << "Sacando ultVegano" << endl;
-        if(ultSinGluten != nullptr)
-        {
+    if(ultVegano != nullptr){
+        cout << "Sacando pedidos veganos " <<endl;
+        NodoLista* primCategoria = nullptr;
+        if(ultSinGluten != nullptr){
             primCategoria = ultSinGluten->siguiente;
-        }
-        else if(ultCompleto != nullptr)
-        {
-            primCategoria = ultCompleto->siguiente;
-        }
-        else
-        {
+        }else if(ultCompleto != nullptr){
+            primCategoria = ultCompleto ->siguiente;
+        }else{
             primCategoria = primero;
         }
-
-        cout << "For de ultVegano" << endl;
-        int iteraciones = ceil(longVegano/2);
-        for(int i = 0; i < iteraciones; i++)
-        {
-            auxLista.extenderListaPorDerecha(*(aux->pPedido));
-            longVegano--;
-            aux = aux->siguiente;
-        }
-
-        if(longVegano==0)
-        {
-            ultVegano = nullptr;
-        }
-
-        cout << "Sacando el nodoPedido de la lista" << endl;
-        if(aux != nullptr)
-        {
-            aux->anterior = primCategoria->anterior;
-        }
-        if(primCategoria->anterior != nullptr)
-        {
-            primCategoria->anterior->siguiente = aux;
-        }
+        cout << "PrimCategoria " <<primCategoria<<endl;
+        int* contador = &longVegano;
+        NodoLista** punteroACategoria = &ultVegano;
+        insertarMitadCategoria(listaAux,primCategoria,contador,punteroACategoria);
     }
+    cout << "Datos de la lista auxiliar con la mitad de los pedidos de cada categorï¿½a: "<<endl;
+    listaAux.mostrarDatosLista();
+    finalizarPedidos(listaAux,pilaMesas);
+    cout << "Longitud: " << longitud <<endl;
+    cout << "LongCompleto: " << longCompleto<<endl;
+    cout << "LongSinGluten: " << longSinGluten<<endl;
+    cout << "LongVegano: " << longVegano<<endl;
+    return listaAux;
+}
 
-    aux = auxLista.getPrimero();
-    int longLista = auxLista.getLongitud();
-    for(int j = 0; j < longLista; j++)
-    {
-        if(aux->pPedido->getMesaAsignada1() != nullptr)
-        {
+void Lista::finalizarPedidos(Lista& listaPedidos,Pila& pilaMesas){
+    NodoLista* aux = listaPedidos.getPrimero();
+    for(int i = 0; i< listaPedidos.getLongitud();i++){
+        if(aux->pPedido->getMesaAsignada1() != nullptr){
             pilaMesas.apilar(*(aux->pPedido->getMesaAsignada1()));
         }
-        if(aux->pPedido->getMesaAsignada2() != nullptr)
-        {
+        if(aux->pPedido->getMesaAsignada2() != nullptr){
             pilaMesas.apilar(*(aux->pPedido->getMesaAsignada2()));
         }
-        aux = aux->siguiente;
+        aux->pPedido->setFinalizado(true);
+        aux=aux->siguiente;
     }
-
-    cout << "Lista terminada" << endl;
-    return auxLista;
 }
+
+/**
+* Inserta en la lista auxiliar dada la mitad de los pedidos de la categorï¿½a dada
+*/
+
+void Lista::insertarMitadCategoria(Lista& listaAux,NodoLista* primCategoria,int* contadorCategoria,NodoLista** punteroCategoria){
+
+    NodoLista* antPrimCategoria = primCategoria->anterior;
+    NodoLista* aux = primCategoria;
+    int iters = ceil((*contadorCategoria)/2.0f);
+    for(int i=0; i< iters; i++){
+        listaAux.extenderListaPorDerecha(*(aux->pPedido));
+        longitud--;
+        (*contadorCategoria)--;
+        NodoLista* tempAux = aux;
+        aux=tempAux->siguiente;
+        delete tempAux;
+    }
+    if((*contadorCategoria) == 0){
+        *punteroCategoria = nullptr;
+    }
+    if(aux != nullptr){
+        aux->anterior = antPrimCategoria;
+    }else{
+        ultimo = antPrimCategoria;
+    }
+    if(antPrimCategoria != nullptr){
+        antPrimCategoria->siguiente = aux;
+    }
+    if(primero == nullptr){
+        primero = aux;
+    }
+}
+
 
 
 int Lista::getLongitud()

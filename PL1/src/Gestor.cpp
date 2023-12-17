@@ -187,7 +187,7 @@ void Gestor::mostrarAbbPedidos()
 }
 
 /**
-* Completa los siguientes cuatro pedidos después de cada cambio de hora y libera las mesas de los pedidos reapilandolas en la pila de mesas
+* Simula el cambio de hora sacando la mitad de los pedidos de cada categoría de la lista de pedidos e insertándolos en el árbol de pedidos
 */
 void Gestor::simularCambioHora()
 {
@@ -196,6 +196,7 @@ void Gestor::simularCambioHora()
     int longitud = pedidosFinalizados.getLongitud();
     for(int j = 0; j < longitud; j++)
     {
+        pedidosFinalizados.elemInicial().setFinalizado(true);
         abbPedidos.insertar(pedidosFinalizados.elemInicial().getNombreCliente(), &(pedidosFinalizados.elemInicial()));
         cout << "Insertado un pedido" << endl;
         pedidosFinalizados.eliminarPrimero();
