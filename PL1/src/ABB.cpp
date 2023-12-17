@@ -16,9 +16,12 @@ ABB::~ABB()
 
 void ABB::verEnOrden(bool mostrarSoloNombres,bool soloVeganos)
 {
-    if(raiz == nullptr){
+    if(raiz == nullptr)
+    {
         cout << "El árbol está vacío" << endl;
-    }else{
+    }
+    else
+    {
         verEnOrden(raiz,mostrarSoloNombres,0,0,soloVeganos);
     }
 }
@@ -29,13 +32,16 @@ void ABB::verEnOrden(NodoABB *nodo,bool mostrarSoloNombres,int left_counter,int 
     {
         verEnOrden(nodo->hijo_i,mostrarSoloNombres,left_counter+1,right_counter,soloVeganos);
 
-        if(!soloVeganos || (soloVeganos && (nodo->listaPedidosCliente).getUltVegano() != nullptr)){
+        if(!soloVeganos || (soloVeganos && (nodo->listaPedidosCliente).getUltVegano() != nullptr))
+        {
             //Mostrar datos de cliente y sus pedidos
-            if(!mostrarSoloNombres && !soloVeganos){
+            if(!mostrarSoloNombres && !soloVeganos)
+            {
                 cout << "\nNodo: Izq: " << left_counter << " , Der: " << right_counter << endl;
             }
             cout << "Nombre de cliente: " << nodo->nombreCliente << endl;
-            if(!mostrarSoloNombres){
+            if(!mostrarSoloNombres)
+            {
                 cout << "Lista de pedidos realizados por el cliente: " << endl;
                 nodo->listaPedidosCliente.mostrarDatosLista();
             }
@@ -53,14 +59,16 @@ void ABB::insertar(string nombreCliente, Pedido* pedido, NodoABB *nodo)
 {
     cout << "Insertando en el árbol" << endl;
 
-    if(raiz == nullptr){
+    if(raiz == nullptr)
+    {
         raiz = new NodoABB(nombreCliente,pedido,nullptr,nullptr);
         cout << "Añadida nueva raiz" <<endl;
         return;
     }
 
-    //Da problemas al intentar insertarlo en el arbol MIRARLO
-    if (nodo->nombreCliente == nombreCliente){
+
+    if (nodo->nombreCliente == nombreCliente)
+    {
         nodo->listaPedidosCliente.extenderListaPorCategoria(*pedido);
     }
     else if(nodo->nombreCliente > nombreCliente)
@@ -89,7 +97,8 @@ void ABB::insertar(string nombreCliente, Pedido* pedido, NodoABB *nodo)
     }
 }
 
-Lista* ABB::buscarListaPedidosPorNombre(string nombreCliente){
+Lista* ABB::buscarListaPedidosPorNombre(string nombreCliente)
+{
     return buscarListaPedidosPorNombre(nombreCliente,raiz);
 }
 
@@ -97,15 +106,66 @@ Lista* ABB::buscarListaPedidosPorNombre(string nombreCliente, NodoABB* nodo)
 {
     if(nodo!=nullptr)
     {
-        if(nodo->nombreCliente == nombreCliente){
+        if(nodo->nombreCliente == nombreCliente)
+        {
             return &(nodo->listaPedidosCliente);
         }
         Lista* temp = buscarListaPedidosPorNombre(nombreCliente,nodo->hijo_i);
-        if(temp == nullptr){
+        if(temp == nullptr)
+        {
             return buscarListaPedidosPorNombre(nombreCliente,nodo->hijo_d);
-        }else{
+        }
+        else
+        {
             return temp;
         }
     }
     return nullptr;
+}
+
+void ABB::sumarCategorias()
+{
+    if(raiz == nullptr)
+    {
+        cout << "El árbol está vacío" << endl;
+    }
+    else
+    {
+        longCompleto=0;
+        longSinGluten=0;
+        longVegano=0;
+
+        sumarCategorias(raiz,0,0);
+    }
+}
+
+void ABB::sumarCategorias(NodoABB *nodo,int left_counter,int right_counter)
+{
+    if(nodo!=nullptr)
+    {
+        sumarCategorias(nodo->hijo_i,left_counter+1,right_counter);
+
+        longCompleto += nodo->listaPedidosCliente.getLongCompleto();
+        longSinGluten += nodo->listaPedidosCliente.getLongSinGluten();
+        longVegano += nodo->listaPedidosCliente.getLongVegano();
+
+        cout << "\nNodo: Izq: " << left_counter << " , Der: " << right_counter << endl;
+
+        sumarCategorias(nodo->hijo_d,left_counter,right_counter+1);
+    }
+}
+
+int ABB::getLongCompleto()
+{
+    return longCompleto;
+}
+
+int ABB::getLongSinGluten()
+{
+    return longSinGluten;
+}
+
+int ABB::getLongVegano()
+{
+    return longVegano;
 }

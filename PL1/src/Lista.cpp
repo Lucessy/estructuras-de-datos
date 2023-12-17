@@ -309,7 +309,8 @@ void Lista::mostrarDatosLista(string pref)
     NodoLista* aux = primero;
     for(int i = 0; i<longitud; i++)
     {
-        if(pref == "" || pref == aux->pPedido->getPreferenciaMenu()){
+        if(pref == "" || pref == aux->pPedido->getPreferenciaMenu())
+        {
             aux->pPedido->mostrarPedido();
         }
         aux = aux->siguiente;
@@ -348,7 +349,8 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
             longCompleto--;
             aux = aux->siguiente;
         }
-        if (longCompleto ==0){
+        if (longCompleto ==0)
+        {
             ultCompleto = nullptr;
         }
         if(aux != nullptr)
@@ -456,4 +458,19 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
 int Lista::getLongitud()
 {
     return longitud;
+}
+
+int Lista::getLongCompleto()
+{
+    return longCompleto;
+}
+
+int Lista::getLongSinGluten()
+{
+    return longSinGluten;
+}
+
+int Lista::getLongVegano()
+{
+    return longVegano;
 }

@@ -540,7 +540,10 @@ void Gestor::mostrarPedidosDeCliente(string nombreCliente)
 */
 void Gestor::mostrarCantidadPedidoPorCategoria()
 {
-
+    abbPedidos.sumarCategorias();
+    cout << "Número de pedidos realizados en la categoría Completo: " << abbPedidos.getLongCompleto() << endl;
+    cout << "Número de pedidos realizados en la categoría Sin Gluten: " << abbPedidos.getLongSinGluten() << endl;
+    cout << "Número de pedidos realizados en la categoría Vegano: " << abbPedidos.getLongVegano() << endl;
 }
 
 /**

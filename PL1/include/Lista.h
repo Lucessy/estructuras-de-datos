@@ -22,6 +22,10 @@ class Lista
         NodoLista* getUltVegano();
         void extenderListaPorCategoria(Pedido& elem);
 
+        int getLongCompleto();
+        int getLongSinGluten();
+        int getLongVegano();
+
     protected:
 
     private:

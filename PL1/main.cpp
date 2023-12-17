@@ -76,6 +76,7 @@ int main()
         case 1:
             cout << "Mostrando la cola de reservas creada..." << endl;
             gestor.mostrarColaReservas();
+            gestor.mostrarColaReservasPendientes();
             break;
         case 2:
             cout << "Vaciando la cola de reservas..." << endl;
