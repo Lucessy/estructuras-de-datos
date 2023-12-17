@@ -327,7 +327,7 @@ NodoLista* Lista::getUltVegano()
     return ultVegano;
 }
 
-/*
+/**
 * Saca de la lista los pedidos finalizados [la mitad de los pedidos de cada preferencia de menú] y devuelve una lista de pedidos con ellos
 */
 Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
@@ -338,19 +338,15 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
 
     if(ultCompleto != nullptr)
     {
-        cout << "Sacando ultCOmpleto" << endl;
+        cout << "Sacando ultCompleto" << endl;
         primCategoria = primero;
         aux = primCategoria;
         for(int i = 0; i < ceil(longCompleto/2) ; i++)
         {
             auxLista.extenderListaPorDerecha(*(aux->pPedido));
+            eliminarPrimero();
             aux = aux->siguiente;
         }
-        if(longCompleto==1)
-        {
-            ultCompleto = nullptr;
-        }
-        longCompleto = longCompleto - ceil(longCompleto/2);
 
         if(aux != nullptr)
         {
@@ -373,14 +369,14 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
         for(int i = 0; i < ceil(longSinGluten/2); i++)
         {
             auxLista.extenderListaPorDerecha(*(aux->pPedido));
+            longSinGluten--;
             aux = aux->siguiente;
         }
 
-        if(longSinGluten==1)
+        if(longSinGluten==0)
         {
             ultSinGluten = nullptr;
         }
-        longSinGluten = longSinGluten - ceil(longSinGluten/2);
 
         if(aux != nullptr)
         {
@@ -412,14 +408,14 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
         for(int i = 0; i < ceil(longVegano/2); i++)
         {
             auxLista.extenderListaPorDerecha(*(aux->pPedido));
+            longVegano--;
             aux = aux->siguiente;
         }
 
-        if(longVegano==1)
+        if(longVegano==0)
         {
             ultVegano = nullptr;
         }
-        longVegano = longVegano - ceil(longVegano/2);
 
         cout << "Sacando el nodoPedido de la lista" << endl;
         if(aux != nullptr)
@@ -433,7 +429,8 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
     }
 
     aux = auxLista.getPrimero();
-    for(int j = 0; j < auxLista.getLongitud(); j++)
+    int longLista = auxLista.getLongitud();
+    for(int j = 0; j < longLista; j++)
     {
         if(aux->pPedido->getMesaAsignada1() != nullptr)
         {
