@@ -18,15 +18,18 @@ class Lista
         void mostrarDatosLista();
         Lista sacarSiguientesPedidos(Pila& pilaMesas);
         NodoLista* getPrimero();
-
+        int getLongitud();
         void extenderListaPorCategoria(Pedido& elem);
 
     protected:
 
     private:
         NodoLista* ultCompleto;
+        int longCompleto;
         NodoLista* ultSinGluten;
+        int longSinGluten;
         NodoLista* ultVegano;
+        int longVegano;
 
         NodoLista* primero;
         NodoLista* ultimo;

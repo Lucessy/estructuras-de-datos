@@ -1,5 +1,6 @@
 #include "Lista.h"
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 Lista::Lista()
@@ -12,6 +13,9 @@ Lista::Lista()
     ultVegano = nullptr;
 
     longitud = 0;
+    longCompleto = 0;
+    longSinGluten = 0;
+    longVegano = 0;
 }
 
 Lista::~Lista()
@@ -40,14 +44,20 @@ void Lista::extenderListaPorDerecha(Pedido& elem)
     }
 
     string pref = elem.getPreferenciaMenu();
-    if(pref == "completo"){
+    if(pref == "completo")
+    {
         ultCompleto = nuevoNodo;
+        longCompleto++;
     }
-    else if(pref == "sinGluten"){
+    else if(pref == "sinGluten")
+    {
         ultSinGluten = nuevoNodo;
+        longSinGluten++;
     }
-    else{
+    else
+    {
         ultVegano = nuevoNodo;
+        longVegano++;
     }
 
     longitud++;
@@ -68,14 +78,20 @@ void Lista::extenderListaPorIzquierda(Pedido& elem)
     }
 
     string pref = elem.getPreferenciaMenu();
-    if(pref == "completo"){
+    if(pref == "completo")
+    {
         ultCompleto = nuevoNodo;
+        longCompleto++;
     }
-    else if(pref == "sinGluten"){
+    else if(pref == "sinGluten")
+    {
         ultSinGluten = nuevoNodo;
+        longSinGluten++;
     }
-    else{
+    else
+    {
         ultVegano = nuevoNodo;
+        longVegano++;
     }
 
     longitud++;
@@ -106,6 +122,7 @@ void Lista::extenderListaPorCategoria(Pedido& elem)
         {
             insertar = true;
             punteroUtilizado = &ultCompleto;
+            longCompleto++;
         }
     }
     else if(categoria=="sinGluten")
@@ -119,6 +136,7 @@ void Lista::extenderListaPorCategoria(Pedido& elem)
                 //Lo crea justo después del último completo
                 NodoLista* nuevoNodo = new NodoLista(elem,ultCompleto->siguiente,ultCompleto);
                 longitud++;
+                longSinGluten++;
                 if(ultCompleto->siguiente != nullptr)
                 {
                     ultCompleto->siguiente->anterior = nuevoNodo;
@@ -135,6 +153,7 @@ void Lista::extenderListaPorCategoria(Pedido& elem)
         {
             insertar = true;
             punteroUtilizado = &ultSinGluten;
+            longSinGluten++;
         }
     }
     else
@@ -148,15 +167,18 @@ void Lista::extenderListaPorCategoria(Pedido& elem)
         {
             insertar = true;
             punteroUtilizado = &ultVegano;
+            longVegano++;
         }
     }
 
     //Si el pedido no era el primero en ningún caso se inserta en su lugar correspondiente usando el puntero correspondiente a la categoría
-    if(insertar){
+    if(insertar)
+    {
         NodoLista* nuevoNodo = new NodoLista(elem, (*punteroUtilizado)->siguiente, (*punteroUtilizado));
         longitud++;
-        if( (*punteroUtilizado)->siguiente != nullptr){
-             (*punteroUtilizado)->siguiente->anterior = nuevoNodo;
+        if( (*punteroUtilizado)->siguiente != nullptr)
+        {
+            (*punteroUtilizado)->siguiente->anterior = nuevoNodo;
         }
         (*punteroUtilizado)->siguiente = nuevoNodo;
         *punteroUtilizado = nuevoNodo;
@@ -179,6 +201,32 @@ void Lista::eliminarPrimero()
     {
         NodoLista *aux = primero;
 
+        string pref = primero->pPedido->getPreferenciaMenu();
+        if(pref == "completo")
+        {
+            longCompleto--;
+            if(longCompleto==0)
+            {
+                ultCompleto=nullptr;
+            }
+        }
+        else if(pref == "sinGluten")
+        {
+            longSinGluten--;
+            if(longSinGluten==0)
+            {
+                ultSinGluten=nullptr;
+            }
+        }
+        else
+        {
+            longVegano--;
+            if(longVegano==0)
+            {
+                ultVegano=nullptr;
+            }
+        }
+
         if((primero==ultimo)&&(primero->siguiente == NULL))
         {
             primero=NULL;
@@ -200,6 +248,32 @@ void Lista::eliminarUltimo()
     if(!esVacia())
     {
         NodoLista *aux = ultimo;
+
+        string pref = primero->pPedido->getPreferenciaMenu();
+        if(pref == "completo")
+        {
+            longCompleto--;
+            if(longCompleto==0)
+            {
+                ultCompleto=nullptr;
+            }
+        }
+        else if(pref == "sinGluten")
+        {
+            longSinGluten--;
+            if(longSinGluten==0)
+            {
+                ultSinGluten=nullptr;
+            }
+        }
+        else
+        {
+            longVegano--;
+            if(longVegano==0)
+            {
+                ultVegano=nullptr;
+            }
+        }
 
         if((primero==ultimo)&&(ultimo->siguiente == NULL))
         {
@@ -252,25 +326,126 @@ NodoLista* Lista::getPrimero()
 */
 Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
 {
-    int i= 0;
-    NodoLista* aux = primero;
-    while(aux && i < 4) //Cambiar finalizado por la mitad de cada preferenica de menú
+    Lista auxLista;
+    NodoLista* aux;
+    NodoLista* primCategoria;
+
+    if(ultCompleto != nullptr)
     {
-        if(aux->pPedido->getFinalizado() == false)
+        cout << "Sacando ultCOmpleto" << endl;
+        primCategoria = primero;
+        aux = primCategoria;
+        for(int i = 0; i < ceil(longCompleto/2) ; i++)
         {
-            aux->pPedido->setFinalizado(true);
-            if(aux->pPedido->getMesaAsignada1() != nullptr)
-            {
-                pilaMesas.apilar(*(aux->pPedido->getMesaAsignada1()));
-            }
-            if(aux->pPedido->getMesaAsignada2() != nullptr)
-            {
-                pilaMesas.apilar(*(aux->pPedido->getMesaAsignada2()));
-            }
-            cout << "Añadiendo a árbol de pedidos" << endl;
-            //abbPedidos.insertar(aux->pPedido->getNombreCliente());
-            i++;
+            auxLista.extenderListaPorDerecha(*(aux->pPedido));
+            aux = aux->siguiente;
+        }
+        if(longCompleto==1)
+        {
+            ultCompleto = nullptr;
+        }
+        longCompleto = longCompleto - ceil(longCompleto/2);
+
+        if(aux != nullptr)
+        {
+            aux->anterior = primCategoria->anterior;
+        }
+    }
+
+    if(ultSinGluten != nullptr)
+    {
+        cout << "Sacando ultSinGluten" << endl;
+        if(ultCompleto != nullptr)
+        {
+            primCategoria = ultCompleto->siguiente;
+        }
+        else
+        {
+            primCategoria = primero;
+        }
+        aux = primCategoria;
+        for(int i = 0; i < ceil(longSinGluten/2); i++)
+        {
+            auxLista.extenderListaPorDerecha(*(aux->pPedido));
+            aux = aux->siguiente;
+        }
+
+        if(longSinGluten==1)
+        {
+            ultSinGluten = nullptr;
+        }
+        longSinGluten = longSinGluten - ceil(longSinGluten/2);
+
+        if(aux != nullptr)
+        {
+            aux->anterior = primCategoria->anterior;
+        }
+        if(primCategoria->anterior != nullptr)
+        {
+            primCategoria->anterior->siguiente = aux;
+        }
+    }
+
+    if(ultVegano != nullptr)
+    {
+        cout << "Sacando ultVegano" << endl;
+        if(ultSinGluten != nullptr)
+        {
+            primCategoria = ultSinGluten->siguiente;
+        }
+        else if(ultCompleto != nullptr)
+        {
+            primCategoria = ultCompleto->siguiente;
+        }
+        else
+        {
+            primCategoria = primero;
+        }
+
+        cout << "For de ultVegano" << endl;
+        for(int i = 0; i < ceil(longVegano/2); i++)
+        {
+            auxLista.extenderListaPorDerecha(*(aux->pPedido));
+            aux = aux->siguiente;
+        }
+
+        if(longVegano==1)
+        {
+            ultVegano = nullptr;
+        }
+        longVegano = longVegano - ceil(longVegano/2);
+
+        cout << "Sacando el nodoPedido de la lista" << endl;
+        if(aux != nullptr)
+        {
+            aux->anterior = primCategoria->anterior;
+        }
+        if(primCategoria->anterior != nullptr)
+        {
+            primCategoria->anterior->siguiente = aux;
+        }
+    }
+
+    aux = auxLista.getPrimero();
+    for(int j = 0; j < auxLista.getLongitud(); j++)
+    {
+        if(aux->pPedido->getMesaAsignada1() != nullptr)
+        {
+            pilaMesas.apilar(*(aux->pPedido->getMesaAsignada1()));
+        }
+        if(aux->pPedido->getMesaAsignada2() != nullptr)
+        {
+            pilaMesas.apilar(*(aux->pPedido->getMesaAsignada2()));
         }
         aux = aux->siguiente;
     }
+
+    cout << "Lista terminada" << endl;
+    return auxLista;
+}
+
+
+int Lista::getLongitud()
+{
+    return longitud;
 }

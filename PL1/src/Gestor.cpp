@@ -192,6 +192,12 @@ void Gestor::mostrarAbbPedidos()
 void Gestor::simularCambioHora()
 {
     Lista pedidosFinalizados = listaPedidos.sacarSiguientesPedidos(pilaMesas);
+    int longitud = pedidosFinalizados.getLongitud();
+    for(int j = 0; j < longitud; j++)
+    {
+        abbPedidos.insertar(pedidosFinalizados.elemInicial().getNombreCliente(), &(pedidosFinalizados.elemInicial()));
+        pedidosFinalizados.eliminarPrimero();
+    }
 }
 
 /**

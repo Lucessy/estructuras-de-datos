@@ -57,7 +57,7 @@ void ABB::insertar(string nombreCliente, Pedido* pedido, NodoABB *nodo)
 
     //Da problemas al intentar insertarlo en el arbol MIRARLO
     if (nodo->nombreCliente == nombreCliente){
-        //nodo->listaPedidosCliente.extenderListaPorCategoria(*pedido);
+        nodo->listaPedidosCliente.extenderListaPorCategoria(*pedido);
     }
     else if(nodo->nombreCliente > nombreCliente)
     {
