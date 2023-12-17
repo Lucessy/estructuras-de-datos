@@ -480,7 +480,7 @@ void Gestor::Salir()
 void Gestor::insertarPedidosEnLista(Pedido** pedidos,int longitudPedidos)
 {
     for(int i = 0; i< longitudPedidos;i++){
-        listaPedidos.extenderListaPorDerecha(*pedidos[i]);
+        listaPedidos.extenderListaPorCategoria(*pedidos[i]);
     }
 }
 

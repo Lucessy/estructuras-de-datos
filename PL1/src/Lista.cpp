@@ -113,7 +113,10 @@ void Lista::extenderListaPorCategoria(Pedido& elem)
             if(ultCompleto!=nullptr)
             {
                 NodoLista* nuevoNodo = new NodoLista(elem,ultCompleto->siguiente,ultCompleto);
-                ultCompleto->siguiente->anterior = nuevoNodo;
+                if(ultCompleto->siguiente != nullptr)
+                {
+                    ultCompleto->siguiente->anterior = nuevoNodo;
+                }
                 ultCompleto->siguiente = nuevoNodo;
                 ultSinGluten = nuevoNodo;
                 longitud++;
