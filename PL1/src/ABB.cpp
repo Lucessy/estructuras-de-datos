@@ -57,7 +57,7 @@ void ABB::insertar(string nombreCliente, Pedido* pedido, NodoABB *nodo)
 
     //Da problemas al intentar insertarlo en el arbol MIRARLO
     if (nodo->nombreCliente == nombreCliente){
-        //nodo->listaPedidosCliente.extenderListaPorCategoria(*pedido);
+        nodo->listaPedidosCliente.extenderListaPorCategoria(*pedido);
     }
     else if(nodo->nombreCliente > nombreCliente)
     {
@@ -83,4 +83,25 @@ void ABB::insertar(string nombreCliente, Pedido* pedido, NodoABB *nodo)
             insertar(nombreCliente,pedido,nodo->hijo_d);
         }
     }
+}
+
+Lista* ABB::buscarListaPedidosPorNombre(string nombreCliente){
+    return buscarListaPedidosPorNombre(nombreCliente,raiz);
+}
+
+Lista* ABB::buscarListaPedidosPorNombre(string nombreCliente, NodoABB* nodo)
+{
+    if(nodo!=nullptr)
+    {
+        if(nodo->nombreCliente == nombreCliente){
+            return &(nodo->listaPedidosCliente);
+        }
+        Lista* temp = buscarListaPedidosPorNombre(nombreCliente,nodo->hijo_i);
+        if(temp == nullptr){
+            return buscarListaPedidosPorNombre(nombreCliente,nodo->hijo_d);
+        }else{
+            return temp;
+        }
+    }
+    return nullptr;
 }
