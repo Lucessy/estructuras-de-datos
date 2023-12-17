@@ -8,8 +8,8 @@ class Lista
     public:
         Lista();
         virtual ~Lista();
-        void extenderListaPorDerecha(Pedido& elem, int ult = -1); //Se inicia a -1 para que no entre en caso de no ser llamado
-        void extenderListaPorIzquierda(Pedido& elem, int ult = -1);
+        void extenderListaPorDerecha(Pedido& elem);
+        void extenderListaPorIzquierda(Pedido& elem);
         Pedido& elemInicial();
         Pedido& elemFinal();
         void eliminarPrimero();

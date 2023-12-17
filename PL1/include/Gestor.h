@@ -24,7 +24,7 @@ public:
     void simularGestionReservasProximaHora(); //Opción 7
     void simularGestionReservasTotal(); //Opción 8
 
-    void insertarPedidosEnLista(Pedido** pedidos,int longitudPedidos); //Opción 9
+    void insertarPedidoEnLista(Pedido* pedido); //Opción 9
     void mostrarListaPedidos(); //Opción 10
     void mostrarColaReservasPendientes(); //Opción 12
     void insertarPedidoEnABB(Pedido* pedido); //Opción 13

@@ -288,9 +288,7 @@ void Gestor::simularGestionProximaReserva()
     cout << "-------------Procesando reserva-------------" <<endl;
     Pedido* pPedido = procesarReserva(pReserva,esReservaPdtDelFinal,esReservaPdtDelFinal,true);
     if (pPedido != nullptr){
-        Pedido** pedidos = new Pedido*[1];
-        pedidos[0] = pPedido;
-        insertarPedidosEnLista(pedidos,1);
+        insertarPedidoEnLista(pPedido);
     }
 
     //Si pertenece a colaReservas se comprueba el cambio de hora
@@ -421,9 +419,7 @@ void Gestor::simularGestionReservasProximaHora()
         cout << "----------Procesando reserva------------" <<endl;
         Pedido* pPedido = procesarReserva(pReserva,false,false,true);
         if (pPedido != nullptr){
-            Pedido** pedidos = new Pedido*[1];
-            pedidos[0] = pPedido;
-            insertarPedidosEnLista(pedidos,1);
+            insertarPedidoEnLista(pPedido);
         }
 
         //Por cada 2 reservas que salen de cola reservas se comprueba una de colas pendientes si la hay
@@ -474,14 +470,11 @@ void Gestor::Salir()
 
 
 /**
-* Inserta los pedidos del array de punteros a pedidos ,recibido como parámetro, en la lista de pedidos en su lugar correspondiente (ordenada por categoría).
-* Cada pedido en su lugar correspondiente sin reordenar la lista.
+* Inserta el pedido dado en la lista de pedidos
 */
-void Gestor::insertarPedidosEnLista(Pedido** pedidos,int longitudPedidos)
+void Gestor::insertarPedidoEnLista(Pedido* pedido)
 {
-    for(int i = 0; i< longitudPedidos;i++){
-        listaPedidos.extenderListaPorCategoria(*pedidos[i]);
-    }
+    listaPedidos.extenderListaPorCategoria(*pedido);
 }
 
 /**

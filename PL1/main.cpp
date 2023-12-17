@@ -115,22 +115,20 @@ int main()
                 cout << "Volviendo al menú principal." << endl;
                 break;
             }
-
-            Pedido** pedidos = new Pedido*[numPedidos];
             bool error = false;
             for(int i = 0; i<numPedidos;i++){
                 cout << "Introduce los datos del pedido " << (i+1) << ":" << endl;
                 Pedido* pedido = cogerDatosPedido();
                 if (pedido == nullptr){
-                    cout << "Error cogiendo los datos de los pedidos. No se añadieron los pedidos a la lista de pedidos." << endl;
+                    cout << "Error cogiendo los datos del pedido. Último pedido no añadido a la lista de pedidos." << endl;
                     error = true;
                     break;
                 }else{
-                    pedidos[i] = pedido;
+                    gestor.insertarPedidoEnLista(pedido);
+                    cout << "Insertado el pedido " << (i+1) << " en la lista de pedidos." << endl;
                 }
             }
             if (!error){
-                gestor.insertarPedidosEnLista(pedidos,numPedidos);
                 cout << "Insertados los " << numPedidos << " pedidos en la lista de pedidos." << endl;
             }
             break;

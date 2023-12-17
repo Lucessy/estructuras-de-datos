@@ -25,9 +25,9 @@ Lista::~Lista()
 
 
 
-void Lista::extenderListaPorDerecha(Pedido& elem, int ult)
+void Lista::extenderListaPorDerecha(Pedido& elem)
 {
-    NodoLista* nuevoNodo = new NodoLista(elem,NULL,ultimo);
+    NodoLista* nuevoNodo = new NodoLista(elem,nullptr,ultimo);
     if(esVacia())
     {
         primero = nuevoNodo;
@@ -39,25 +39,23 @@ void Lista::extenderListaPorDerecha(Pedido& elem, int ult)
         ultimo = nuevoNodo;
     }
 
-    switch(ult)
-    {
-    case 0:
+    string pref = elem.getPreferenciaMenu();
+    if(pref == "completo"){
         ultCompleto = nuevoNodo;
-        break;
-    case 1:
+    }
+    else if(pref == "sinGluten"){
         ultSinGluten = nuevoNodo;
-        break;
-    case 2:
+    }
+    else{
         ultVegano = nuevoNodo;
-        break;
     }
 
     longitud++;
 }
 
-void Lista::extenderListaPorIzquierda(Pedido& elem, int ult)
+void Lista::extenderListaPorIzquierda(Pedido& elem)
 {
-    NodoLista* nuevoNodo = new NodoLista(elem,primero,NULL);
+    NodoLista* nuevoNodo = new NodoLista(elem,primero,nullptr);
     if(esVacia())
     {
         primero = nuevoNodo;
@@ -69,87 +67,99 @@ void Lista::extenderListaPorIzquierda(Pedido& elem, int ult)
         primero = nuevoNodo;
     }
 
-    switch(ult)
-    {
-    case 0:
+    string pref = elem.getPreferenciaMenu();
+    if(pref == "completo"){
         ultCompleto = nuevoNodo;
-        break;
-    case 1:
+    }
+    else if(pref == "sinGluten"){
         ultSinGluten = nuevoNodo;
-        break;
-    case 2:
+    }
+    else{
         ultVegano = nuevoNodo;
-        break;
     }
 
     longitud++;
 }
 
+/**
+* Extiende la lista con el elemento dado, en su posición correspondiente por categoría.
+* Las categorías se distribuyen en este orden: completo, sinGluten,vegano
+* La lista está siempre ordenada, los nuevos elementos se insertan en su posición correspondiente al final su categoría.
+*/
 void Lista::extenderListaPorCategoria(Pedido& elem)
 {
     string categoria = elem.getPreferenciaMenu();
     NodoLista* sig = nullptr;
+
+    // Se guarda una referencia al puntero que se usará para insertar el elemento dependiendo de su categoría.
+    NodoLista** punteroUtilizado = nullptr;
+    bool insertar = false;
+
     if(categoria=="completo")
     {
-        // 0
+        // Si aún no hay ningún menú completo la lista simplemente se extiende por la izquierda porque irá primero así
         if(ultCompleto==nullptr)
         {
-            extenderListaPorIzquierda(elem,0);
+            extenderListaPorIzquierda(elem);
         }
         else
         {
-            NodoLista* nuevoNodo = new NodoLista(elem,ultCompleto->siguiente,ultCompleto);
-            ultCompleto->siguiente->anterior = nuevoNodo;
-            ultCompleto->siguiente = nuevoNodo;
-            ultCompleto = nuevoNodo;
-            longitud++;
+            insertar = true;
+            punteroUtilizado = &ultCompleto;
         }
     }
     else if(categoria=="sinGluten")
     {
-        // 1
+        // Si no hay ya un pedido sin glutén, si no hay un pedido completo (el primero de las 3 categorías) se coloca a la izquierda
+        // y si sí lo hay entonces se coloca a su derecha
         if(ultSinGluten==nullptr)
         {
             if(ultCompleto!=nullptr)
             {
+                //Lo crea justo después del último completo
                 NodoLista* nuevoNodo = new NodoLista(elem,ultCompleto->siguiente,ultCompleto);
+                longitud++;
                 if(ultCompleto->siguiente != nullptr)
                 {
                     ultCompleto->siguiente->anterior = nuevoNodo;
                 }
                 ultCompleto->siguiente = nuevoNodo;
                 ultSinGluten = nuevoNodo;
-                longitud++;
             }
             else
             {
-                extenderListaPorIzquierda(elem,1);
+                extenderListaPorIzquierda(elem);
             }
         }
         else
         {
-            NodoLista* nuevoNodo = new NodoLista(elem,ultSinGluten->siguiente,ultSinGluten);
-            ultSinGluten->siguiente->anterior = nuevoNodo;
-            ultSinGluten->siguiente = nuevoNodo;
-            ultSinGluten = nuevoNodo;
-            longitud++;
+            insertar = true;
+            punteroUtilizado = &ultSinGluten;
         }
     }
     else
     {
-        // 2
+        // Si no hay ya un último pedido vegano se inserta por la derecha y así será la última categoría como debe ser
         if(ultVegano==nullptr)
         {
-            extenderListaPorDerecha(elem,2);
+            extenderListaPorDerecha(elem);
         }
         else
         {
-            NodoLista* nuevoNodo = new NodoLista(elem,ultVegano->siguiente,ultVegano);
-            ultVegano->siguiente->anterior = nuevoNodo;
-            ultVegano->siguiente = nuevoNodo;
-            ultVegano = nuevoNodo;
-            longitud++;
+            insertar = true;
+            punteroUtilizado = &ultVegano;
         }
+    }
+
+    //Si el pedido no era el primero en ningún caso se inserta en su lugar correspondiente usando el puntero correspondiente a la categoría
+    if(insertar){
+        NodoLista* nuevoNodo = new NodoLista(elem, (*punteroUtilizado)->siguiente, (*punteroUtilizado));
+        longitud++;
+        if( (*punteroUtilizado)->siguiente != nullptr){
+             (*punteroUtilizado)->siguiente->anterior = nuevoNodo;
+        }
+        (*punteroUtilizado)->siguiente = nuevoNodo;
+        *punteroUtilizado = nuevoNodo;
     }
 }
 
