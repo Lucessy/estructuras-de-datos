@@ -234,7 +234,8 @@ Pedido* Gestor::procesarReserva(Reserva* pReserva,bool esReservaPdt, bool esRese
         //Se crea el pedido con esas mesas
         pPedido = crearPedidos(mesas,pReserva);
         //Si no es necesario reinsertarla en la cola se retorna el pedido creado. Especificamente se usa para crear pedidos independientes al sistema de colas, buscando las mesas.
-        if(!reinsertarEnCola){
+        if(!reinsertarEnCola)
+        {
             return pPedido;
         }
     }
@@ -296,7 +297,8 @@ void Gestor::simularGestionProximaReserva()
     //Se procesa la siguiente reserva
     cout << "-------------Procesando reserva-------------" <<endl;
     Pedido* pPedido = procesarReserva(pReserva,esReservaPdtDelFinal,esReservaPdtDelFinal,true);
-    if (pPedido != nullptr){
+    if (pPedido != nullptr)
+    {
         insertarPedidoEnLista(pPedido);
     }
 
@@ -427,7 +429,8 @@ void Gestor::simularGestionReservasProximaHora()
         //Se procesa la siguiente reserva
         cout << "----------Procesando reserva------------" <<endl;
         Pedido* pPedido = procesarReserva(pReserva,false,false,true);
-        if (pPedido != nullptr){
+        if (pPedido != nullptr)
+        {
             insertarPedidoEnLista(pPedido);
         }
 
@@ -510,6 +513,14 @@ void Gestor::mostrarColaReservasPendientes()
 void Gestor::insertarPedidoEnABB(Pedido* pedido)
 {
     pedido->setFinalizado(true);
+    if(pedido->getMesaAsignada1() != nullptr)
+    {
+        pilaMesas.apilar(*(pedido->getMesaAsignada1()));
+    }
+    if(pedido->getMesaAsignada2() != nullptr)
+    {
+        pilaMesas.apilar(*(pedido->getMesaAsignada2()));
+    }
     abbPedidos.insertar(pedido->getNombreCliente(),pedido);
 }
 
@@ -527,9 +538,12 @@ void Gestor::mostrarNombresClientesAlfabeticamente()
 void Gestor::mostrarPedidosDeCliente(string nombreCliente)
 {
     Lista* listaPedidos = abbPedidos.buscarListaPedidosPorNombre(nombreCliente);
-    if (listaPedidos == nullptr){
+    if (listaPedidos == nullptr)
+    {
         cout << "No se ha gestionado ningún pedido del cliente: " << nombreCliente << endl;
-    }else{
+    }
+    else
+    {
         cout << "Pedidos gestionados para el cliente: " << nombreCliente << " : " <<endl;
         listaPedidos->mostrarDatosLista();
     }
@@ -542,9 +556,9 @@ void Gestor::mostrarCantidadPedidoPorCategoria()
 {
     abbPedidos.sumarCategorias();
     cout << "Numero de pedidos realizados en la categoria:" << endl;
-        cout << "   " << "Completo: " << abbPedidos.getLongCompleto() << endl;
-        cout << "   " << "Sin Gluten: " << abbPedidos.getLongSinGluten() << endl;
-        cout << "   " << "Vegano: " << abbPedidos.getLongVegano() << endl;
+    cout << "   " << "Completo: " << abbPedidos.getLongCompleto() << endl;
+    cout << "   " << "Sin Gluten: " << abbPedidos.getLongSinGluten() << endl;
+    cout << "   " << "Vegano: " << abbPedidos.getLongVegano() << endl;
 }
 
 /**
