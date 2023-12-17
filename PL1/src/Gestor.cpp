@@ -162,8 +162,8 @@ void Gestor::generarPilaMesas()
 void Gestor::mostrarPilaMesas()
 {
     pilaMesas.mostrarPilaMesas();
-} //Opci�n 5
-//---------------
+} //Opción 5
+
 /**
 * Vacia la pila de mesas
 */
@@ -523,7 +523,13 @@ void Gestor::mostrarNombresClientesAlfabeticamente()
 */
 void Gestor::mostrarPedidosDeCliente(string nombreCliente)
 {
-
+    Lista* listaPedidos = abbPedidos.buscarListaPedidosPorNombre(nombreCliente);
+    if (listaPedidos == nullptr){
+        cout << "No se ha gestionado ningún pedido del cliente: " << nombreCliente << endl;
+    }else{
+        cout << "Pedidos gestionados para el cliente: " << nombreCliente << " : " <<endl;
+        listaPedidos->mostrarDatosLista();
+    }
 }
 
 /**
@@ -535,11 +541,11 @@ void Gestor::mostrarCantidadPedidoPorCategoria()
 }
 
 /**
-* Muestra los datos de los clientes que han realizado pedidos de categoría MenuVegano
+* Muestra los datos de los pedidos gestionados de los clientes que han realizado pedidos de categoría MenuVegano
 */
 void Gestor::mostrarClientesConMenuVegano()
 {
-
+    abbPedidos.verEnOrden(false,true);
 }
 
 
