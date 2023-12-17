@@ -12,71 +12,21 @@
 	<cstdlib>
 	<ctime>
 
-1702782525 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
-	"Lista.h"
-	<iostream>
-
-1702782230 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
-	<NodoLista.h>
-	"Pila.h"
-
-1699026565 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\reserva.cpp
+1699142609 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\cola.h
+	"NodoCola.h"
 	"Reserva.h"
-	<cstring>
+
+1698056236 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodocola.h
 	<iostream>
-	"Mesa.h"
+	"Reserva.h"
 
 1699047382 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\reserva.h
 	<iostream>
 	<string>
 	"Mesa.h"
 
-1698589751 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\mesa.cpp
-	"Mesa.h"
-	<iostream>
-
 1698065543 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\mesa.h
 	<string>
-
-1702642105 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
-	"Pila.h"
-	<iostream>
-	"NodoPila.h"
-	"Pedido.h"
-	"Mesa.h"
-
-1702599079 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pila.h
-	<NodoPila.h>
-	"Reserva.h"
-
-1698057013 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodocola.cpp
-	"NodoCola.h"
-	<iostream>
-
-1698056236 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodocola.h
-	<iostream>
-	"Reserva.h"
-
-1699142609 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\cola.cpp
-	"Cola.h"
-	"NodoCola.h"
-	<iostream>
-	"Reserva.h"
-
-1699142609 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\cola.h
-	"NodoCola.h"
-	"Reserva.h"
-
-1702782887 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
-	"Gestor.h"
-	"Cola.h"
-	"Reserva.h"
-	"Mesa.h"
-	"Pila.h"
-	<cstdlib>
-	<ctime>
-	<random>
-	<cstdlib>
 
 1702772394 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\gestor.h
 	"Cola.h"
@@ -84,167 +34,25 @@
 	"Lista.h"
 	"ABB.h"
 
-1699026565 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pedido.cpp
-	"Pedido.h"
-	<iostream>
-
-1702598001 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pedido.h
-	<iostream>
-	<string>
-	"Mesa.h"
-
-1697929950 ated upstream
+1702599079 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pila.h
+	<NodoPila.h>
+	"Reserva.h"
 
 1698054766 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodopila.h
 	"Mesa.h"
 
-1698054766 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodopila.cpp
-	"NodoPila.h"
-	"Mesa.h"
-	<iostream>
-
-1697975654 h"
-
-1702776504 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\main.cpp
-	<iostream>
-	<locale.h>
-	<random>
-	"Cola.h"
-	"NodoCola.h"
-	"Reserva.h"
-	"Gestor.h"
-	"Lista.h"
-	"Gestor.h"
-	<cstdlib>
-	<ctime>
-
-1699140625 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\cola.cpp
-	"Cola.h"
-	"NodoCola.h"
-	<iostream>
-	"Reserva.h"
-
-1699140610 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\cola.h
-	"NodoCola.h"
-	"Reserva.h"
-
-1698091198 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodocola.h
-	<iostream>
-	"Reserva.h"
-
-1702783530 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
-	"Gestor.h"
-	"Cola.h"
-	"Reserva.h"
-	"Mesa.h"
-	"Pila.h"
-	<cstdlib>
-	<ctime>
-	<random>
-	<cstdlib>
-
-1702776504 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\gestor.h
-	"Cola.h"
-	"Pila.h"
-	"Lista.h"
-	"ABB.h"
-
-1702763319 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\pila.h
-	<NodoPila.h>
-	"Reserva.h"
-
-1702783637 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\lista.h
+1702820579 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\lista.h
 	<NodoLista.h>
 	"Pila.h"
-
-1702812828 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\lista.cpp
-	"Lista.h"
-	<iostream>
-	<math.h>
-
-1698530366 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\mesa.cpp
-	"Mesa.h"
-	<iostream>
-
-1698091198 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\mesa.h
-	<string>
-
-1698091198 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodocola.cpp
-	"NodoCola.h"
-	<iostream>
-
-1701902088 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pedido.cpp
-	"Pedido.h"
-	<iostream>
-
-1698971273 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\pedido.h
-	<iostream>
-	<string>
-	"Mesa.h"
-
-1702763319 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pila.cpp
-	"Pila.h"
-	<iostream>
-	"NodoPila.h"
-	"Pedido.h"
-	"Mesa.h"
-
-1698971406 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\reserva.cpp
-	"Reserva.h"
-	<cstring>
-	<iostream>
-	"Mesa.h"
-
-1699096758 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\reserva.h
-	<iostream>
-	<string>
-	"Mesa.h"
-
-1697966980 shed changes
-
-1698091198 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodopila.h
-	"Mesa.h"
-
-1698091198 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodopila.cpp
-	"NodoPila.h"
-	"Mesa.h"
-	<iostream>
 
 1699031341 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\nodolista.h
 	<iostream>
 	<Pedido.h>
 
-1698056973 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodolista.cpp
-	"NodoLista.h"
+1702598001 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\pedido.h
 	<iostream>
-	<Pedido.h>
-
-1699096758 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodolista.h
-	<iostream>
-	<Pedido.h>
-
-1698091198 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodolista.cpp
-	"NodoLista.h"
-	<iostream>
-	<Pedido.h>
-
-1702770735 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodoabb.cpp
-	"NodoABB.h"
-	"Lista.h"
-
-1702770735 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodoabb.h
 	<string>
-	<Lista.h>
-
-1702812035 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\abb.cpp
-	"ABB.h"
-	<iostream>
-	<Lista.h>
-
-1702783530 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\abb.h
-	<NodoABB.h>
-	<string>
-	<Lista.h>
+	"Mesa.h"
 
 1702783070 c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\include\abb.h
 	<NodoABB.h>
@@ -255,12 +63,69 @@
 	<string>
 	<Lista.h>
 
-1702782962 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\abb.cpp
+1702783108 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\abb.cpp
 	"ABB.h"
 	<iostream>
 	<Lista.h>
 
+1699142609 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\cola.cpp
+	"Cola.h"
+	"NodoCola.h"
+	<iostream>
+	"Reserva.h"
+
+1702821782 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\gestor.cpp
+	"Gestor.h"
+	"Cola.h"
+	"Reserva.h"
+	"Mesa.h"
+	"Pila.h"
+	<cstdlib>
+	<ctime>
+	<random>
+	<cstdlib>
+
+1702820579 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\lista.cpp
+	"Lista.h"
+	<iostream>
+	<math.h>
+
+1698589751 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\mesa.cpp
+	"Mesa.h"
+	<iostream>
+
 1702768757 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodoabb.cpp
 	"NodoABB.h"
 	"Lista.h"
+
+1698057013 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodocola.cpp
+	"NodoCola.h"
+	<iostream>
+
+1698056973 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodolista.cpp
+	"NodoLista.h"
+	<iostream>
+	<Pedido.h>
+
+1698054766 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\nodopila.cpp
+	"NodoPila.h"
+	"Mesa.h"
+	<iostream>
+
+1699026565 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pedido.cpp
+	"Pedido.h"
+	<iostream>
+
+1702642105 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\pila.cpp
+	"Pila.h"
+	<iostream>
+	"NodoPila.h"
+	"Pedido.h"
+	"Mesa.h"
+
+1702820672 source:c:\users\jorge\desktop\universidad\3ºaño\estructuras de datos\pl1-github\estructuras-de-datos\pl1\src\reserva.cpp
+	"Reserva.h"
+	<cstring>
+	<iostream>
+	"Mesa.h"
 

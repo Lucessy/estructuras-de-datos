@@ -192,12 +192,15 @@ void Gestor::mostrarAbbPedidos()
 void Gestor::simularCambioHora()
 {
     Lista pedidosFinalizados = listaPedidos.sacarSiguientesPedidos(pilaMesas);
+    cout << "Pedidos sacados con exito" << endl;
     int longitud = pedidosFinalizados.getLongitud();
     for(int j = 0; j < longitud; j++)
     {
         abbPedidos.insertar(pedidosFinalizados.elemInicial().getNombreCliente(), &(pedidosFinalizados.elemInicial()));
+        cout << "Insertado un pedido" << endl;
         pedidosFinalizados.eliminarPrimero();
     }
+    cout << "Pedidos insertados con exito" << endl;
 }
 
 /**

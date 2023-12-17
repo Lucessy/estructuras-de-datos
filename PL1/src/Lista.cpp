@@ -341,13 +341,16 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
         cout << "Sacando ultCompleto" << endl;
         primCategoria = primero;
         aux = primCategoria;
-        for(int i = 0; i < ceil(longCompleto/2) ; i++)
+        int iteraciones = ceil(longCompleto/2);
+        for(int i = 0; i < iteraciones ; i++)
         {
             auxLista.extenderListaPorDerecha(*(aux->pPedido));
-            eliminarPrimero();
+            longCompleto--;
             aux = aux->siguiente;
         }
-
+        if (longCompleto ==0){
+            ultCompleto = nullptr;
+        }
         if(aux != nullptr)
         {
             aux->anterior = primCategoria->anterior;
@@ -366,7 +369,8 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
             primCategoria = primero;
         }
         aux = primCategoria;
-        for(int i = 0; i < ceil(longSinGluten/2); i++)
+        int iteraciones = ceil(longSinGluten/2);
+        for(int i = 0; i < iteraciones; i++)
         {
             auxLista.extenderListaPorDerecha(*(aux->pPedido));
             longSinGluten--;
@@ -405,7 +409,8 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas)
         }
 
         cout << "For de ultVegano" << endl;
-        for(int i = 0; i < ceil(longVegano/2); i++)
+        int iteraciones = ceil(longVegano/2);
+        for(int i = 0; i < iteraciones; i++)
         {
             auxLista.extenderListaPorDerecha(*(aux->pPedido));
             longVegano--;
