@@ -153,6 +153,7 @@ void Lista::extenderListaPorCategoria(Pedido& elem) {
             (*punteroAUtilizar)->siguiente->anterior = nuevoNodo;
         }
         (*punteroAUtilizar) = nuevoNodo;
+
         if(nuevoNodo->siguiente == nullptr){
             ultimo = nuevoNodo;
         }
