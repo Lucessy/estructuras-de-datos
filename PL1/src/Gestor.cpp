@@ -338,6 +338,11 @@ void Gestor::simularGestionReservasProximaHora()
     }
     //Al terminar simula el cambio de hora
     simularCambioHora();
+
+    if(colaReservas.esVacia())
+    {
+        simularGestionReservasTotal();
+    }
 }//Opci�n 8
 
 /**
