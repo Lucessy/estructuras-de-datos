@@ -46,18 +46,18 @@ void ABB::verEnOrden(NodoABB *nodo,bool mostrarSoloNombres,int left_counter,int 
                 nodo->listaPedidosCliente.mostrarDatosLista();
             }
         }
-        verEnOrden(nodo->hijo_d,left_counter,mostrarSoloNombres,right_counter+1,soloVeganos);
+        verEnOrden(nodo->hijo_d,mostrarSoloNombres,left_counter,right_counter+1,soloVeganos);
     }
 }
 
 void ABB::insertar(string nombreCliente, Pedido* pedido)
 {
+    cout << "Insertando en el árbol" << endl;
     insertar(nombreCliente, pedido, raiz);
 }
 
 void ABB::insertar(string nombreCliente, Pedido* pedido, NodoABB *nodo)
 {
-    cout << "Insertando en el árbol" << endl;
 
     if(raiz == nullptr)
     {
@@ -65,7 +65,6 @@ void ABB::insertar(string nombreCliente, Pedido* pedido, NodoABB *nodo)
         cout << "Añadida nueva raiz" <<endl;
         return;
     }
-
 
     if (nodo->nombreCliente == nombreCliente)
     {
@@ -123,6 +122,9 @@ Lista* ABB::buscarListaPedidosPorNombre(string nombreCliente, NodoABB* nodo)
     return nullptr;
 }
 
+/**
+* Suma las cantidades de cada pedido recursivamente y actualiza sus variables privadas respectivas estas cantidades.
+*/
 void ABB::sumarCategorias()
 {
     if(raiz == nullptr)
@@ -148,8 +150,6 @@ void ABB::sumarCategorias(NodoABB *nodo,int left_counter,int right_counter)
         longCompleto += nodo->listaPedidosCliente.getLongCompleto();
         longSinGluten += nodo->listaPedidosCliente.getLongSinGluten();
         longVegano += nodo->listaPedidosCliente.getLongVegano();
-
-        cout << "\nNodo: Izq: " << left_counter << " , Der: " << right_counter << endl;
 
         sumarCategorias(nodo->hijo_d,left_counter,right_counter+1);
     }
