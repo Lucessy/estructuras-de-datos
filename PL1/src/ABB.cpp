@@ -52,7 +52,6 @@ void ABB::verEnOrden(NodoABB *nodo,bool mostrarSoloNombres,int left_counter,int 
 
 void ABB::insertar(string nombreCliente, Pedido* pedido)
 {
-    cout << "Insertando en el árbol" << endl;
     insertar(nombreCliente, pedido, raiz);
 }
 
@@ -62,7 +61,6 @@ void ABB::insertar(string nombreCliente, Pedido* pedido, NodoABB *nodo)
     if(raiz == nullptr)
     {
         raiz = new NodoABB(nombreCliente,pedido,nullptr,nullptr);
-        cout << "Añadida nueva raiz" <<endl;
         return;
     }
 

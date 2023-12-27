@@ -16,6 +16,7 @@ class Cola
         bool esVacia();
         void mostrarCola();
         void vaciarCola();
+        void generarReservas();
 
     protected:
 

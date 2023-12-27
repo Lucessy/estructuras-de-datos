@@ -35,10 +35,16 @@ void Pila::apilar(Mesa& mesa)
 
 void Pila::vaciarPila()
 {
+    if(esVacia())
+    {
+        cout << "La pila de mesas está vacía."<<endl;
+        return;
+    }
     while(cima!=NULL)
     {
         desapilar();
     }
+    cout << "Pila de mesas vaciada."<<endl;
 }
 
 void Pila::desapilar()
@@ -78,7 +84,7 @@ void Pila::mostrarPilaMesas()
 
 Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
 {
-    cout << "Comenzando busqueda de mesas..." << endl;
+
     NodoPila* ant1 = nullptr;
     NodoPila* nodo1 = nullptr;
 
@@ -122,20 +128,17 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
                 {
                     ant1 = antAux;
                     nodo1 = nodoAux;
-                    cout << "Mesa 1 encontrada" << endl;
                 }
                 //Si encuentra la segunda mesa la guarda
                 else if(nodo2 == nullptr&&(nodoAux->pmesa->capacidad == combs[((capacidad-1)/2)][i][1]))
                 {
                     ant2 = antAux;
                     nodo2 = nodoAux;
-                    cout << "Mesa 2 encontrada" << endl;
                 }
                 //Si tenemos la primera mesa y la segunda o la primera sin necesitar la segunda se deja de buscar
                 if(nodo1 != nullptr && (nodo2!=nullptr || combs[((capacidad-1)/2)][i][1] == 0))
                 {
                     buscando = false;
-                    cout << "Combinación encontrada" << endl;
                 }
             }
             //Cambio de nodo
@@ -176,7 +179,8 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
         {
             cima = nodo1->siguiente;
         }
-        if(ant2 == nodo1){
+        if(ant2 == nodo1)
+        {
             ant2 = ant1;
         }
         delete nodo1;
@@ -196,18 +200,65 @@ Mesa** Pila::buscarMesas(Reserva* pReserva, int capacidad)
             delete nodo2;
         }
     }
-    cout << "Mesas" << (mesasEncontradas?" " :" no ") << "encontradas" <<endl;
+
     return mesas;
 
 }
 
+/**
+*  Genera una pila de 20 mesas con datos aleatorios (al menos 8 en terraza)
+*/
+void Pila::generarMesas(bool seHaComenzadoLaSimulacion)
+{
+    //Comprueba que la simulación no ha comenzado aún para evitar duplicamiento de mesas
+    if(seHaComenzadoLaSimulacion)
+    {
+        cout << "No se puede alterar la pila de mesas una vez se ha empezado la simulación." << endl;
+        return;
+    }
+    //Si la pila no está vacia se vacía primero
+    if(!esVacia())
+    {
+        cout << "Generando nueva pila de mesas. Vaciando la pila anterior." << endl;
+        vaciarPila();
+    }
+    //Inicialización de variables
+    string situaciones[2] = {"Terraza","Interior"};
+    int capacidades[2] = {2,4};
+    int numeroMesasTerraza = 0;
+    int numSituacion;
+    //Generación de mesas
+    for(int numeroMesa=20; numeroMesa>=1; numeroMesa--)
+    {
+        //Genera aleatoriamente la capacidad
+        int capacidad = capacidades [rand() % 2];
+        string situacion;
+
+        //Genera aleatoriamente la situación
+        numSituacion = rand() % 2;
+        //Garantizamos que habrá un mínimo de 8 mesas en Terraza
+        if(numeroMesasTerraza < 8 && numSituacion == 0)
+        {
+            situacion = situaciones[0];
+            numeroMesasTerraza++;
+        }
+        else
+        {
+            situacion = situaciones [numSituacion];
+        }
+        //Se crea la nueva mesa y se apila
+        Mesa* pmesa = new Mesa(numeroMesa,capacidad,situacion);
+        apilar(*pmesa);
+    }
+}
 
 bool Pila::contiene(Mesa* mesa)
 {
     NodoPila* aux = cima;
     while(aux)
     {
-        if (aux->pmesa == mesa){
+        if (aux->pmesa == mesa)
+        {
             return true;
         }
         aux = aux->siguiente;

@@ -18,6 +18,7 @@ class Pila
         Mesa& getMesaCima();
         Mesa** buscarMesas(Reserva* pReserva, int capacidad);
         bool contiene(Mesa* mesa);
+        void generarMesas(bool seHaComenzadoLaSimulacion);
 
     protected:
 

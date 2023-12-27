@@ -129,3 +129,135 @@
 	<iostream>
 	"Mesa.h"
 
+1703639432 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\main.cpp
+	<iostream>
+	<locale.h>
+	<random>
+	"Cola.h"
+	"NodoCola.h"
+	"Reserva.h"
+	"Gestor.h"
+	"Lista.h"
+	"Gestor.h"
+	<cstdlib>
+	<ctime>
+
+1703641880 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\cola.h
+	"NodoCola.h"
+	"Reserva.h"
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodocola.h
+	<iostream>
+	"Reserva.h"
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\reserva.h
+	<iostream>
+	<string>
+	"Mesa.h"
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\mesa.h
+	<string>
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\gestor.h
+	"Cola.h"
+	"Pila.h"
+	"Lista.h"
+	"ABB.h"
+
+1703641174 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\pila.h
+	<NodoPila.h>
+	"Reserva.h"
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodopila.h
+	"Mesa.h"
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\lista.h
+	<NodoLista.h>
+	"Pila.h"
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodolista.h
+	<iostream>
+	<Pedido.h>
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\pedido.h
+	<iostream>
+	<string>
+	"Mesa.h"
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\abb.h
+	<NodoABB.h>
+	<string>
+	<Lista.h>
+
+1703639432 c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\include\nodoabb.h
+	<string>
+	<Lista.h>
+
+1703641922 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\cola.cpp
+	"Cola.h"
+	"NodoCola.h"
+	<iostream>
+	"Reserva.h"
+	<cstdlib>
+	<ctime>
+
+1703641614 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
+	"Gestor.h"
+	"Cola.h"
+	"Reserva.h"
+	"Mesa.h"
+	"Pila.h"
+	<cstdlib>
+	<ctime>
+	<random>
+	<cstdlib>
+
+1703640576 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\lista.cpp
+	"Lista.h"
+	<iostream>
+	<math.h>
+
+1703639432 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\mesa.cpp
+	"Mesa.h"
+	<iostream>
+
+1703639432 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodocola.cpp
+	"NodoCola.h"
+	<iostream>
+
+1703639432 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodopila.cpp
+	"NodoPila.h"
+	"Mesa.h"
+	<iostream>
+
+1703640248 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pedido.cpp
+	"Pedido.h"
+	<iostream>
+
+1703641436 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\pila.cpp
+	"Pila.h"
+	<iostream>
+	"NodoPila.h"
+	"Pedido.h"
+	"Mesa.h"
+
+1703641681 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\reserva.cpp
+	"Reserva.h"
+	<cstring>
+	<iostream>
+	"Mesa.h"
+
+1703640340 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\abb.cpp
+	"ABB.h"
+	<iostream>
+	<Lista.h>
+
+1703639432 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodoabb.cpp
+	"NodoABB.h"
+	"Lista.h"
+
+1703639432 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\nodolista.cpp
+	"NodoLista.h"
+	<iostream>
+	<Pedido.h>
+

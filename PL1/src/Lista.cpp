@@ -316,7 +316,6 @@ void Lista::mostrarDatosLista(string pref)
         return;
     }
     NodoLista* aux = primero;
-    cout << "Longitud: " << longitud <<endl;
     for(int i = 0; i<longitud; i++)
     {
         if(pref == "" || pref == aux->pPedido->getPreferenciaMenu())
@@ -345,17 +344,11 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas) {
     //Crea la lista auxiliar donde se guardarán la mitad de los pedidos de cada categoría
     Lista listaAux;
 
-    cout << "(SacarPedidos)Longitud: " << longitud <<endl;
-    cout << "(SacarPedidos)LongCompleto: " << longCompleto<<endl;
-    cout << "(SacarPedidos)LongSinGluten: " << longSinGluten<<endl;
-    cout << "(SacarPedidos)LongVegano: " << longVegano<<endl;
-
     /** Para cada tipo de categoría cambia el primCategoria, el contador y el punteroACategoria y llama a la función auxiliar
     insertarMitadCategoria() que inserta en la listaAux la mitad de los pedidos de esa categoría.*/
 
     //Caso completo
     if(ultCompleto != nullptr){
-        cout << "Sacando pedidos completos " <<endl;
         NodoLista* primCategoria = primero;
         int* contador = &longCompleto;
         NodoLista** punteroACategoria = &ultCompleto;
@@ -364,14 +357,12 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas) {
 
     //Caso sin glutén
     if(ultSinGluten != nullptr){
-        cout << "Sacando pedidos sin glut�n " <<endl;
         NodoLista* primCategoria = nullptr;
         if(ultCompleto != nullptr){
             primCategoria = ultCompleto->siguiente;
         }else{
             primCategoria = primero;
         }
-        cout << "PrimCategoria " <<primCategoria<<endl;
         int* contador = &longSinGluten;
         NodoLista** punteroACategoria = &ultSinGluten;
         insertarMitadCategoria(listaAux,primCategoria,contador,punteroACategoria);
@@ -379,7 +370,6 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas) {
 
     //Caso vegano
     if(ultVegano != nullptr){
-        cout << "Sacando pedidos veganos " <<endl;
         NodoLista* primCategoria = nullptr;
         if(ultSinGluten != nullptr){
             primCategoria = ultSinGluten->siguiente;
@@ -388,7 +378,6 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas) {
         }else{
             primCategoria = primero;
         }
-        cout << "PrimCategoria " <<primCategoria<<endl;
         int* contador = &longVegano;
         NodoLista** punteroACategoria = &ultVegano;
         insertarMitadCategoria(listaAux,primCategoria,contador,punteroACategoria);
@@ -401,11 +390,6 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas) {
     //Se llama a finalizarPedidos lo que libera las mesas de los pedidos y los marca como finalizados
     finalizarPedidos(listaAux,pilaMesas);
 
-    //Finalmente se muestra información de depuración y se devuelve la lista auxiliar.
-    cout << "(SacarPedidos)Longitud: " << longitud <<endl;
-    cout << "(SacarPedidos)LongCompleto: " << longCompleto<<endl;
-    cout << "(SacarPedidos)LongSinGluten: " << longSinGluten<<endl;
-    cout << "(SacarPedidos)LongVegano: " << longVegano<<endl;
     return listaAux;
 }
 

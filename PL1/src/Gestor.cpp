@@ -31,58 +31,7 @@ Gestor::~Gestor()
 */
 void Gestor::generarColaReservas()
 {
-    //Si la cola ya tiene reservas se vacia primero
-    if(colaReservas.esVacia() == false)
-    {
-        cout << "Generando nueva cola de reservas. Vaciando la cola anterior." << endl;
-        vaciarColaReservas();
-    }
-
-    // Generar y mostrar el número aleatorio
-    int numeroAleatorio = rand() % (50 - 12 + 1) + 12;
-    cout << "Generando:" << numeroAleatorio << " reservas aleatorias..." << endl;
-
-    //Datos
-    string horas[] = {"13:30", "14:30", "15:30"};
-    string menus[] = {"vegano", "sinGluten", "completo"};
-    string situaciones[] = {"Terraza","Interior"};
-    string nombresPosibles[] =
-    {
-        "Frodo", "Aragorn", "Gandalf", "Legolas", "Gimli",
-        "Sam", "Boromir", "Merry", "Pippin", "Sauron",
-        "Saruman", "Elrond", "Galadriel", "Faramir", "Denethor",
-        "Théoden", "Éowyn", "Gollum", "Bilbo", "Thorin",
-        "Dwalin", "Balin", "Kili", "Fili", "Oin",
-        "Gloin", "Dori", "Nori", "Ori", "Bombur", //30
-        "Eomer", "Theodred", "Arwen", "Bard", "Thrain",
-        "Dis", "Smaug", "Thranduil", "Celeborn", "Glorfindel",
-        "Radagast", "Beorn", "Gwaihir", "Tom Bombadil", "Goldberry", //45
-        "Treebeard", "Quickbeam", "Fangorn", "Barliman", "Butterbur",
-        "Shadowfax", "Windfola", "Hasufel", "Arod", "Shadowfax",
-        "Billy", "Bruce willis", "Gengis-khan", "Grishnákh","Sherlock" //60
-    };
-
-    //Inicialización de variables
-    srand(time(0));
-    int turnoHora = -1;
-    int numReservasPorTurno = (int)numeroAleatorio/3;
-
-    //Generación de las reservas
-    for(int i = 0; i < numeroAleatorio; i++)
-    {
-        string nombreCliente = nombresPosibles[rand() % 60];
-        string menu = menus[rand() % 3];
-        string situacion = situaciones [rand() % 2];
-        int numeroPersonas = rand() % 8 + 1;
-        if((i)%numReservasPorTurno == 0 && turnoHora<2)
-        {
-            turnoHora ++;
-        }
-        string hora = horas[turnoHora];
-        //Crear y añadir nueva reserva
-        Reserva* preserva = new Reserva(nombreCliente, hora, situacion, numeroPersonas, menu);
-        colaReservas.encolar(*preserva);
-    }
+    colaReservas.generarReservas();
 }
 
 /**
@@ -112,48 +61,7 @@ void Gestor::vaciarColaReservas()
 */
 void Gestor::generarPilaMesas()
 {
-    //Comprueba que la simulación no ha comenzado aún para evitar duplicamiento de mesas
-    if(seHaComenzadoLaSimulacion)
-    {
-        cout << "No se puede alterar la pila de mesas una vez se ha empezado la simulación." << endl;
-        return;
-    }
-    //Si la pila no está vacia se vacía primero
-    if(!pilaMesas.esVacia())
-    {
-        cout << "Generando nueva pila de mesas. Vaciando la pila anterior." << endl;
-        vaciarPilaMesas();
-    }
-    //Inicialización de variables
-    string situaciones[2] = {"Terraza","Interior"};
-    int capacidades[2] = {2,4};
-    int numeroMesasTerraza = 0;
-    int numSituacion;
-    //Generación de mesas
-    for(int numeroMesa=20; numeroMesa>=1; numeroMesa--)
-    {
-        //Genera aleatoriamente la capacidad
-        int capacidad = capacidades [rand() % 2];
-        string situacion;
-
-        //Genera aleatoriamente la situación
-        numSituacion = rand() % 2;
-        //Garantizamos que habrá un mínimo de 8 mesas en Terraza
-        if(numeroMesasTerraza < 8 && numSituacion == 0)
-        {
-            situacion = situaciones[0];
-            numeroMesasTerraza++;
-        }
-        else
-        {
-            situacion = situaciones [numSituacion];
-        }
-        //Se crea la nueva mesa y se apila
-        Mesa* pmesa = new Mesa(numeroMesa,capacidad,situacion);
-        pilaMesas.apilar(*pmesa);
-    }
-    cout << "Pila de mesas generada." << endl;
-    //cout << "Numero mesas en terraza:" << numeroMesasTerraza << endl;
+    pilaMesas.generarMesas(seHaComenzadoLaSimulacion);
 } //Opci�n 4
 
 /**
@@ -192,16 +100,13 @@ void Gestor::mostrarAbbPedidos()
 void Gestor::simularCambioHora()
 {
     Lista pedidosFinalizados = listaPedidos.sacarSiguientesPedidos(pilaMesas);
-    cout << "Pedidos sacados con exito" << endl;
     int longitud = pedidosFinalizados.getLongitud();
     for(int j = 0; j < longitud; j++)
     {
         pedidosFinalizados.elemInicial().setFinalizado(true);
         abbPedidos.insertar(pedidosFinalizados.elemInicial().getNombreCliente(), &(pedidosFinalizados.elemInicial()));
-        cout << "Insertado un pedido" << endl;
         pedidosFinalizados.eliminarPrimero();
     }
-    cout << "Pedidos insertados con exito" << endl;
 }
 
 /**
@@ -296,7 +201,6 @@ void Gestor::simularGestionProximaReserva()
     string horaActual = pReserva->getHoraReserva();
 
     //Se procesa la siguiente reserva
-    cout << "-------------Procesando reserva-------------" <<endl;
     Pedido* pPedido = procesarReserva(pReserva,esReservaPdtDelFinal,esReservaPdtDelFinal,true);
     if (pPedido != nullptr)
     {
@@ -307,7 +211,6 @@ void Gestor::simularGestionProximaReserva()
     if(!esReservaPdtDelFinal)
     {
         //Se comprueba si han terminado todas las reservas de una hora
-        cout << " Cambio de hora: " << (comprobarCambioHora(horaActual) ? "Si":"No") << endl;
         if(comprobarCambioHora(horaActual))
         {
             cout << "Simulando el cambio de hora..." << endl;
@@ -322,12 +225,10 @@ void Gestor::simularGestionProximaReserva()
         if(!colaReservasPdtes.esVacia())
         {
             //Se guarda la próxima reserva pendiente, se procesa y se muestran sus datos
-            cout << "--------------Procesando reserva pendiente----------" << endl;
             pReserva = siguienteReserva(true);
             procesarReserva(pReserva,true,false,true);
         }
     }
-    cout << "SIMULACION DE LAS GESTION DE LA PROXIMA RESERVA TERMINADA" << endl;
 } //Opci�n 7
 
 /**
@@ -428,7 +329,6 @@ void Gestor::simularGestionReservasProximaHora()
         Reserva* pReserva = siguienteReserva(false);
 
         //Se procesa la siguiente reserva
-        cout << "----------Procesando reserva------------" <<endl;
         Pedido* pPedido = procesarReserva(pReserva,false,false,true);
         if (pPedido != nullptr)
         {
@@ -458,6 +358,7 @@ void Gestor::simularGestionReservasProximaHora()
 /**
 * Simula la gestión completa de todas las reservas de colaReservas y al acabarse estas, de colaReservasPdtes.
 * Simula el cambio de hora cuando es necesario y gestiona una reserva pdte cada 2 comunes.
+* Al finalizar la simulación, inserta en el ABB de pedidos los pedidos restantes hasta que la lista se quede vacía.
 */
 void Gestor::simularGestionReservasTotal()
 {
@@ -466,7 +367,10 @@ void Gestor::simularGestionReservasTotal()
     {
         simularGestionProximaReserva();
     }
-
+    while(!listaPedidos.esVacia())
+    {
+        simularCambioHora();
+    }
 } //Opci�n 9
 
 
