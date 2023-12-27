@@ -318,6 +318,7 @@ void Lista::mostrarDatosLista(string pref)
     NodoLista* aux = primero;
     for(int i = 0; i<longitud; i++)
     {
+        cout << "PEDIDO #" << i+1 << ":" << endl;
         if(pref == "" || pref == aux->pPedido->getPreferenciaMenu())
         {
             aux->pPedido->mostrarPedido();
@@ -384,7 +385,8 @@ Lista Lista::sacarSiguientesPedidos(Pila& pilaMesas) {
     }
 
     // Se muestran los datos de la lista con los pedidos extraídos
-    cout << "Datos de la lista auxiliar con la mitad de los pedidos de cada categoría: "<<endl;
+    cout << "Datos de la lista auxiliar con la mitad de los pedidos de cada categoría: " << endl << endl;
+    cout << "-----------LISTA AUXILIAR------------------------" << endl;
     listaAux.mostrarDatosLista();
 
     //Se llama a finalizarPedidos lo que libera las mesas de los pedidos y los marca como finalizados

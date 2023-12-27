@@ -20,21 +20,21 @@ public:
     void mostrarPilaMesas(); //Opción 4
     void vaciarPilaMesas(); //Opción 5
 
-    void simularGestionProximaReserva(); //Opción 6
-    void simularGestionReservasProximaHora(); //Opción 7
-    void simularGestionReservasTotal(); //Opción 8
+    void simularGestionProximaReserva();        //Opción 6
+    void simularGestionReservasProximaHora();   //Opción 7
+    void simularGestionReservasTotal();         //Opción 8
 
     void insertarPedidoEnLista(Pedido* pedido); //Opción 9
-    void mostrarListaPedidos(); //Opción 10
-    void mostrarColaReservasPendientes(); //Opción 12
-    void insertarPedidoEnABB(Pedido* pedido); //Opción 13
-    void mostrarAbbPedidos(); //Opción 14
+    void mostrarListaPedidos();                 //Opción 10
+    void mostrarColaReservasPendientes();       //Opción 12
+    void insertarPedidoEnABB(Pedido* pedido);   //Opción 13
+    void mostrarAbbPedidos();                   //Opción 14
     void mostrarNombresClientesAlfabeticamente(); //Opción 15
     void mostrarPedidosDeCliente(string nombreCliente); //Opción 16
-    void mostrarCantidadPedidoPorCategoria(); //Opción 17
-    void mostrarClientesConMenuVegano(); //Opción 18
+    void mostrarCantidadPedidoPorCategoria();   //Opción 17
+    void mostrarClientesConMenuVegano();        //Opción 18
 
-    void Salir(); //Opción 19
+    void Salir();                               //Opción 19
 
     //Funciones públicas auxiliares
     void mostrarDatos();

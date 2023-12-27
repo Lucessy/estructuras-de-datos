@@ -201,7 +201,7 @@
 	<cstdlib>
 	<ctime>
 
-1703641614 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
+1703687824 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\gestor.cpp
 	"Gestor.h"
 	"Cola.h"
 	"Reserva.h"
@@ -212,7 +212,7 @@
 	<random>
 	<cstdlib>
 
-1703640576 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\lista.cpp
+1703688019 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\lista.cpp
 	"Lista.h"
 	<iostream>
 	<math.h>
@@ -247,7 +247,7 @@
 	<iostream>
 	"Mesa.h"
 
-1703640340 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\abb.cpp
+1703687988 source:c:\users\lucia\onedrive - universidad de alcala\documentos\estructuras-de-datos\pl1\src\abb.cpp
 	"ABB.h"
 	<iostream>
 	<Lista.h>

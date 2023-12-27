@@ -37,12 +37,12 @@ void ABB::verEnOrden(NodoABB *nodo,bool mostrarSoloNombres,int left_counter,int 
             //Mostrar datos de cliente y sus pedidos
             if(!mostrarSoloNombres && !soloVeganos)
             {
-                cout << "\nNodo: Izq: " << left_counter << " , Der: " << right_counter << endl;
+                cout << "(Nodo: Izq: " << left_counter << " , Der: " << right_counter << ")" << endl;
             }
             cout << "Nombre de cliente: " << nodo->nombreCliente << endl;
             if(!mostrarSoloNombres)
             {
-                cout << "Lista de pedidos realizados por el cliente: " << endl;
+                cout << "Lista de pedidos realizados por el cliente: " << endl << endl;
                 nodo->listaPedidosCliente.mostrarDatosLista();
             }
         }
@@ -136,6 +136,11 @@ void ABB::sumarCategorias()
         longVegano=0;
 
         sumarCategorias(raiz,0,0);
+
+        cout << "Numero de pedidos realizados en la categoria:" << endl;
+        cout << "   -" << "Completo: " << getLongCompleto() << endl;
+        cout << "   -" << "Sin Gluten: " << getLongSinGluten() << endl;
+        cout << "   -" << "Vegano: " << getLongVegano() << endl;
     }
 }
 

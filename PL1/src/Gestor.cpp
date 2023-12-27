@@ -39,6 +39,7 @@ void Gestor::generarColaReservas()
 */
 void Gestor::mostrarColaReservas()
 {
+    cout << "-----------COLA DE RESERVAS----------------------" << endl;
     colaReservas.mostrarCola();
 } //Opci�n 2
 
@@ -47,13 +48,7 @@ void Gestor::mostrarColaReservas()
 */
 void Gestor::vaciarColaReservas()
 {
-    if(colaReservas.esVacia())
-    {
-        cout << "La cola de reservas ya está vacía." << endl;
-        return;
-    }
     colaReservas.vaciarCola();
-    cout << "Cola de reservas vaciada." << endl;
 } //Opci�n 3
 
 /**
@@ -69,6 +64,7 @@ void Gestor::generarPilaMesas()
 */
 void Gestor::mostrarPilaMesas()
 {
+    cout << "-----------PILA DE MESAS-------------------------" << endl;
     pilaMesas.mostrarPilaMesas();
 } //Opción 5
 
@@ -77,13 +73,7 @@ void Gestor::mostrarPilaMesas()
 */
 void Gestor::vaciarPilaMesas()
 {
-    if(pilaMesas.esVacia())
-    {
-        cout << "La pila de mesas está vacía."<<endl;
-        return;
-    }
     pilaMesas.vaciarPila();
-    cout << "Pila de mesas vaciada."<<endl;
 } //Opci�n 6
 
 /**
@@ -91,6 +81,7 @@ void Gestor::vaciarPilaMesas()
 **/
 void Gestor::mostrarAbbPedidos()
 {
+    cout << "-------------ABB DE PEDIDOS----------------------" << endl;
     abbPedidos.verEnOrden();
 }
 
@@ -213,9 +204,7 @@ void Gestor::simularGestionProximaReserva()
         //Se comprueba si han terminado todas las reservas de una hora
         if(comprobarCambioHora(horaActual))
         {
-            cout << "Simulando el cambio de hora..." << endl;
             simularCambioHora();
-            cout << "Cambio de hora simulado." << endl;
         }
     }
 
@@ -243,11 +232,10 @@ void Gestor::mostrarDatos()
     colaReservas.mostrarCola();
     cout << "-----------COLA DE RESERVAS PENDIENTES-----------" << endl;
     colaReservasPdtes.mostrarCola();
-    cout << "-----------COLA DE RESERVAS CON GESTION FALLIDA--" << endl;
-    colaReservasNoGestionadas.mostrarCola();
     cout << "-----------LISTA DE PEDIDOS----------------------" << endl;
     listaPedidos.mostrarDatosLista();
-    cout << "-----------FIN DE DATOS----------------------" << endl;
+    cout << "--------COLA DE RESERVAS CON GESTION FALLIDA-----" << endl;
+    colaReservasNoGestionadas.mostrarCola();
 }
 
 /**
@@ -341,7 +329,6 @@ void Gestor::simularGestionReservasProximaHora()
             if(!colaReservasPdtes.esVacia())
             {
                 //Se guarda la próxima reserva pendiente, se procesa y se muestran sus datos
-                cout << "---------Procesando reserva pendiente--------------" << endl;
                 pReserva = siguienteReserva(true);
                 procesarReserva(pReserva,true,false,true);
             }
@@ -350,9 +337,7 @@ void Gestor::simularGestionReservasProximaHora()
         haHabidoCambioHora = comprobarCambioHora(horaActual);
     }
     //Al terminar simula el cambio de hora
-    cout << "Simulando el cambio de hora..." << endl;
     simularCambioHora();
-    cout << "Cambio de hora simulado." << endl;
 }//Opci�n 8
 
 /**
@@ -434,6 +419,7 @@ void Gestor::insertarPedidoEnABB(Pedido* pedido)
 */
 void Gestor::mostrarNombresClientesAlfabeticamente()
 {
+    cout << "-------------ABB DE PEDIDOS----------------------" << endl;
     abbPedidos.verEnOrden(true);
 }
 
@@ -449,7 +435,7 @@ void Gestor::mostrarPedidosDeCliente(string nombreCliente)
     }
     else
     {
-        cout << "Pedidos gestionados para el cliente: " << nombreCliente << " : " <<endl;
+        cout << "Pedidos gestionados para el cliente: " << nombreCliente << endl << endl;
         listaPedidos->mostrarDatosLista();
     }
 }
@@ -460,10 +446,6 @@ void Gestor::mostrarPedidosDeCliente(string nombreCliente)
 void Gestor::mostrarCantidadPedidoPorCategoria()
 {
     abbPedidos.sumarCategorias();
-    cout << "Numero de pedidos realizados en la categoria:" << endl;
-    cout << "   " << "Completo: " << abbPedidos.getLongCompleto() << endl;
-    cout << "   " << "Sin Gluten: " << abbPedidos.getLongSinGluten() << endl;
-    cout << "   " << "Vegano: " << abbPedidos.getLongVegano() << endl;
 }
 
 /**
@@ -471,6 +453,7 @@ void Gestor::mostrarCantidadPedidoPorCategoria()
 */
 void Gestor::mostrarClientesConMenuVegano()
 {
+    cout << "-------------ABB DE PEDIDOS----------------------" << endl;
     abbPedidos.verEnOrden(false,true);
 }
 
