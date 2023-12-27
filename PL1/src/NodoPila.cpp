@@ -10,5 +10,5 @@ NodoPila::NodoPila(Mesa& elemento, NodoPila* sig)
 
 NodoPila::~NodoPila()
 {
-    //dtor
+    //dtor.
 }

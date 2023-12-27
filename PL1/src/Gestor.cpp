@@ -405,7 +405,7 @@ Pedido* Gestor::crearPedidos(Mesa** mesas, Reserva* pReserva)
 
 /**
 * Simula la gestión completa de todas las próximas reservas de cola reservas a la misma hora. Aunque gestiona una reserva pdte cada 2 comunes,
-* no gestiona las reservas pendientes de la última pasada de la simulación, cuando ya se han acabado las reservas de la cola de reservas.
+* no gestiona las reservas pendientes de la última pasada de la simulación, cuando ya se han acabado las reservas de la cola de reservas
 */
 void Gestor::simularGestionReservasProximaHora()
 {

@@ -7,14 +7,14 @@ using namespace std;
 
 Cola::Cola()
 {
-    //ctor
+    //ctor.
     primero=NULL;
     ultimo=NULL;
 }
 
 Cola::~Cola()
 {
-    //dtor
+    //dtor.
 }
 
 void Cola::encolar(Reserva& reserva)

@@ -15,7 +15,7 @@ Reserva::Reserva(string nombreCliente,string horaReserva,string situacionMesa,in
 
 Reserva::~Reserva()
 {
-    //dtor
+    //dtor.
 }
 
 void Reserva::mostrarReserva()

@@ -4,7 +4,7 @@
 
 NodoLista::~NodoLista()
 {
-    //dtor
+    //dtor.
 }
 
 NodoLista::NodoLista(Pedido& elem, NodoLista* sig, NodoLista* ant)

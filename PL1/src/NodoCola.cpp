@@ -10,5 +10,5 @@ NodoCola::NodoCola(Reserva& reservaCliente, NodoCola*sig)
 
 NodoCola::~NodoCola()
 {
-    //dtor
+    //dtor.
 }

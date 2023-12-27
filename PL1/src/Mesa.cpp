@@ -14,7 +14,7 @@ Mesa::Mesa(int numero,int capacidad,string situacionMesa)
 
 Mesa::~Mesa()
 {
-    //dtor
+    //dtor.
 }
 
 void Mesa::mostrarMesa()

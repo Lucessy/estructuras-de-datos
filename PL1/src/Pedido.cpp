@@ -14,7 +14,7 @@ Pedido::Pedido(Mesa* mesaAsignada[], string nomCliente, int numPersonas, string 
 
 Pedido::~Pedido()
 {
-    //dtor
+    //dtor.
 }
 
 void Pedido::mostrarPedido()

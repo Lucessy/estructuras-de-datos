@@ -123,7 +123,7 @@ Lista* ABB::buscarListaPedidosPorNombre(string nombreCliente, NodoABB* nodo)
 }
 
 /**
-* Suma las cantidades de cada pedido recursivamente y actualiza sus variables privadas respectivas estas cantidades.
+* Suma las cantidades de cada pedido recursivamente y actualiza sus variables privadas respectivas estas cantidades
 */
 void ABB::sumarCategorias()
 {

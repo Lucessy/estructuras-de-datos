@@ -14,5 +14,5 @@ NodoABB::NodoABB(string nomCliente,Pedido* pedido, NodoABB *izq, NodoABB *der)
 
 NodoABB::~NodoABB()
 {
-    //dtor
+    //dtor.
 }

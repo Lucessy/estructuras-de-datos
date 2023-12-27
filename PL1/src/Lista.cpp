@@ -179,7 +179,7 @@ void Lista::extenderListaPorCategoria(Pedido& elem) {
         //Se actualiza el puntero a actulizar que depende unicamente de la categoría para que apunte al último nodo de la categoría, es decir, el recien creado.
         (*punteroAActualizar) = nuevoNodo;
 
-        //Se actualizan el primero y/o el último si es necesario
+        //Se actualizan el primero y/o el último si es necesario.
         if(nuevoNodo->siguiente == nullptr){
             ultimo = nuevoNodo;
         }

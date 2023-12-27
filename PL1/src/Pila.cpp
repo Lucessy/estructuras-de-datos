@@ -14,7 +14,7 @@ Pila::Pila()
 
 Pila::~Pila()
 {
-    //dtor
+    //dtor.
     while(cima)
     {
         desapilar();
