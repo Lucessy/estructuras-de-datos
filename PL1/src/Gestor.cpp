@@ -483,7 +483,7 @@ void Gestor::Salir()
 
 
 /**
-* Inserta el pedido dado en la lista de pedidos
+* Inserta el pedido dado en la lista de pedidos.
 */
 void Gestor::insertarPedidoEnLista(Pedido* pedido)
 {
